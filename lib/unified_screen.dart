@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sih_brain_games/news/news.dart';
 
 class Unified extends StatelessWidget {
   ValueNotifier<int> pageNum = ValueNotifier(2);
@@ -38,11 +39,20 @@ class Unified extends StatelessWidget {
         builder: (context, int page, child) => PageView(
           controller: _cont,
           children: [
-            Container(
-              child: Text(
-                "Page0",
-                style: TextStyle(fontSize: 30, color: Colors.black),
-              ),
+            Column(
+              children: [
+                Text(
+                  "News",
+                  style: TextStyle(fontSize: 30, color: Colors.black),
+                ),
+                RaisedButton(
+                child: Text("News Category"),onPressed: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => News_Section()),
+                  );
+                })
+              ],
             ),
             Container(
               child: Text(
