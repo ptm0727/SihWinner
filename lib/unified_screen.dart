@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sih_brain_games/games/memory_game.dart';
 import 'package:sih_brain_games/news/news.dart';
 
 class Unified extends StatelessWidget {
@@ -23,7 +24,8 @@ class Unified extends StatelessWidget {
           items: [
             BottomNavigationBarItem(label: "", icon: Icon(Icons.check_box)),
             BottomNavigationBarItem(label: "", icon: Icon(Icons.work)),
-            BottomNavigationBarItem(label: "", icon: Icon(Icons.home)),
+            BottomNavigationBarItem(
+                label: "", icon: Icon(Icons.gamepad_outlined)),
             BottomNavigationBarItem(label: "", icon: Icon(Icons.smoke_free)),
             BottomNavigationBarItem(label: "", icon: Icon(Icons.settings))
           ],
@@ -46,12 +48,13 @@ class Unified extends StatelessWidget {
                   style: TextStyle(fontSize: 30, color: Colors.black),
                 ),
                 RaisedButton(
-                child: Text("News Category"),onPressed: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => News_Section()),
-                  );
-                })
+                    child: Text("News Category"),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => News_Section()),
+                      );
+                    })
               ],
             ),
             Container(
@@ -60,11 +63,21 @@ class Unified extends StatelessWidget {
                 style: TextStyle(fontSize: 30, color: Colors.black),
               ),
             ),
-            Container(
-              child: Text(
-                "Page2",
-                style: TextStyle(fontSize: 30, color: Colors.black),
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Memory Game",
+                      style: TextStyle(fontSize: 30, color: Colors.white),
+                    ),
+                  ),
+                  onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => MemoryGame())),
+                ),
+              ],
             ),
             Container(
               child: Text(
