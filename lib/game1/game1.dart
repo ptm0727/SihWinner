@@ -24,10 +24,8 @@ class _HomeState extends State<game1> {
 
     gridViewTiles = myPairs;
     Future.delayed(const Duration(seconds: 5), () {
-// Here you can write your code
       setState(() {
         print("2 seconds done");
-        // Here you can write your code for open new view
         questionPairs = getQuestionPairs();
         gridViewTiles = questionPairs;
         selected = false;
@@ -162,7 +160,6 @@ class _TileState extends State<Tile> {
             myPairs[widget.tileIndex].setIsSelected(true);
           });
           if (selectedTile != "") {
-            /// testing if the selected tiles are same
             if (selectedTile == myPairs[widget.tileIndex].getImageAssetPath()) {
               print("add point");
               points = points + 100;
