@@ -121,7 +121,7 @@ class _HomeState extends State<game1> {
                             ),
                             borderRadius: BorderRadius.circular(24),
                           ),
-                          child: Text("Rate Us", style: TextStyle(
+                          child: Text("Back To Home", style: TextStyle(
                               color: Colors.blue,
                               fontSize: 17,
                               fontWeight: FontWeight.w500
