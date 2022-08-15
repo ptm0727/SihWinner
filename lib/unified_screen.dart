@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sih_brain_games/game1/game1.dart';
+import 'package:sih_brain_games/games/memory_game.dart';
 import 'package:sih_brain_games/news/news.dart';
 
 class Unified extends StatelessWidget {
@@ -61,9 +63,27 @@ class Unified extends StatelessWidget {
               ),
             ),
             Container(
-              child: Text(
-                "Page2",
-                style: TextStyle(fontSize: 30, color: Colors.black),
+              child: Column(
+                children: [
+                  ElevatedButton(onPressed: (){
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context)=> game1())
+                    );
+                  }, child: Text(
+                    "Game1",
+                    style: TextStyle(fontSize: 30, color: Colors.black),
+                  )
+                  ),
+                  ElevatedButton(onPressed: (){
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context)=> MemoryGame())
+                    );
+                  }, child: Text(
+                    "Game2",
+                    style: TextStyle(fontSize: 30, color: Colors.black),
+                  )
+                  ),
+                ],
               ),
             ),
             Container(
