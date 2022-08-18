@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1089741298650",
+    "project_id": "siholdman",
+    "storage_bucket": "siholdman.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089741298650:android:8e1fa94077a18c6982fee3",
+        "android_client_info": {
+          "package_name": "com.example.sih_brain_games"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089741298650-63uv9cjp1dt9of9ua0g3635ib4k6q6rh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWDyY_gpZ4TfZnLfzS7TK9zOEYsXA-qH4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089741298650-63uv9cjp1dt9of9ua0g3635ib4k6q6rh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
