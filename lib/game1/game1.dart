@@ -37,6 +37,12 @@ class _HomeState extends State<game1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Test your memory",
+          style: TextStyle(color: Colors.black, fontSize: 25),
+        ),
+      ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
