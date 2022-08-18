@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sih_brain_games/game1/game1.dart';
 import 'package:sih_brain_games/games/memory_game_new.dart';
 import 'package:sih_brain_games/news/news.dart';
+import 'package:sih_brain_games/puzzlegame/puzzle%20home.dart';
 
 class Unified extends StatelessWidget {
   ValueNotifier<int> pageNum = ValueNotifier(2);
@@ -82,8 +83,19 @@ class Unified extends StatelessWidget {
                             MaterialPageRoute(
                                 builder: (context) => MemoryGame1()));
                       },
-                      child: Text(
+                      child: const Text(
                         "Memory game",
+                        style: TextStyle(fontSize: 30, color: Colors.white),
+                      )),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => puz()));
+                      },
+                      child: const Text(
+                        "Puzzle Game",
                         style: TextStyle(fontSize: 30, color: Colors.white),
                       )),
                 ],
