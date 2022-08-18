@@ -32,9 +32,9 @@ class VideoPlayerScreen1Screen extends StatefulWidget {
 
 class _VideoPlayerScreen1ScreenState extends State<VideoPlayerScreen1Screen> {
   Color mainColor = Colors.white;
-  String dataSource = 'assets/1.mp4';
+  String dataSource = 'assets/y1.mp4';
   VideoPlayerController _controller =
-  VideoPlayerController.asset('assets/1.mp4');
+  VideoPlayerController.asset('assets/y1.mp4');
   @override
   void initState() {
     super.initState();
@@ -192,9 +192,9 @@ class VideoPlayerScreen2Screen extends StatefulWidget {
 
 class _VideoPlayerScreen2ScreenState extends State<VideoPlayerScreen2Screen> {
   Color mainColor = Colors.white;
-  String dataSource = 'assets/2.mp4';
+  String dataSource = 'assets/y2.mp4';
   VideoPlayerController _controller =
-  VideoPlayerController.asset('assets/2.mp4');
+  VideoPlayerController.asset('assets/y2.mp4');
   @override
   void initState() {
     super.initState();
@@ -359,9 +359,9 @@ class VideoPlayerScreen3Screen extends StatefulWidget {
 
 class _VideoPlayerScreen3ScreenState extends State<VideoPlayerScreen3Screen> {
   Color mainColor = Colors.white;
-  String dataSource = 'assets/3.mp4';
+  String dataSource = 'assets/y3.mp4';
   VideoPlayerController _controller =
-  VideoPlayerController.asset('assets/3.mp4');
+  VideoPlayerController.asset('assets/y3.mp4');
   @override
   void initState() {
     super.initState();

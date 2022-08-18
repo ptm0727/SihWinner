@@ -81,7 +81,7 @@ class _yoga_homeState extends State<yoga_home> {
                     ),
                     child: Card(
                       child: Ink.image(
-                        image: const AssetImage('assets/1.jpg'),
+                        image: const AssetImage('assets/y1.jpg'),
                         height: 100,
                         width: 400,
                         fit: BoxFit.cover,
@@ -142,7 +142,7 @@ class _yoga_homeState extends State<yoga_home> {
                     ),
                     child: Card(
                       child: Ink.image(
-                        image: const AssetImage('assets/2.jpeg'),
+                        image: const AssetImage('assets/y2.jpeg'),
                         height: 100,
                         width: 400,
                         fit: BoxFit.cover,
@@ -201,7 +201,7 @@ class _yoga_homeState extends State<yoga_home> {
                     ),
                     child: Card(
                       child: Ink.image(
-                        image: const AssetImage('assets/3.jpg'),
+                        image: const AssetImage('assets/y3.jpg'),
                         height: 100,
                         width: 400,
                         fit: BoxFit.cover,
