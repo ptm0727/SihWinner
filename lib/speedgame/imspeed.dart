@@ -21,6 +21,7 @@ class _MemoryGame1State extends State<imspeed> {
     grid=generateTiles();
     start = true;
     s=20;
+    p=0;
     startTimer();
     Future.delayed(Duration(seconds: 20), () {
       setState(() {
