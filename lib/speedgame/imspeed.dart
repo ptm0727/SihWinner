@@ -151,7 +151,7 @@ class _MemoryGame1State extends State<imspeed> {
         ): AlertDialog(
           title:  Center(
             child: Text(
-              "Game over \nPoints Scored :$p",
+              "Game over \nPoints Scored : $p",
               style: const TextStyle(color: Colors.black, fontSize: 30),
             ),
           ),
