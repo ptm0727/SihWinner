@@ -29,6 +29,17 @@ class _MemoryGame1State extends State<imspeed> {
       });
     });
   }
+  void stopTimer()
+  {
+    timer?.cancel();
+  }
+
+  @override
+  void dispose() {
+    stopTimer();
+    super.dispose();
+    print("dispose used");
+  }
   void startTimer(){
     timer=Timer.periodic(Duration(seconds: 1), (_) {
       setState(() {

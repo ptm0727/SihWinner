@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sih_brain_games/speedgame/counter1.dart';
 
-import 'imspeed.dart';
+import 'package:sih_brain_games/speedgame/imspeed.dart';
 
 class GameTile extends StatefulWidget {
   int id;
@@ -14,7 +14,11 @@ class GameTile extends StatefulWidget {
 }
 
 class _TileState extends State<GameTile> {
-
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
   Widget build(BuildContext context) {
     Counter1 counter = Provider.of<Counter1>(context);
     return Container(
