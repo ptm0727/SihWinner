@@ -73,7 +73,7 @@ class _MemoryGame1State extends State<imspeed> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => Counter1(),
-      child: start?Scaffold(
+      child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,
           foregroundColor: Colors.grey,
@@ -83,7 +83,7 @@ class _MemoryGame1State extends State<imspeed> {
             style: TextStyle(color: Colors.black, fontSize: 25),
           ),
         ),
-        body: Container(
+        body: start?Container(
           padding: EdgeInsets.all(30),
           child: Consumer<Counter1>(
             builder: (_, counter, __) => Column(
@@ -148,14 +148,11 @@ class _MemoryGame1State extends State<imspeed> {
               ],
             ),
           ),
-        ),
-      ):
-      Container(
-        child: AlertDialog(
-          title: const Center(
+        ): AlertDialog(
+          title:  Center(
             child: Text(
-              "Game over",
-              style: TextStyle(color: Colors.black, fontSize: 30),
+              "Game over \nPoints Scored :$p",
+              style: const TextStyle(color: Colors.black, fontSize: 30),
             ),
           ),
           actions: [
@@ -186,8 +183,10 @@ class _MemoryGame1State extends State<imspeed> {
             )
           ],
           actionsAlignment: MainAxisAlignment.center,
-        ),
+        )
+
       )
     );
+
   }
 }
