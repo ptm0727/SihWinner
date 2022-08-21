@@ -110,7 +110,7 @@ class _MemoryGame1State extends State<imspeed> {
                           TextStyle(color: Colors.grey.shade700, fontSize: 20),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     GridView(
                       shrinkWrap: true,

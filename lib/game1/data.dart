@@ -4,6 +4,7 @@ String selectedTile = "";
 int selectedIndex=0 ;
 bool selected = true;
 int points = 0;
+int moves=30;
 
 List<TileModel> myPairs = <TileModel>[];
 List<bool> clicked = <bool>[];
