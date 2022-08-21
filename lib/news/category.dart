@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:sih_brain_games/news/news.dart';
 import 'package:sih_brain_games/news/newspage.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class News_Section extends StatefulWidget {
-  const News_Section(this.category,{Key? key}) : super(key: key);
-  final category;
+
+class Category_Section extends StatefulWidget {
+  const Category_Section({Key? key}) : super(key: key);
+
   @override
-  _News_SectionState createState() => _News_SectionState(category);
+  _Category_SectionState createState() => _Category_SectionState();
 }
 
-class _News_SectionState extends State<News_Section> {
+class _Category_SectionState extends State<Category_Section> {
   ValueNotifier<int> pageNum = ValueNotifier(2);
   PageController _cont = PageController(initialPage: 2);
-  var category;
-  _News_SectionState(this.category);
+
   final Stream<QuerySnapshot> users =
-      FirebaseFirestore.instance.collection('news').snapshots();
+  FirebaseFirestore.instance.collection('category').snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class _News_SectionState extends State<News_Section> {
         elevation: 0,
         backgroundColor: Colors.black,
         title: Text(
-          category,
+          "Category",
           style: TextStyle(fontSize: 30, color: Colors.white),
         ),
       ),
@@ -55,13 +55,8 @@ class _News_SectionState extends State<News_Section> {
                       return ListView.builder(
                           itemCount: data.size,
                           itemBuilder: (context, index) {
-                            if(category == data.docs[index]['category'])
                             return headlines(
-                                data.docs[index]['imageURL'],
-                                data.docs[index]['headline'],
-                                data.docs[index]['category'],
-                                data.docs[index]['article']);
-                            return SizedBox.shrink();
+                                data.docs[index]['category']);
                           });
                     },
                   ),
@@ -80,58 +75,33 @@ class _News_SectionState extends State<News_Section> {
 
 class headlines extends StatelessWidget {
   const headlines(
-    this.image,
-    this.headline,
-    this.category,
-      this.article,{
-    Key? key,
-  }) : super(key: key);
-  final image;
-  final headline;
+      this.category,
+      {
+        Key? key,
+      }) : super(key: key);
+
   final category;
-  final article;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       child: Container(
-        margin: EdgeInsets.all(5),
-        decoration: const BoxDecoration(
-          color: Color(0xFFFFE1E1),
-          borderRadius: BorderRadius.all(Radius.circular(7)),
-        ),
-        child: Row(
-          children: [
-            Container(
-              child: Image.network(
-                image,
-              ),
-              padding: EdgeInsets.all(9),
-              width: 90,
-            ),
-            Container(
-              child: Column(
-                children: [
-                  Text(
-                    headline,
-                    style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),
-                  ),
-                  Text("Category: "+category,
-                    style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-              padding: EdgeInsets.all(2),
-            ),
-          ],
-        ),
+        margin: EdgeInsets.only(bottom: 10),
+        child: ElevatedButton(
+            child: Text(category,style: TextStyle(color: Colors.black),),
+            style: ElevatedButton.styleFrom(
+                primary: Color(0xFFFFE1E1),
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                textStyle: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold)),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => News_Section(category)),
+              );
+            }),
       ),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => News(headline,image,article)),
-        );
-      },
     );
   }
 }
