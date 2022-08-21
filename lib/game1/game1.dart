@@ -2,6 +2,7 @@ import 'package:sih_brain_games/game1/TileModel.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/game1/data.dart';
 import 'dart:async';
+
 class game1 extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -15,6 +16,8 @@ class _HomeState extends State<game1> {
   void initState() {
     // TODO: implement initState
     var initState = super.initState();
+    moves=30;
+    points=0;
     reStart();
   }
   void reStart() {
@@ -55,7 +58,7 @@ class _HomeState extends State<game1> {
               SizedBox(
                 height: 10,
               ),
-              points != 800 ? Column(
+              points != 800 && moves>0? Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
@@ -74,7 +77,7 @@ class _HomeState extends State<game1> {
               SizedBox(
                 height: 30,
               ),
-              points != 800 ? GridView(
+              points != 800 && moves>0? GridView(
                 shrinkWrap: true,
                 //physics: ClampingScrollPhysics(),
                 scrollDirection: Axis.vertical,
@@ -94,6 +97,7 @@ class _HomeState extends State<game1> {
                         onTap: (){
                           setState(() {
                             points = 0;
+                            moves=30;
                             reStart();
                           });
                         },
@@ -115,7 +119,7 @@ class _HomeState extends State<game1> {
                       SizedBox(height: 20,),
                       GestureDetector(
                         onTap: (){
-                          // TODO
+                          Navigator.pop(context);
                         },
                         child: Container(
                           height: 50,
@@ -137,7 +141,16 @@ class _HomeState extends State<game1> {
                       ),
                     ],
                   )
-              )
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              moves>0?Text(" MOVES LEFT $moves"
+              ,style: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500
+                  ),):Container()
             ],
           ),
         ),
@@ -164,6 +177,9 @@ class _TileState extends State<Tile> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        setState(() {
+          moves--;
+        });
         if (!selected) {
           setState(() {
             myPairs[widget.tileIndex].setIsSelected(true);
