@@ -38,6 +38,9 @@ class _HomeState extends State<game1> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
         title: const Text(
           "Test your memory",
           style: TextStyle(color: Colors.black, fontSize: 25),
@@ -50,7 +53,7 @@ class _HomeState extends State<game1> {
           child: Column(
             children: <Widget>[
               SizedBox(
-                height: 40,
+                height: 10,
               ),
               points != 800 ? Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -69,7 +72,7 @@ class _HomeState extends State<game1> {
                 ],
               ) : Container(),
               SizedBox(
-                height: 20,
+                height: 30,
               ),
               points != 800 ? GridView(
                 shrinkWrap: true,
