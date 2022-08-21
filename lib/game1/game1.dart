@@ -40,6 +40,7 @@ class _HomeState extends State<game1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         foregroundColor: Colors.grey,
@@ -49,7 +50,6 @@ class _HomeState extends State<game1> {
           style: TextStyle(color: Colors.black, fontSize: 25),
         ),
       ),
-      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
@@ -145,9 +145,9 @@ class _HomeState extends State<game1> {
               SizedBox(
                 height: 20,
               ),
-              moves>0?Text(" MOVES LEFT $moves"
+              moves>0? Text(" MOVES LEFT $moves"
               ,style: const TextStyle(
-                      color: Colors.red,
+                      color: Colors.black38,
                       fontSize: 20,
                       fontWeight: FontWeight.w500
                   ),):Container()
