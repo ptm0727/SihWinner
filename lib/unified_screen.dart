@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sih_brain_games/game1/game1.dart';
-import 'package:sih_brain_games/games/memory_game_new.dart';
-import 'package:sih_brain_games/musicpage/musicbuttons.dart';
+import 'package:sih_brain_games/game_screen.dart';
+import 'package:sih_brain_games/musicpage/music_screen.dart';
 import 'package:sih_brain_games/news/category.dart';
-import 'package:sih_brain_games/puzzlegame/puzzle%20home.dart';
-import 'package:sih_brain_games/speedgame/imspeed.dart';
-
+import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
 class Unified extends StatelessWidget {
   ValueNotifier<int> pageNum = ValueNotifier(2);
@@ -13,122 +10,67 @@ class Unified extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: Text(
-          "Home",
-          style: TextStyle(fontSize: 30, color: Colors.black),
+        title: const Center(
+          child: Text(
+            "OldMan",
+            style: TextStyle(
+              fontSize: 40,
+            ),
+          ),
         ),
       ),
       bottomNavigationBar: ValueListenableBuilder(
-        valueListenable: pageNum,
-        builder: (context, int page, child) => BottomNavigationBar(
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          items: [
-            BottomNavigationBarItem(label: "", icon: Icon(Icons.check_box)),
-            BottomNavigationBarItem(label: "", icon: Icon(Icons.work)),
-            BottomNavigationBarItem(label: "", icon: Icon(Icons.home)),
-            BottomNavigationBarItem(label: "", icon: Icon(Icons.smoke_free)),
-            BottomNavigationBarItem(label: "", icon: Icon(Icons.settings))
-          ],
-          currentIndex: page,
-          onTap: (updatedPage) {
-            _cont.animateToPage(updatedPage,
-                duration: Duration(milliseconds: 200), curve: Curves.easeIn);
-          },
-        ),
-      ),
-      body: ValueListenableBuilder(
-        valueListenable: pageNum,
-        builder: (context, int page, child) => PageView(
-          controller: _cont,
-          children: [
-            Column(
-              children: [
-                Text(
-                  "News",
-                  style: TextStyle(fontSize: 30, color: Colors.black),
-                ),
-                ElevatedButton(
-                    child: Text("News Category"),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Category_Section()),
-                      );
-                    })
-              ],
-            ),
-            Container(
-              child: Text(
+          valueListenable: pageNum,
+          builder: (context, int page, child) => CurvedNavigationBar(
+                backgroundColor: Colors.transparent,
+                animationDuration: const Duration(milliseconds: 300),
+                color: Colors.black54,
+                index: page,
+                items: const <Widget>[
+                  Icon(
+                    Icons.newspaper_outlined,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  Icon(Icons.work, size: 30),
+                  Icon(Icons.home_filled, size: 30),
+                  Icon(Icons.music_note_outlined, size: 30),
+                  Icon(Icons.settings, size: 30),
+                ],
+                onTap: (int index) {
+                  pageNum.value = index;
+                  _cont.animateToPage(index,
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.easeIn);
+                },
+              )),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10),
+        child: ValueListenableBuilder(
+          valueListenable: pageNum,
+          builder: (context, int page, child) => PageView(
+            controller: _cont,
+            children: [
+              const Category_Section(),
+              const Text(
                 "Page1",
                 style: TextStyle(fontSize: 30, color: Colors.black),
               ),
-            ),
-            Container(
-              child: Column(
-                children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => game1()));
-                      },
-                      child: const Text(
-                        "Pair game",
-                        style: TextStyle(fontSize: 30, color: Colors.white),
-                      )),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => MemoryGame1()));
-                      },
-                      child: const Text(
-                        "Memory game",
-                        style: TextStyle(fontSize: 30, color: Colors.white),
-                      )),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => puz()));
-                      },
-                      child: const Text(
-                        "Puzzle Game",
-                        style: TextStyle(fontSize: 30, color: Colors.white),
-                      )),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => imspeed()));
-                        
-                      },
-                      child: const Text(
-                        "Speed Game",
-                        style: TextStyle(fontSize: 30, color: Colors.white),
-                      )),
-                ],
-              ),
-            ),
-            Container(
-              child: musicbuttons()
-            ),
-            Container(
-              child: Text(
+              const GameScreen(),
+              MusicScreen(),
+              const Text(
                 "Page4",
                 style: TextStyle(fontSize: 30, color: Colors.black),
               ),
-            ),
-          ],
-          onPageChanged: (updated) {
-            pageNum.value = updated;
-          },
+            ],
+            onPageChanged: (updated) {
+              pageNum.value = updated;
+            },
+          ),
         ),
       ),
     );

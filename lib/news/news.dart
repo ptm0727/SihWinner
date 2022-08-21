@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/news/newspage.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class News_Section extends StatefulWidget {
-  const News_Section(this.category,{Key? key}) : super(key: key);
+class NewsSection extends StatefulWidget {
+  const NewsSection(this.category, {Key? key}) : super(key: key);
   final category;
   @override
-  _News_SectionState createState() => _News_SectionState(category);
+  _NewsSectionState createState() => _NewsSectionState(category);
 }
 
-class _News_SectionState extends State<News_Section> {
+class _NewsSectionState extends State<NewsSection> {
   ValueNotifier<int> pageNum = ValueNotifier(2);
-  PageController _cont = PageController(initialPage: 2);
+  PageController _cont = PageController(initialPage: 1);
   var category;
-  _News_SectionState(this.category);
+  _NewsSectionState(this.category);
   final Stream<QuerySnapshot> users =
       FirebaseFirestore.instance.collection('news').snapshots();
   @override
@@ -28,51 +27,46 @@ class _News_SectionState extends State<News_Section> {
           style: TextStyle(fontSize: 30, color: Colors.white),
         ),
       ),
-      body: ValueListenableBuilder(
-        valueListenable: pageNum,
-        builder: (context, int page, child) => PageView(
-          controller: _cont,
-          children: [
-            Container(
-              height: double.infinity,
-              width: double.infinity,
-              padding: EdgeInsets.all(10),
-              child: SingleChildScrollView(
-                child: Container(
-                  height: 10000000,
-                  child: StreamBuilder<QuerySnapshot>(
-                    stream: users,
-                    builder: (BuildContext context,
-                        AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.hasError) {
-                        return Text('Somthing when wrong');
-                      }
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Text('Loading');
-                      }
-                      final data = snapshot.requireData;
+      body: PageView(
+        controller: _cont,
+        children: [
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            padding: EdgeInsets.all(10),
+            child: SingleChildScrollView(
+              child: Container(
+                height: 10000000,
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: users,
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return const Text('Somthing when wrong');
+                    }
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Text('Loading');
+                    }
+                    final data = snapshot.requireData;
 
-                      return ListView.builder(
-                          itemCount: data.size,
-                          itemBuilder: (context, index) {
-                            if(category == data.docs[index]['category'])
+                    return ListView.builder(
+                        itemCount: data.size,
+                        itemBuilder: (context, index) {
+                          if (category == data.docs[index]['category']) {
                             return headlines(
                                 data.docs[index]['imageURL'],
                                 data.docs[index]['headline'],
                                 data.docs[index]['category'],
                                 data.docs[index]['article']);
-                            return SizedBox.shrink();
-                          });
-                    },
-                  ),
+                          }
+                          return const SizedBox.shrink();
+                        });
+                  },
                 ),
               ),
             ),
-          ],
-          onPageChanged: (updated) {
-            pageNum.value = updated;
-          },
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -83,7 +77,7 @@ class headlines extends StatelessWidget {
     this.image,
     this.headline,
     this.category,
-      this.article,{
+    this.article, {
     Key? key,
   }) : super(key: key);
   final image;
@@ -114,10 +108,17 @@ class headlines extends StatelessWidget {
                 children: [
                   Text(
                     headline,
-                    style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
                   ),
-                  Text("Category: "+category,
-                    style: TextStyle(color: Colors.black,fontSize: 14,fontWeight: FontWeight.bold),
+                  Text(
+                    "Category: " + category,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold),
                   )
                 ],
               ),
@@ -129,7 +130,8 @@ class headlines extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => News(headline,image,article)),
+          MaterialPageRoute(
+              builder: (context) => News(headline, image, article)),
         );
       },
     );
