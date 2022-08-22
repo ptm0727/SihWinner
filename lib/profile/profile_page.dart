@@ -7,7 +7,7 @@ class profile extends StatefulWidget {
 }
 
 class _profile extends State<profile> {
-  Widget displayscore()
+  Widget displayscore(String s)
   {
     return Container(
       child: ClipRRect(
@@ -20,19 +20,12 @@ class _profile extends State<profile> {
               //color: Colors.grey.shade700,
               borderRadius: BorderRadius.circular(25),
               border: Border.all(width: 2, color: Colors.cyan)),
-          child: const ExpansionTile(
-              title: Text(
-                "points",
+          child:
+               Text(
+                s,
                 style: TextStyle(fontSize: 20, color: Colors.white),
+
               ),
-              children: [
-                ListTile(
-                  title: Text(
-                    "Points Scored",
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  ),
-                )
-              ]),
         ),
       ),
     );
@@ -73,23 +66,23 @@ class _profile extends State<profile> {
                 SizedBox(
                   height: 12,
                 ),
-                displayscore(),
+                displayscore("Memory"),
                 SizedBox(
                   height: 12,
                 ),
-                displayscore(),
+                displayscore("Pair"),
                 SizedBox(
                   height: 12,
                 ),
-                displayscore(),
+                displayscore("Speed"),
                 SizedBox(
                   height: 12,
                 ),
-                displayscore(),
+                displayscore("Puzzle"),
                 SizedBox(
                   height: 12,
                 ),
-                displayscore(),
+                displayscore("Math"),
               ],
             ),
           ),
