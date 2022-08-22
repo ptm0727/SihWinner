@@ -144,7 +144,7 @@ class _music extends State<music>{
                       },
                     ),
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ClipRRect(
