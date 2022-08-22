@@ -22,7 +22,7 @@ class Button extends StatelessWidget {
       child: Neumorphic(
         style: NeumorphicStyle(
             intensity: 0.8,
-            depth: 6,
+            depth: 4,
             shadowLightColor: Colors.blueGrey.shade700,
             shadowDarkColor: Color(0xff0B0E12),
             color: Color(0xff333E52),
@@ -83,7 +83,7 @@ class RegularButton extends StatelessWidget {
       child: Neumorphic(
         style: NeumorphicStyle(
             intensity: 0.8,
-            depth: 6,
+            depth: 4,
             shadowLightColor: Colors.blueGrey.shade700,
             shadowDarkColor: Color(0xff0B0E12),
             color: Color(0xff333E52),
@@ -118,7 +118,7 @@ class AltButton extends StatelessWidget {
       child: Neumorphic(
         style: NeumorphicStyle(
             intensity: 0.8,
-            depth: 6,
+            depth: 4,
             shadowLightColor: Colors.blueGrey.shade700,
             shadowDarkColor: Color(0xff0B0E12),
             color: Color(0xff333E52),
