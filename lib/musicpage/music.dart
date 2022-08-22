@@ -48,30 +48,28 @@ class _music extends State<music>{
   Widget btnFast(){
     return IconButton(
         onPressed: (){
-          setState(() {
+          position<duration-const Duration(seconds: 10)?setState(() {
             position=position+const Duration(seconds: 10);
-          });
+            audioPlayer.seek(position);
+          }):audioPlayer.seek(position);
         },
-        icon: const ImageIcon(
-          AssetImage('assets/forward.png'),
-          size: 15,
-          color: Colors.black,
+        icon: const Icon(
+          Icons.arrow_forward,
+          color: Colors.blueGrey,
         )
     );
   }
   Widget btnSlow(){
     return IconButton(
         onPressed: (){
-          setState(() {
+          position>const Duration(seconds: 10)?setState(() {
             position=position-const Duration(seconds: 10);
             audioPlayer.seek(position);
-          });
-
+          }):audioPlayer.seek(position);
         },
-        icon: const ImageIcon(
-          AssetImage('assets/backword.png'),
-          size: 15,
-          color: Colors.black,
+        icon: const Icon(
+          Icons.arrow_back,
+          color: Colors.blueGrey,
         )
     );
   }
