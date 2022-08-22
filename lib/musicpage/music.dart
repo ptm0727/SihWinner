@@ -67,126 +67,135 @@ class _music extends State<music>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        foregroundColor: Colors.grey,
+        elevation: 0,
+        title: const Text(
+          "Meditation music",
+          style: TextStyle(color: Colors.white, fontSize: 25),
+        ),
+      ),
       backgroundColor: Colors.grey.shade900,
         body: Padding(
           padding: EdgeInsets.all(20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20),
-                child:  Image.asset(widget.b,
-                  width: double.infinity,
-                  height: 200,
-                  fit: BoxFit.fitHeight,
-                ),
-              ),
-              const SizedBox(height: 15,),
-               Text(
-                widget.c,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(height: 25,),
-               Text(
-                widget.c,
-                style: const TextStyle(fontSize: 20),
-              ),
-              Slider(
-                min: 0,
-                  max: duration.inSeconds.toDouble(),
-                  value: position.inSeconds.toDouble(),
-                  onChanged: (value) async{
-                  final position=Duration(seconds: value.toInt());
-                  await audioPlayer.seek(position);
-
-                  await audioPlayer.resume();
-                  },
-              ),
-               Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                 child: Row(
-                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                   children: [
-                     Text(formatTime(position)),
-                     Text(formatTime(duration)),
-                   ],
-                 ),
-               ),
-                CircleAvatar(
-                  radius: 35,
-                  child: IconButton(
-                    icon: Icon(
-                      isPlaying?Icons.pause:Icons.play_arrow,
-                    ),
-                    iconSize: 50,
-                    color: Colors.blueGrey,
-                    onPressed: () async {
-                      if(isPlaying)
-                        {
-                          await audioPlayer.pause();
-                        }
-                      else{
-                        await audioPlayer.resume();
-                      }
-                    },
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child:  Image.asset(widget.b,
+                    width: double.infinity,
+                    height: 200,
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
-              SizedBox(
-                height: 20,
-              ),
-              SingleChildScrollView(
-                child:
-              ClipRRect(
-                clipBehavior: Clip.hardEdge,
-                borderRadius: BorderRadius.circular(25),
-                child: Container(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                          colors: [Colors.grey.shade800, Colors.grey.shade900]),
-                      //color: Colors.grey.shade700,
-                      borderRadius: BorderRadius.circular(25),
-                      border: Border.all(width: 2, color: Colors.cyan)),
-                  child: const ExpansionTile(
-                      title: Text(
-                        "Follow the General Instructions",
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                const SizedBox(height: 15,),
+                 Text(
+                  widget.c,
+                  style: const TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 25,),
+                 Text(
+                  widget.c,
+                  style: const TextStyle(fontSize: 20),
+                ),
+                Slider(
+                  min: 0,
+                    max: duration.inSeconds.toDouble(),
+                    value: position.inSeconds.toDouble(),
+                    onChanged: (value) async{
+                    final position=Duration(seconds: value.toInt());
+                    await audioPlayer.seek(position);
+
+                    await audioPlayer.resume();
+                    },
+                ),
+                 Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                   child: Row(
+                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                     children: [
+                       Text(formatTime(position)),
+                       Text(formatTime(duration)),
+                     ],
+                   ),
+                 ),
+                  CircleAvatar(
+                    radius: 35,
+                    child: IconButton(
+                      icon: Icon(
+                        isPlaying?Icons.pause:Icons.play_arrow,
                       ),
-                      children: [
-                        ListTile(
-                          title: Text(
-                            "1. Sit upright comfortably\n2. Breathe deeply\n3. Gently close your eyes\n4. Slowly scan your body, and notice any sensations\n5. Be aware of any thoughts you are having\n6. When your mind wanders, focus on your breath\n7. Gently open your eyes when you are ready",
-                            style: TextStyle(fontSize: 15, color: Colors.white),
-                          ),
-                        )
-                      ]),
-                ),
-              ),
-              )
-              /*const Text(
-                "Follow the General Instructions",
-                style: TextStyle(
-                  color: Colors.blueGrey,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const Text("1. Sit upright comfortably\n2. Breathe deeply\n3. Gently close your eyes\n4. Slowly scan your body, and notice any sensations\n5. Be aware of any thoughts you are having\n6. When your mind wanders, focus on your breath\n7. Gently open your eyes when you are ready"),
-              const SizedBox(height: 32,),
-              ElevatedButton(
-                  onPressed: ()
-                  {
-                    Navigator.pop(context);
-                  },
-                  child: Text(
-                    "Back To Music",
-                    style: TextStyle(
-                      color: Colors.white,
+                      iconSize: 50,
+                      color: Colors.blueGrey,
+                      onPressed: () async {
+                        if(isPlaying)
+                          {
+                            await audioPlayer.pause();
+                          }
+                        else{
+                          await audioPlayer.resume();
+                        }
+                      },
                     ),
-                  ))*/
-            ],
+                  ),
+                SizedBox(
+                  height: 20,
+                ),
+                ClipRRect(
+                  clipBehavior: Clip.hardEdge,
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: [Colors.grey.shade800, Colors.grey.shade900]),
+                        //color: Colors.grey.shade700,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(width: 2, color: Colors.cyan)),
+                    child: const ExpansionTile(
+                        title: Text(
+                          "Follow the General Instructions",
+                          style: TextStyle(fontSize: 20, color: Colors.white),
+                        ),
+                        children: [
+                          ListTile(
+                            title: Text(
+                              "1. Sit upright comfortably\n2. Breathe deeply\n3. Gently close your eyes\n4. Slowly scan your body, and notice any sensations\n5. Be aware of any thoughts you are having\n6. When your mind wanders, focus on your breath\n7. Gently open your eyes when you are ready",
+                              style: TextStyle(fontSize: 15, color: Colors.white),
+                            ),
+                          )
+                        ]),
+                  ),
+                ),
+                
+                /*const Text(
+                  "Follow the General Instructions",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const Text("1. Sit upright comfortably\n2. Breathe deeply\n3. Gently close your eyes\n4. Slowly scan your body, and notice any sensations\n5. Be aware of any thoughts you are having\n6. When your mind wanders, focus on your breath\n7. Gently open your eyes when you are ready"),
+                const SizedBox(height: 32,),
+                ElevatedButton(
+                    onPressed: ()
+                    {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Back To Music",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ))*/
+              ],
+            ),
           ),
         ),
     );
