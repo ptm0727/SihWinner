@@ -133,7 +133,7 @@ class _music extends State<music>{
                 ),
                 Slider(
                   activeColor: Colors.purple,
-                  inactiveColor: Colors.purpleAccent,
+                  inactiveColor: Colors.blueGrey,
                   min: 0,
                     max: duration.inSeconds.toDouble(),
                     value: position.inSeconds.toDouble(),
