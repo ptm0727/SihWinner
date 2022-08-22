@@ -1,5 +1,6 @@
 
 
+import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/news/comments.dart';
 
@@ -36,9 +37,13 @@ class _NewsState extends State<News> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Image.network(
-                widget.image,
-              ),
+          Image(
+          image: FirebaseImage('gs://siholdman.appspot.com/'+widget.image),
+          // Works with standard parameters, e.g.
+          fit: BoxFit.fitWidth,
+          width: 100,
+          // ... etc.
+        ),
               Container(
                 padding: EdgeInsets.all(5),
                 child: Text(widget.article,
