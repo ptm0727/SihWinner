@@ -45,7 +45,36 @@ class _music extends State<music>{
     final url=await player.load(widget.a);
     audioPlayer.setSourceUrl(url.path);
   }
+  Widget btnFast(){
+    return IconButton(
+        onPressed: (){
+          setState(() {
+            position=position+const Duration(seconds: 10);
+          });
+        },
+        icon: const ImageIcon(
+          AssetImage('assets/forward.png'),
+          size: 15,
+          color: Colors.black,
+        )
+    );
+  }
+  Widget btnSlow(){
+    return IconButton(
+        onPressed: (){
+          setState(() {
+            position=position-const Duration(seconds: 10);
+            audioPlayer.seek(position);
+          });
 
+        },
+        icon: const ImageIcon(
+          AssetImage('assets/backword.png'),
+          size: 15,
+          color: Colors.black,
+        )
+    );
+  }
   @override
   void dispose()
   {
@@ -105,6 +134,8 @@ class _music extends State<music>{
                   style: const TextStyle(fontSize: 20),
                 ),
                 Slider(
+                  activeColor: Colors.purple,
+                  inactiveColor: Colors.purpleAccent,
                   min: 0,
                     max: duration.inSeconds.toDouble(),
                     value: position.inSeconds.toDouble(),
@@ -125,24 +156,32 @@ class _music extends State<music>{
                      ],
                    ),
                  ),
-                  CircleAvatar(
-                    radius: 35,
-                    child: IconButton(
-                      icon: Icon(
-                        isPlaying?Icons.pause:Icons.play_arrow,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      btnSlow(),
+                      CircleAvatar(
+                        radius: 35,
+                        child: IconButton(
+                          icon: Icon(
+                            isPlaying?Icons.pause:Icons.play_arrow,
+                          ),
+                          iconSize: 50,
+                          color: Colors.blueGrey,
+                          onPressed: () async {
+                            if(isPlaying)
+                              {
+                                await audioPlayer.pause();
+                              }
+                            else{
+                              await audioPlayer.resume();
+                            }
+                          },
+                        ),
                       ),
-                      iconSize: 50,
-                      color: Colors.blueGrey,
-                      onPressed: () async {
-                        if(isPlaying)
-                          {
-                            await audioPlayer.pause();
-                          }
-                        else{
-                          await audioPlayer.resume();
-                        }
-                      },
-                    ),
+                      btnFast()
+                    ],
                   ),
                 const SizedBox(
                   height: 20,

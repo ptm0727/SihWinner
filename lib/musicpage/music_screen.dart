@@ -9,6 +9,10 @@ class MusicScreen extends StatefulWidget {
 
 class _MusicScreen extends State<MusicScreen> {
   @override
+  void dispose() {
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
