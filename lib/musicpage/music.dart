@@ -45,7 +45,34 @@ class _music extends State<music>{
     final url=await player.load(widget.a);
     audioPlayer.setSourceUrl(url.path);
   }
-
+  Widget btnFast(){
+    return IconButton(
+        onPressed: (){
+          position<duration-const Duration(seconds: 10)?setState(() {
+            position=position+const Duration(seconds: 10);
+            audioPlayer.seek(position);
+          }):audioPlayer.seek(position);
+        },
+        icon: const Icon(
+          Icons.arrow_forward,
+          color: Colors.blueGrey,
+        )
+    );
+  }
+  Widget btnSlow(){
+    return IconButton(
+        onPressed: (){
+          position>const Duration(seconds: 10)?setState(() {
+            position=position-const Duration(seconds: 10);
+            audioPlayer.seek(position);
+          }):audioPlayer.seek(position);
+        },
+        icon: const Icon(
+          Icons.arrow_back,
+          color: Colors.blueGrey,
+        )
+    );
+  }
   @override
   void dispose()
   {
@@ -105,6 +132,8 @@ class _music extends State<music>{
                   style: const TextStyle(fontSize: 20),
                 ),
                 Slider(
+                  activeColor: Colors.purple,
+                  inactiveColor: Colors.purpleAccent,
                   min: 0,
                     max: duration.inSeconds.toDouble(),
                     value: position.inSeconds.toDouble(),
@@ -125,26 +154,34 @@ class _music extends State<music>{
                      ],
                    ),
                  ),
-                  CircleAvatar(
-                    radius: 35,
-                    child: IconButton(
-                      icon: Icon(
-                        isPlaying?Icons.pause:Icons.play_arrow,
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      btnSlow(),
+                      CircleAvatar(
+                        radius: 35,
+                        child: IconButton(
+                          icon: Icon(
+                            isPlaying?Icons.pause:Icons.play_arrow,
+                          ),
+                          iconSize: 50,
+                          color: Colors.blueGrey,
+                          onPressed: () async {
+                            if(isPlaying)
+                              {
+                                await audioPlayer.pause();
+                              }
+                            else{
+                              await audioPlayer.resume();
+                            }
+                          },
+                        ),
                       ),
-                      iconSize: 50,
-                      color: Colors.blueGrey,
-                      onPressed: () async {
-                        if(isPlaying)
-                          {
-                            await audioPlayer.pause();
-                          }
-                        else{
-                          await audioPlayer.resume();
-                        }
-                      },
-                    ),
+                      btnFast()
+                    ],
                   ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
                 ClipRRect(

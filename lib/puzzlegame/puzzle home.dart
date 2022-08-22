@@ -38,6 +38,7 @@ class _puz extends State<puz> with TickerProviderStateMixin {
     final screenSize = MediaQuery.of(context).size;
     final unitSize = min(screenSize.width / 6, screenSize.height / 8);
     return Scaffold(
+      backgroundColor: Colors.blueGrey,
       body: BoardConfig(
         unitSize: unitSize,
         hideTexts: _hideTexts,
