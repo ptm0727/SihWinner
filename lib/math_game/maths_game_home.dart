@@ -6,14 +6,14 @@ import 'dart:math';
 
 
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class mathgame extends StatefulWidget {
+  const mathgame({Key? key}) : super(key: key);
   //int a = 0;
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<mathgame> createState() => _mathgame();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _mathgame extends State<mathgame> {
   ////
   ///
   ///
