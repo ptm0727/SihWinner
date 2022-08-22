@@ -1,3 +1,4 @@
+import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/news/newspage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -110,7 +111,13 @@ class headlines extends StatelessWidget {
                 ),
               ),
               leading: Container(
-                child: Image.network(image),
+                child: Image(
+                  image: FirebaseImage('gs://siholdman.appspot.com/'+image),
+                  // Works with standard parameters, e.g.
+                  fit: BoxFit.fitWidth,
+                  width: 100,
+                  // ... etc.
+                ),
               ),
               trailing: SizedBox.shrink(),
               onTap: () {
