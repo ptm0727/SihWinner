@@ -47,7 +47,6 @@ class _yoga_homeState extends State<yoga_home> {
           getEffectsWidget(),
         ],
       ),
-      body: getEffectsWidget(),
     );
   }
 

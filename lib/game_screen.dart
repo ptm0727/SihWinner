@@ -40,9 +40,7 @@ class GameScreen extends StatelessWidget {
           const Center(
             child: Text(
               "Games",
-              style: TextStyle(
-                fontSize: 40,
-              ),
+              style: TextStyle(fontSize: 40, fontStyle: FontStyle.italic),
             ),
           ),
           ListView.builder(
