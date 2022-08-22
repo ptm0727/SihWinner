@@ -3,14 +3,25 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sih_brain_games/Login/auth_service.dart';
 import 'package:sih_brain_games/Login/login.dart';
+import 'package:sih_brain_games/pointsmodel.dart';
 import 'package:sih_brain_games/unified_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:hive/hive.dart';
 
-void main() async {
+late Box box;
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(pointsmodelAdapter());
+  box=await Hive.openBox<pointsmodel>('points');
+  box.put('points',
+      pointsmodel(p1: 10, p2: 20, p3: 30, p4: 40, p5: 50, p6: 60)
   );
   runApp(const MyApp());
 }

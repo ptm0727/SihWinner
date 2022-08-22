@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sih_brain_games/pointsmodel.dart';
+import 'package:sih_brain_games/main.dart';
 
 class profile extends StatefulWidget {
   @override
@@ -32,6 +34,7 @@ class _profile extends State<profile> {
   }
   @override
   Widget build(BuildContext context) {
+    pointsmodel p=box.get('points');
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       body: Padding(
@@ -66,23 +69,23 @@ class _profile extends State<profile> {
                 SizedBox(
                   height: 12,
                 ),
-                displayscore("Memory"),
+                displayscore("Memory ${p.p1}"),
                 SizedBox(
                   height: 12,
                 ),
-                displayscore("Pair"),
+                displayscore("Pair ${p.p2}"),
                 SizedBox(
                   height: 12,
                 ),
-                displayscore("Speed"),
+                displayscore("Speed ${p.p3}"),
                 SizedBox(
                   height: 12,
                 ),
-                displayscore("Puzzle"),
+                displayscore("Puzzle ${p.p4}"),
                 SizedBox(
                   height: 12,
                 ),
-                displayscore("Math"),
+                displayscore("Math ${p.p4}"),
               ],
             ),
           ),
