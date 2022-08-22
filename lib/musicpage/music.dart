@@ -2,6 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../custom_button.dart';
+
 class music extends StatefulWidget {
   late String a;
   late String b;
@@ -132,8 +134,38 @@ class _music extends State<music>{
                     },
                   ),
                 ),
-              const SizedBox(height: 32,),
-              const Text(
+              SizedBox(
+                height: 20,
+              ),
+              SingleChildScrollView(
+                child:
+              ClipRRect(
+                clipBehavior: Clip.hardEdge,
+                borderRadius: BorderRadius.circular(25),
+                child: Container(
+                  decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                          colors: [Colors.grey.shade800, Colors.grey.shade900]),
+                      //color: Colors.grey.shade700,
+                      borderRadius: BorderRadius.circular(25),
+                      border: Border.all(width: 2, color: Colors.cyan)),
+                  child: const ExpansionTile(
+                      title: Text(
+                        "Follow the General Instructions",
+                        style: TextStyle(fontSize: 20, color: Colors.white),
+                      ),
+                      children: [
+                        ListTile(
+                          title: Text(
+                            "1. Sit upright comfortably\n2. Breathe deeply\n3. Gently close your eyes\n4. Slowly scan your body, and notice any sensations\n5. Be aware of any thoughts you are having\n6. When your mind wanders, focus on your breath\n7. Gently open your eyes when you are ready",
+                            style: TextStyle(fontSize: 15, color: Colors.white),
+                          ),
+                        )
+                      ]),
+                ),
+              ),
+              )
+              /*const Text(
                 "Follow the General Instructions",
                 style: TextStyle(
                   color: Colors.blueGrey,
@@ -153,7 +185,7 @@ class _music extends State<music>{
                     style: TextStyle(
                       color: Colors.white,
                     ),
-                  ))
+                  ))*/
             ],
           ),
         ),
