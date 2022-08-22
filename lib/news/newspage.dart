@@ -1,10 +1,15 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:sih_brain_games/news/comments.dart';
 
 class News extends StatefulWidget {
-  const News(this.headline,this.image,this.article,{Key? key}) : super(key: key);
+  const News(this.headline,this.image,this.article,this.id,{Key? key}) : super(key: key);
   final headline;
   final image;
   final article;
+  final id;
+  static const IconData comment = IconData(0xe17e, fontFamily: 'MaterialIcons');
   @override
   _NewsState createState() => _NewsState();
 }
@@ -25,7 +30,7 @@ class _NewsState extends State<News> {
       body: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Color(0xFFFAEAE),
+
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -39,13 +44,23 @@ class _NewsState extends State<News> {
                 child: Text(widget.article,
                 style: TextStyle(
                   fontSize: 16,
-                  color: Colors.black,
+                  color: Colors.white,
                   fontWeight: FontWeight.w500
                 ),),
               ),
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Comment_Section(widget.headline,widget.id)));
+        },
+        tooltip: 'Comments',
+        child: const Icon(Icons.add,color: Colors.white,),
       ),
     );
   }

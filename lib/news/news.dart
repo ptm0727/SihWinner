@@ -57,7 +57,8 @@ class _NewsSectionState extends State<NewsSection> {
                                 data.docs[index]['imageURL'],
                                 data.docs[index]['headline'],
                                 data.docs[index]['category'],
-                                data.docs[index]['article']);
+                                data.docs[index]['article'],
+                                data.docs[index]['id']);
                           }
                           return const SizedBox.shrink();
                         });
@@ -77,63 +78,115 @@ class headlines extends StatelessWidget {
     this.image,
     this.headline,
     this.category,
-    this.article, {
+    this.article,
+      this.id,{
     Key? key,
   }) : super(key: key);
   final image;
   final headline;
   final category;
   final article;
+  final id;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Container(
-        margin: EdgeInsets.all(5),
-        decoration: const BoxDecoration(
-          color: Color(0xFFFFE1E1),
-          borderRadius: BorderRadius.all(Radius.circular(7)),
-        ),
-        child: Row(
-          children: [
-            Container(
-              child: Image.network(
-                image,
+        height: 90,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.grey.shade800, Colors.grey.shade900]),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(width: 2, color: Colors.cyan)),
+        child: ClipRRect(
+          clipBehavior: Clip.hardEdge,
+          borderRadius: BorderRadius.circular(5),
+          child: ListTile(
+              title: Center(
+                child: Text(
+                  headline,
+                  style: const TextStyle(fontSize: 25, color: Colors.white),
+                ),
               ),
-              padding: EdgeInsets.all(9),
-              width: 90,
-            ),
-            Container(
-              child: Column(
-                children: [
-                  Text(
-                    headline,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    "Category: " + category,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold),
-                  )
-                ],
+              leading: Container(
+                child: Image.network(image),
               ),
-              padding: EdgeInsets.all(2),
-            ),
-          ],
+              trailing: SizedBox.shrink(),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => News(headline, image, article,id)));
+              }),
         ),
       ),
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => News(headline, image, article)),
-        );
-      },
     );
   }
 }
+
+// class headlines extends StatelessWidget {
+//   const headlines(
+//     this.image,
+//     this.headline,
+//     this.category,
+//     this.article, {
+//     Key? key,
+//   }) : super(key: key);
+//   final image;
+//   final headline;
+//   final category;
+//   final article;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return InkWell(
+//       child: Container(
+//         margin: EdgeInsets.all(5),
+//         decoration: const BoxDecoration(
+//           color: Color(0xFFFFE1E1),
+//           borderRadius: BorderRadius.all(Radius.circular(7)),
+//         ),
+//         child: Row(
+//           children: [
+//             Container(
+//               child: Image.network(
+//                 image,
+//               ),
+//               padding: EdgeInsets.all(9),
+//               width: 90,
+//             ),
+//             Container(
+//               child: Column(
+//                 children: [
+//                   Text(
+//                     headline,
+//                     style: TextStyle(
+//                         color: Colors.black,
+//                         fontSize: 20,
+//                         fontWeight: FontWeight.bold),
+//                   ),
+//                   Text(
+//                     "Category: " + category,
+//                     style: TextStyle(
+//                         color: Colors.black,
+//                         fontSize: 14,
+//                         fontWeight: FontWeight.bold),
+//                   )
+//                 ],
+//               ),
+//               padding: EdgeInsets.all(2),
+//             ),
+//           ],
+//         ),
+//       ),
+//       onTap: () {
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(
+//               builder: (context) => News(headline, image, article)),
+//         );
+//       },
+//     );
+//   }
+// }
