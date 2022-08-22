@@ -50,7 +50,7 @@ class _resultState extends State<result> {
               OutlinedButton(
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MyHomePage()));
+                      MaterialPageRoute(builder: (context) => const mathgame()));
                 },
                 style: OutlinedButton.styleFrom(
                   side: BorderSide(color: secondcolor, width: 1.0),
