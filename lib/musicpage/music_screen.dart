@@ -19,7 +19,7 @@ class _MusicScreen extends State<MusicScreen> {
           c: 'Meditation music',
           d: '',
         ),
-        title: "Music 1",
+        title: "Mindful Meditation",
       ),
       AltButton(
         destination: music(
@@ -28,25 +28,25 @@ class _MusicScreen extends State<MusicScreen> {
           c: 'Meditation music',
           d: '',
         ),
-        title: "Music 2",
+        title: "Spiritual Meditation",
       ),
       AltButton(
         destination: music(
           a: 'm3.mp3',
-          b: 'assets/pic3.png',
+          b: 'assets/pic3.jpg',
           c: 'Meditation music',
           d: '',
         ),
-        title: "Music 3",
+        title: "Focused Meditation",
       ),
       AltButton(
         destination: music(
           a: 'm4.mp3',
-          b: 'assets/pic4.png',
+          b: 'assets/pic4.jpg',
           c: 'Meditation music',
           d: '',
         ),
-        title: "Music 4",
+        title: "Progressive Relaxation",
       ),
     ]));
   }

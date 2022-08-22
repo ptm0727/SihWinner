@@ -3,6 +3,7 @@ import 'package:sih_brain_games/game_screen.dart';
 import 'package:sih_brain_games/musicpage/music_screen.dart';
 import 'package:sih_brain_games/news/category.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:sih_brain_games/yoga/yoga_home.dart';
 
 class Unified extends StatelessWidget {
   ValueNotifier<int> pageNum = ValueNotifier(2);
@@ -56,10 +57,7 @@ class Unified extends StatelessWidget {
             controller: _cont,
             children: [
               const Category_Section(),
-              const Text(
-                "Page1",
-                style: TextStyle(fontSize: 30, color: Colors.black),
-              ),
+              const yoga_home(),
               const GameScreen(),
               MusicScreen(),
               const Text(
