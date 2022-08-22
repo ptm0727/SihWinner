@@ -39,9 +39,7 @@ class _yoga_homeState extends State<yoga_home> {
           const Center(
             child: Text(
               "Yoga",
-              style: TextStyle(
-                fontSize: 40,
-              ),
+              style: TextStyle(fontSize: 35, fontStyle: FontStyle.italic),
             ),
           ),
           getEffectsWidget(),

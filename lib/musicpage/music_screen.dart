@@ -26,9 +26,7 @@ class _MusicScreen extends State<MusicScreen> {
       const Center(
         child: Text(
           "Meditation",
-          style: TextStyle(
-            fontSize: 40,
-          ),
+          style: TextStyle(fontSize: 35, fontStyle: FontStyle.italic),
         ),
       ),
       AltButton(

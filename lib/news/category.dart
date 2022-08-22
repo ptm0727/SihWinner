@@ -28,9 +28,7 @@ class _Category_SectionState extends State<Category_Section> {
           const Center(
             child: Text(
               "News",
-              style: TextStyle(
-                fontSize: 40,
-              ),
+              style: TextStyle(fontSize: 35, fontStyle: FontStyle.italic),
             ),
           ),
           StreamBuilder<QuerySnapshot>(
