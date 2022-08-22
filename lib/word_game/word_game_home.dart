@@ -5,7 +5,6 @@ import 'package:sih_brain_games/word_game/word_gmae_images.dart';
 //import 'package:flutter_application_2/Question.dart';
 
 
-void main() => runApp(Word_game());
 
 class Word_game extends StatefulWidget {
   //const MyApp({Key? key}) : super(key: key);
