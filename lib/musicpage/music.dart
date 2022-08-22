@@ -65,7 +65,7 @@ class _music extends State<music>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.grey.shade900,
         body: Padding(
           padding: EdgeInsets.all(20),
           child: Column(
@@ -120,6 +120,7 @@ class _music extends State<music>{
                       isPlaying?Icons.pause:Icons.play_arrow,
                     ),
                     iconSize: 50,
+                    color: Colors.blueGrey,
                     onPressed: () async {
                       if(isPlaying)
                         {
@@ -135,6 +136,7 @@ class _music extends State<music>{
               const Text(
                 "Follow the General Instructions",
                 style: TextStyle(
+                  color: Colors.blueGrey,
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
@@ -147,7 +149,10 @@ class _music extends State<music>{
                     Navigator.pop(context);
                   },
                   child: Text(
-                    "Back To Music"
+                    "Back To Music",
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ))
             ],
           ),
