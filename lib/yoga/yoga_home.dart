@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/yoga/YVideos.dart';
 
-
-
 // class yoga_home extends StatelessWidget {
 //   // This widget is the root of your application.
 //   @override
@@ -29,21 +27,40 @@ class yoga_home extends StatefulWidget {
 class _yoga_homeState extends State<yoga_home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Yoga Player'),
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
+            child: Divider(
+              thickness: 2,
+            ),
+          ),
+          const Center(
+            child: Text(
+              "Yoga",
+              style: TextStyle(
+                fontSize: 40,
+              ),
+            ),
+          ),
+          getEffectsWidget(),
+        ],
       ),
       body: getEffectsWidget(),
     );
   }
 
   getEffectsWidget() {
-    return ListView(scrollDirection: Axis.vertical, children: _getListData());
+    return ListView(
+        physics: ClampingScrollPhysics(),
+        shrinkWrap: true,
+        scrollDirection: Axis.vertical,
+        children: _getListData());
   }
 
   _getListData() {
     List<Widget> widgets = [];
-
     widgets.add(Container(
       decoration: const BoxDecoration(
         color: Colors.blue,
@@ -54,7 +71,7 @@ class _yoga_homeState extends State<yoga_home> {
       margin: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
       child: Padding(
           padding:
-          EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 10.0),
+              EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 10.0),
           child: InkWell(
             splashColor: Colors.black,
             //onTap: () {},
@@ -115,7 +132,7 @@ class _yoga_homeState extends State<yoga_home> {
       margin: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
       child: Padding(
           padding:
-          EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 10.0),
+              EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 10.0),
           child: InkWell(
             splashColor: Colors.black,
             //onTap: () {},
@@ -174,7 +191,7 @@ class _yoga_homeState extends State<yoga_home> {
       margin: EdgeInsets.only(left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
       child: Padding(
           padding:
-          EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 10.0),
+              EdgeInsets.only(left: 0.0, top: 0.0, right: 0.0, bottom: 10.0),
           child: InkWell(
             splashColor: Colors.black,
             //onTap: () {},

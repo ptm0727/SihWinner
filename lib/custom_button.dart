@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sih_brain_games/news/newspage.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 import 'news/news.dart';
 
@@ -18,21 +18,25 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: ClipRRect(
-        clipBehavior: Clip.hardEdge,
-        borderRadius: BorderRadius.circular(25),
-        child: Container(
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Colors.grey.shade800, Colors.grey.shade900]),
-              //color: Colors.grey.shade700,
-              borderRadius: BorderRadius.circular(25),
-              border: Border.all(width: 2, color: Colors.cyan)),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+      child: Neumorphic(
+        style: NeumorphicStyle(
+            intensity: 0.8,
+            depth: 6,
+            shadowLightColor: Colors.blueGrey.shade700,
+            shadowDarkColor: Color(0xff0B0E12),
+            color: Color(0xff333E52),
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
+        child: Theme(
+          data:
+              ThemeData(dividerColor: Colors.transparent, fontFamily: "Nunito"),
           child: ExpansionTile(
-              title: Text(
-                title,
-                style: const TextStyle(fontSize: 26, color: Colors.white),
+              title: Padding(
+                padding: const EdgeInsets.only(left: 50),
+                child: Text(
+                  title,
+                  style: const TextStyle(fontSize: 26, color: Colors.white),
+                ),
               ),
               children: [
                 ListTile(
@@ -42,7 +46,7 @@ class Button extends StatelessWidget {
                   ),
                   trailing: MaterialButton(
                     elevation: 0,
-                    color: Colors.blue,
+                    color: Colors.deepPurple,
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => destination));
@@ -62,6 +66,41 @@ class Button extends StatelessWidget {
   }
 }
 
+class RegularButton extends StatelessWidget {
+  Function() onPressed;
+  Widget? leading;
+  String title;
+  Widget? trailing;
+  RegularButton(
+      {this.leading,
+      required this.onPressed,
+      required this.title,
+      this.trailing});
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+      child: Neumorphic(
+        style: NeumorphicStyle(
+            intensity: 0.8,
+            depth: 6,
+            shadowLightColor: Colors.blueGrey.shade700,
+            shadowDarkColor: Color(0xff0B0E12),
+            color: Color(0xff333E52),
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
+        child: ListTile(
+            title: Center(
+              child: Text(
+                title,
+                style: const TextStyle(fontSize: 25, color: Colors.white),
+              ),
+            ),
+            onTap: onPressed),
+      ),
+    );
+  }
+}
+
 class AltButton extends StatelessWidget {
   final destination;
   Widget? leading;
@@ -75,35 +114,33 @@ class AltButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.grey.shade800, Colors.grey.shade900]),
-            borderRadius: BorderRadius.circular(25),
-            border: Border.all(width: 2, color: Colors.cyan)),
-        child: ClipRRect(
-          clipBehavior: Clip.hardEdge,
-          borderRadius: BorderRadius.circular(25),
-          child: ListTile(
-              title: Center(
-                child: Text(
-                  title,
-                  style: const TextStyle(fontSize: 30, color: Colors.white),
-                ),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+      child: Neumorphic(
+        style: NeumorphicStyle(
+            intensity: 0.8,
+            depth: 6,
+            shadowLightColor: Colors.blueGrey.shade700,
+            shadowDarkColor: Color(0xff0B0E12),
+            color: Color(0xff333E52),
+            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
+        child: ListTile(
+            title: Center(
+              child: Text(
+                title,
+                style: const TextStyle(fontSize: 25, color: Colors.white),
               ),
-              onTap: () {
-                if (destination is String) {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => NewsSection(destination)));
-                } else {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => destination));
-                }
-              }),
-        ),
+            ),
+            onTap: () {
+              if (destination is String) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NewsSection(destination)));
+              } else {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => destination));
+              }
+            }),
       ),
     );
   }

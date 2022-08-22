@@ -16,14 +16,24 @@ class _Category_SectionState extends State<Category_Section> {
       FirebaseFirestore.instance.collection('category').snapshots();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      width: double.infinity,
-      padding: EdgeInsets.all(10),
-      child: SingleChildScrollView(
-        child: Container(
-          height: 10000000,
-          child: StreamBuilder<QuerySnapshot>(
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
+            child: Divider(
+              thickness: 2,
+            ),
+          ),
+          const Center(
+            child: Text(
+              "News",
+              style: TextStyle(
+                fontSize: 40,
+              ),
+            ),
+          ),
+          StreamBuilder<QuerySnapshot>(
             stream: users,
             builder:
                 (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -36,6 +46,7 @@ class _Category_SectionState extends State<Category_Section> {
               final data = snapshot.requireData;
 
               return ListView.builder(
+                  shrinkWrap: true,
                   itemCount: data.size,
                   itemBuilder: (context, index) {
                     return AltButton(
@@ -45,7 +56,7 @@ class _Category_SectionState extends State<Category_Section> {
                   });
             },
           ),
-        ),
+        ],
       ),
     );
   }

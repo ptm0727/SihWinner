@@ -14,23 +14,44 @@ class GameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> list = [
       Button(
-        leading:
-            "https://images.everydayhealth.com/images/cs-brain-games-to-boost-memory-722x406.jpg",
         destination: game1(),
         title: "Pair game",
         subtitle: "Identify pairs in the given grid",
       ),
-      Button(destination: MemoryGame1(), title: "Memory game"),
+      Button(
+          leading: "assets/brain.png",
+          destination: MemoryGame1(),
+          title: "Memory game"),
       Button(destination: puz(), title: "Puzzle game"),
       Button(destination: imspeed(), title: "Speed game"),
       Button(destination: mathgame(), title: "Math game"),
       Button(destination: Word_game(), title: "Word game")
     ];
     return SingleChildScrollView(
-      child: ListView.builder(
-          shrinkWrap: true,
-          itemCount: list.length,
-          itemBuilder: (context, index) => list[index]),
+      physics: BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
+            child: Divider(
+              thickness: 2,
+            ),
+          ),
+          const Center(
+            child: Text(
+              "Games",
+              style: TextStyle(
+                fontSize: 40,
+              ),
+            ),
+          ),
+          ListView.builder(
+              physics: ClampingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: list.length,
+              itemBuilder: (context, index) => list[index]),
+        ],
+      ),
     );
   }
 }

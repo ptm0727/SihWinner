@@ -29,6 +29,13 @@
             {
               "client_id": "1089741298650-63uv9cjp1dt9of9ua0g3635ib4k6q6rh.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1089741298650-krd19ag82qrbe65utm86g13gatea6mt1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.sihBrainGames"
+              }
             }
           ]
         }

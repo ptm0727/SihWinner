@@ -12,10 +12,25 @@ class _MusicScreen extends State<MusicScreen> {
   void dispose() {
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+      Padding(
+        padding: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
+        child: Divider(
+          thickness: 2,
+        ),
+      ),
+      const Center(
+        child: Text(
+          "Meditation",
+          style: TextStyle(
+            fontSize: 40,
+          ),
+        ),
+      ),
       AltButton(
         destination: music(
           a: 'm1.mp3',

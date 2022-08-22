@@ -34,7 +34,7 @@ class _VideoPlayerScreen1ScreenState extends State<VideoPlayerScreen1Screen> {
   Color mainColor = Colors.white;
   String dataSource = 'assets/y1.mp4';
   VideoPlayerController _controller =
-  VideoPlayerController.asset('assets/y1.mp4');
+      VideoPlayerController.asset('assets/y1.mp4');
   @override
   void initState() {
     super.initState();
@@ -42,6 +42,10 @@ class _VideoPlayerScreen1ScreenState extends State<VideoPlayerScreen1Screen> {
       ..initialize().then((_) {
         setState(() {});
       });
+    void dispose() {
+      _controller.dispose();
+      super.dispose();
+    }
   }
 
   @override
@@ -49,35 +53,27 @@ class _VideoPlayerScreen1ScreenState extends State<VideoPlayerScreen1Screen> {
     return Scaffold(
         backgroundColor: mainColor,
         appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => {
-              _controller.pause(),
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => yoga_home()))
-            },
-            icon: Icon(Icons.navigate_before),
-          ),
           elevation: 0.0,
           title: Text('Mental Yoga'),
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.transparent,
         ),
         body: Column(
           children: [
             //now we should check wether the video is loaded
             _controller.value.isInitialized
                 ? AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10.0),
-                        bottomRight: Radius.circular(10.0)),
-                  ),
-                  margin: EdgeInsets.only(
-                      left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
-                  child: VideoPlayer(_controller)),
-            )
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10.0),
+                              bottomRight: Radius.circular(10.0)),
+                        ),
+                        margin: EdgeInsets.only(
+                            left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
+                        child: VideoPlayer(_controller)),
+                  )
                 : Container(),
 
             //video progress indicator
@@ -91,7 +87,7 @@ class _VideoPlayerScreen1ScreenState extends State<VideoPlayerScreen1Screen> {
                 margin: EdgeInsets.only(
                     left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
                 child:
-                VideoProgressIndicator(_controller, allowScrubbing: true)),
+                    VideoProgressIndicator(_controller, allowScrubbing: true)),
 
             //following code is for butoon controller
             Row(
@@ -194,7 +190,7 @@ class _VideoPlayerScreen2ScreenState extends State<VideoPlayerScreen2Screen> {
   Color mainColor = Colors.white;
   String dataSource = 'assets/y2.mp4';
   VideoPlayerController _controller =
-  VideoPlayerController.asset('assets/y2.mp4');
+      VideoPlayerController.asset('assets/y2.mp4');
   @override
   void initState() {
     super.initState();
@@ -226,18 +222,18 @@ class _VideoPlayerScreen2ScreenState extends State<VideoPlayerScreen2Screen> {
             //now we should check wether the video is loaded
             _controller.value.isInitialized
                 ? AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10.0),
-                        bottomRight: Radius.circular(10.0)),
-                  ),
-                  margin: EdgeInsets.only(
-                      left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
-                  child: VideoPlayer(_controller)),
-            )
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10.0),
+                              bottomRight: Radius.circular(10.0)),
+                        ),
+                        margin: EdgeInsets.only(
+                            left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
+                        child: VideoPlayer(_controller)),
+                  )
                 : Container(),
 
             //video rogress indicator
@@ -251,7 +247,7 @@ class _VideoPlayerScreen2ScreenState extends State<VideoPlayerScreen2Screen> {
                 margin: EdgeInsets.only(
                     left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
                 child:
-                VideoProgressIndicator(_controller, allowScrubbing: true)),
+                    VideoProgressIndicator(_controller, allowScrubbing: true)),
 
             //following code is for butoon controller
             Row(
@@ -361,7 +357,7 @@ class _VideoPlayerScreen3ScreenState extends State<VideoPlayerScreen3Screen> {
   Color mainColor = Colors.white;
   String dataSource = 'assets/y3.mp4';
   VideoPlayerController _controller =
-  VideoPlayerController.asset('assets/y3.mp4');
+      VideoPlayerController.asset('assets/y3.mp4');
   @override
   void initState() {
     super.initState();
@@ -393,18 +389,18 @@ class _VideoPlayerScreen3ScreenState extends State<VideoPlayerScreen3Screen> {
             //now we should check wether the video is loaded
             _controller.value.isInitialized
                 ? AspectRatio(
-              aspectRatio: _controller.value.aspectRatio,
-              child: Container(
-                  decoration: const BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10.0),
-                        bottomRight: Radius.circular(10.0)),
-                  ),
-                  margin: EdgeInsets.only(
-                      left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
-                  child: VideoPlayer(_controller)),
-            )
+                    aspectRatio: _controller.value.aspectRatio,
+                    child: Container(
+                        decoration: const BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.only(
+                              bottomLeft: Radius.circular(10.0),
+                              bottomRight: Radius.circular(10.0)),
+                        ),
+                        margin: EdgeInsets.only(
+                            left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
+                        child: VideoPlayer(_controller)),
+                  )
                 : Container(),
 
             //video rogress indicator
@@ -418,7 +414,7 @@ class _VideoPlayerScreen3ScreenState extends State<VideoPlayerScreen3Screen> {
                 margin: EdgeInsets.only(
                     left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
                 child:
-                VideoProgressIndicator(_controller, allowScrubbing: true)),
+                    VideoProgressIndicator(_controller, allowScrubbing: true)),
 
             //following code is for butoon controller
             Row(

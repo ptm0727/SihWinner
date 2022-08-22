@@ -12,7 +12,7 @@ class Unified extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade900,
+      backgroundColor: Color(0xFF283240),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -20,7 +20,7 @@ class Unified extends StatelessWidget {
           child: Text(
             "OldMan",
             style: TextStyle(
-              fontSize: 40,
+              fontSize: 50,
             ),
           ),
         ),
@@ -28,9 +28,10 @@ class Unified extends StatelessWidget {
       bottomNavigationBar: ValueListenableBuilder(
           valueListenable: pageNum,
           builder: (context, int page, child) => CurvedNavigationBar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: Colors.blueGrey.shade800,
                 animationDuration: const Duration(milliseconds: 300),
-                color: Colors.black54,
+                buttonBackgroundColor: Colors.deepPurple,
+                color: Color(0xFF283240),
                 index: page,
                 items: const <Widget>[
                   Icon(
@@ -50,8 +51,16 @@ class Unified extends StatelessWidget {
                       curve: Curves.easeIn);
                 },
               )),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10),
+      body: Container(
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomCenter,
+                colors: [
+              Color(0xFF283240),
+              Color(0xFF283240),
+              Colors.blueGrey.shade800
+            ])),
         child: ValueListenableBuilder(
           valueListenable: pageNum,
           builder: (context, int page, child) => PageView(
