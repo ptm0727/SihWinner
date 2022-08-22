@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
 class profile extends StatefulWidget {
   @override
@@ -21,13 +22,13 @@ class _profile extends State<profile> {
               border: Border.all(width: 2, color: Colors.cyan)),
           child: const ExpansionTile(
               title: Text(
-                "Follow the General Instructions",
+                "points",
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
               children: [
                 ListTile(
                   title: Text(
-                    "1. Sit upright comfortably\n2. Breathe deeply\n3. Gently close your eyes\n4. Slowly scan your body, and notice any sensations\n5. Be aware of any thoughts you are having\n6. When your mind wanders, focus on your breath\n7. Gently open your eyes when you are ready",
+                    "Points Scored",
                     style: TextStyle(fontSize: 15, color: Colors.white),
                   ),
                 )
@@ -40,37 +41,58 @@ class _profile extends State<profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            CircleAvatar(
-              radius: 56,
-              backgroundImage: AssetImage(
-                'assets/img.png'
-              ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Center(
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children:  [
+                CircleAvatar(
+                  radius: 56,
+                  backgroundImage: AssetImage(
+                    'assets/img.png'
+                  ),
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text("MyName",
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18
+                  ),),
+                Text("MyName@gmail.com",
+                  style: TextStyle(
+                      color: Colors.blueGrey,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16
+                  ),),
+                SizedBox(
+                  height: 12,
+                ),
+                displayscore(),
+                SizedBox(
+                  height: 12,
+                ),
+                displayscore(),
+                SizedBox(
+                  height: 12,
+                ),
+                displayscore(),
+                SizedBox(
+                  height: 12,
+                ),
+                displayscore(),
+                SizedBox(
+                  height: 12,
+                ),
+                displayscore(),
+              ],
             ),
-            SizedBox(
-              height: 12,
-            ),
-            Text("MyName",
-              style: TextStyle(
-                color: Colors.blueGrey,
-                fontWeight: FontWeight.bold,
-                fontSize: 18
-              ),),
-            Text("MyName@gmail.com",
-              style: TextStyle(
-                  color: Colors.blueGrey,
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16
-              ),),
-            SizedBox(
-              height: 12,
-            ),
-
-          ],
+          ),
         ),
       ),
     );
