@@ -43,15 +43,7 @@ class _yoga_homeState extends State<yoga_home> {
 
   _getListData() {
     List<Widget> widgets = [];
-    ////
-    /////
-    ///
-    ///
-    ///
-    ///
-    ///
-    ///
-    ///
+
     widgets.add(Container(
       decoration: const BoxDecoration(
         color: Colors.blue,
