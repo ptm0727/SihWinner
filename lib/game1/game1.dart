@@ -1,7 +1,10 @@
+import 'package:sih_brain_games/pointsmodel.dart';
 import 'package:sih_brain_games/game1/TileModel.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/game1/data.dart';
 import 'dart:async';
+
+import 'package:sih_brain_games/main.dart';
 
 class game1 extends StatefulWidget {
   @override
@@ -19,7 +22,19 @@ class _HomeState extends State<game1> {
     moves=30;
     points=0;
     reStart();
+    pointsmodel p=box.get('points');
+    double x=p.p1;
+    x=x+30;
+    box.put('points', pointsmodel(p1: x, p2: x, p3: x, p4: x, p5: x, p6: x));
   }
+  void changepoints()
+  {
+    pointsmodel p=box.get('points');
+    double x=p.p1;
+    x=x+30;
+    box.put('points', pointsmodel(p1: x, p2: x, p3: x, p4: x, p5: x, p6: x));
+  }
+
   void reStart() {
 
     myPairs = getPairs();

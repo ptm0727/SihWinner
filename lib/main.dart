@@ -20,9 +20,6 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(pointsmodelAdapter());
   box=await Hive.openBox<pointsmodel>('points');
-  box.put('points',
-      pointsmodel(p1: 10, p2: 20, p3: 30, p4: 40, p5: 50, p6: 60)
-  );
   runApp(const MyApp());
 }
 
