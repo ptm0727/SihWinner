@@ -33,7 +33,7 @@ class _MusicScreen extends State<MusicScreen> {
       AltButton(
         destination: music(
           a: 'm3.mp3',
-          b: 'assets/pic3.png',
+          b: 'assets/pic3.jpg',
           c: 'Meditation music',
           d: '',
         ),
@@ -42,7 +42,7 @@ class _MusicScreen extends State<MusicScreen> {
       AltButton(
         destination: music(
           a: 'm4.mp3',
-          b: 'assets/pic4.png',
+          b: 'assets/pic4.jpg',
           c: 'Meditation music',
           d: '',
         ),
