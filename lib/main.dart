@@ -28,7 +28,7 @@ Future<void> main() async {
   double a4=xyz.p4;
   double a5=xyz.p5;
   double a6=xyz.p6;*/
-  //box.put('points',pointsmodel(p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, p6: 0));
+  //box.put('points',pointsmodel(p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, p6: 0,d1: 1, d2: 1, d3: 1, d4: 1, d5: 1, d6: 1));
   runApp(const MyApp());
 }
 

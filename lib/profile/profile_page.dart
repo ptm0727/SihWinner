@@ -69,7 +69,7 @@ class _profile extends State<profile> {
                 const SizedBox(
                   height: 100,
                 ),
-                displayscore("Memory ${p.p1.toInt()}"),
+                displayscore("Memory ${p.p1.toInt()} "),
                 const SizedBox(
                   height: 12,
                 ),
