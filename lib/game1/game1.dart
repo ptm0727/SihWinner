@@ -22,17 +22,13 @@ class _HomeState extends State<game1> {
     moves=30;
     points=0;
     reStart();
-    pointsmodel p=box.get('points');
-    double x=p.p1;
-    x=x+30;
-    box.put('points', pointsmodel(p1: x, p2: x, p3: x, p4: x, p5: x, p6: x));
   }
   void changepoints()
   {
     pointsmodel p=box.get('points');
     double x=p.p1;
-    x=x+30;
-    box.put('points', pointsmodel(p1: x, p2: x, p3: x, p4: x, p5: x, p6: x));
+    x=x+points;
+    box.put('points', pointsmodel(p1: x, p2: p.p2, p3: p.p3, p4: p.p4, p5: p.p5, p6: p.p6));
   }
 
   void reStart() {
@@ -110,6 +106,7 @@ class _HomeState extends State<game1> {
                     children: <Widget>[
                       GestureDetector(
                         onTap: (){
+                          changepoints();
                           setState(() {
                             points = 0;
                             moves=30;
@@ -134,6 +131,7 @@ class _HomeState extends State<game1> {
                       SizedBox(height: 20,),
                       GestureDetector(
                         onTap: (){
+                          changepoints();
                           Navigator.pop(context);
                         },
                         child: Container(
