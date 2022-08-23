@@ -45,44 +45,44 @@ class _profile extends State<profile> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children:  [
-                CircleAvatar(
+                const CircleAvatar(
                   radius: 56,
                   backgroundImage: AssetImage(
                     'assets/img.png'
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
-                Text("MyName",
+                const Text("MyName",
                   style: TextStyle(
                     color: Colors.blueGrey,
                     fontWeight: FontWeight.bold,
                     fontSize: 18
                   ),),
-                Text("MyName@gmail.com",
+                const Text("MyName@gmail.com",
                   style: TextStyle(
                       color: Colors.blueGrey,
                       fontWeight: FontWeight.w400,
                       fontSize: 16
                   ),),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 displayscore("Memory ${p.p1}"),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 displayscore("Pair ${p.p2}"),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 displayscore("Speed ${p.p3}"),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 displayscore("Puzzle ${p.p4}"),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 displayscore("Math ${p.p4}"),
