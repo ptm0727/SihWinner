@@ -101,7 +101,7 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                         ? _controller.pause()
                         : _controller.play();
                   },
-                  icon: const Icon(Icons.play_arrow),
+                  icon: Icon(_controller.value.isPlaying?Icons.pause : Icons.play_arrow),
                   color: Colors.deepPurpleAccent,
                 ),
                 IconButton(
