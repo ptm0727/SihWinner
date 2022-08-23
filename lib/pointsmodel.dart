@@ -5,16 +5,16 @@ part 'pointsmodel.g.dart';
 class pointsmodel extends HiveObject{
   pointsmodel({required this.p1,required this.p2,required this.p3,required this.p4,required this.p5,required this.p6,});
   @HiveField(0)
-  late double p1;
+  double p1=0;
   @HiveField(1)
-  late double p2;
+  double p2=0;
   @HiveField(2)
-  late double p3;
+   double p3=0;
   @HiveField(3)
-  late double p4;
+   double p4=0;
   @HiveField(4)
-  late double p5;
+   double p5=0;
   @HiveField(5)
-  late double p6;
+   double p6=0;
 
 }
