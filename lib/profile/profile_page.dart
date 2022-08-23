@@ -67,25 +67,29 @@ class _profile extends State<profile> {
                       fontSize: 16
                   ),),
                 const SizedBox(
-                  height: 12,
+                  height: 100,
                 ),
-                displayscore("Memory ${p.p1}"),
+                displayscore("Memory ${p.p1.toInt()}"),
                 const SizedBox(
                   height: 12,
                 ),
-                displayscore("Pair ${p.p2}"),
+                displayscore("Pair ${p.p2.toInt()}"),
                 const SizedBox(
                   height: 12,
                 ),
-                displayscore("Speed ${p.p3}"),
+                displayscore("Speed ${p.p3.toInt()}"),
                 const SizedBox(
                   height: 12,
                 ),
-                displayscore("Puzzle ${p.p4}"),
+                displayscore("Puzzle ${p.p4.toInt()}"),
                 const SizedBox(
                   height: 12,
                 ),
-                displayscore("Math ${p.p4}"),
+                displayscore("Math ${p.p5.toInt()}"),
+                const SizedBox(
+                  height: 12,
+                ),
+                displayscore("Word ${p.p6.toInt()}"),
               ],
             ),
           ),
