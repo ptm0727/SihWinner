@@ -1,7 +1,12 @@
 import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:provider/provider.dart';
+import 'package:sih_brain_games/custom_button.dart';
 import 'package:sih_brain_games/news/newspage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../dark_mode_provider.dart';
 
 class NewsSection extends StatefulWidget {
   const NewsSection(this.category, {Key? key}) : super(key: key);
@@ -17,25 +22,28 @@ class _NewsSectionState extends State<NewsSection> {
   _NewsSectionState(this.category);
   final Stream<QuerySnapshot> users =
       FirebaseFirestore.instance.collection('news').snapshots();
+  var darkData;
   @override
   Widget build(BuildContext context) {
+    darkData = Provider.of<DarkMode>(context);
     return Scaffold(
+      backgroundColor: darkData.dark ? Color(0xFF283240) : Color(0xff8e9eab),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.black,
-        title: Text(
-          category,
-          style: TextStyle(fontSize: 30, color: Colors.white),
+        backgroundColor: Colors.transparent,
+        foregroundColor: darkData.dark ? Colors.white : Colors.black,
+        title: Center(
+          child: Text(
+            category,
+            style: TextStyle(fontSize: 30),
+          ),
         ),
       ),
-      body: PageView(
-        controller: _cont,
-        children: [
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            padding: EdgeInsets.all(10),
-            child: SingleChildScrollView(
+      body: GradientContainer(
+        child: PageView(
+          controller: _cont,
+          children: [
+            SingleChildScrollView(
               child: Container(
                 height: 10000000,
                 child: StreamBuilder<QuerySnapshot>(
@@ -67,20 +75,20 @@ class _NewsSectionState extends State<NewsSection> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
 
 class headlines extends StatelessWidget {
-  const headlines(
+  headlines(
     this.image,
     this.headline,
     this.category,
     this.article,
-      this.id,{
+    this.id, {
     Key? key,
   }) : super(key: key);
   final image;
@@ -89,48 +97,98 @@ class headlines extends StatelessWidget {
   final article;
   final id;
 
+  var darkData;
   @override
   Widget build(BuildContext context) {
+    darkData = Provider.of<DarkMode>(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Container(
-        height: 90,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.grey.shade800, Colors.grey.shade900]),
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(width: 2, color: Colors.cyan)),
-        child: ClipRRect(
-          clipBehavior: Clip.hardEdge,
-          borderRadius: BorderRadius.circular(5),
-          child: ListTile(
-              title: Center(
-                child: Text(
-                  headline,
-                  style: const TextStyle(fontSize: 25, color: Colors.white),
-                ),
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+      child: Neumorphic(
+        style: darkData.dark
+            ? NeumorphicStyle(
+                intensity: 0.8,
+                depth: 4,
+                shadowLightColor: Colors.blueGrey.shade700,
+                shadowDarkColor: Color(0xff0B0E12),
+                color: Color(0xff333E52),
+                boxShape:
+                    NeumorphicBoxShape.roundRect(BorderRadius.circular(17)))
+            : NeumorphicStyle(
+                intensity: 0.7,
+                depth: 4,
+                shadowLightColor: Color(0xffeef2f3),
+                shadowDarkColor: Colors.grey.shade800,
+                color: Color(0xff83929E),
+                boxShape:
+                    NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
+        child: ListTile(
+            title: Center(
+              child: Text(
+                headline,
+                style: const TextStyle(fontSize: 25),
               ),
-              leading: Container(
-                child: Image(
-                  image: FirebaseImage('gs://siholdman.appspot.com/'+image),
-                  // Works with standard parameters, e.g.
-                  fit: BoxFit.fitWidth,
-                  width: 100,
-                  // ... etc.
-                ),
+            ),
+            leading: Container(
+              child: Image(
+                image: FirebaseImage('gs://siholdman.appspot.com/' + image),
+                // Works with standard parameters, e.g.
+                fit: BoxFit.fitWidth,
+                width: 100,
+                // ... etc.
               ),
-              trailing: SizedBox.shrink(),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => News(headline, image, article,id)));
-              }),
-        ),
+            ),
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          News(headline, image, article, id)));
+            }),
       ),
     );
   }
 }
+// return Padding(
+//   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+//   child: Container(
+//     height: 90,
+//     decoration: BoxDecoration(
+//         gradient: LinearGradient(
+//             colors: [Colors.grey.shade800, Colors.grey.shade900]),
+//         borderRadius: BorderRadius.circular(15),
+//         border: Border.all(width: 2, color: Colors.cyan)),
+//     child: ClipRRect(
+//       clipBehavior: Clip.hardEdge,
+//       borderRadius: BorderRadius.circular(5),
+//       child: ListTile(
+//           title: Center(
+//             child: Text(
+//               headline,
+//               style: const TextStyle(fontSize: 25, color: Colors.white),
+//             ),
+//           ),
+//           leading: Container(
+//             child: Image(
+//               image: FirebaseImage('gs://siholdman.appspot.com/' + image),
+//               // Works with standard parameters, e.g.
+//               fit: BoxFit.fitWidth,
+//               width: 100,
+//               // ... etc.
+//             ),
+//           ),
+//
+//           onTap: () {
+//             Navigator.push(
+//                 context,
+//                 MaterialPageRoute(
+//                     builder: (context) =>
+//                         News(headline, image, article, id)));
+//           }),
+//     ),
+//   ),
+// );
+//   }
+// }
 
 // class headlines extends StatelessWidget {
 //   const headlines(

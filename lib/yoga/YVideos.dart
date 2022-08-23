@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:video_player/video_player.dart';
+
+import '../dark_mode_provider.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
   int number;
@@ -35,113 +38,146 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     super.dispose();
   }
 
-  @override
+  var darkData;
+
   Widget build(BuildContext context) {
+    darkData = Provider.of<DarkMode>(context);
     return Scaffold(
-        backgroundColor: const Color(0xFF283240),
+        backgroundColor: darkData.dark ? Color(0xFF283240) : Color(0xff8e9eab),
         appBar: AppBar(
+          backgroundColor: Colors.transparent,
+          foregroundColor: darkData.dark ? Colors.white : Colors.black,
+
           elevation: 0.0,
-          title: Text(title[widget.number]),
+          title: Center(
+              child: Text(
+            title[widget.number],
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
           //backgroundColor: Colors.transparent,
         ),
-        body: Column(
-          children: [
-            _controller.value.isInitialized
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: Container(
-                        decoration: const BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10.0),
-                              bottomRight: Radius.circular(10.0)),
-                        ),
-                        margin: const EdgeInsets.only(
-                            left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
-                        child: VideoPlayer(_controller)),
-                  )
-                : Container(),
-
-            //video progress indicator
-            Container(
-                decoration: const BoxDecoration(
-                  //color: Colors.blue,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(10.0),
-                      bottomRight: Radius.circular(10.0)),
-                ),
-                margin: const EdgeInsets.only(
-                    left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
-                child:
-                    VideoProgressIndicator(_controller, allowScrubbing: true)),
-
-            //following code is for button controller
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    _controller.pause();
-                    setState(() {
-                      _controller =
-                          VideoPlayerController.asset(dataSource[widget.number])
-                            ..initialize().then((_) {
-                              setState(() {});
-                            });
-                    });
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (context) => VideoPlayerApp3()))
-                  },
-                  icon: const Icon(Icons.skip_previous),
-                  color: Colors.deepPurpleAccent,
-                ),
-                IconButton(
-                  onPressed: () {
-                    setState(() {
-                    _controller.value.isPlaying
-                        ? _controller.pause()
-                        : _controller.play();
-                    });
-                  },
-                  icon: Icon(_controller.value.isPlaying?Icons.pause : Icons.play_arrow),
-                  color: Colors.deepPurpleAccent,
-                ),
-                IconButton(
-                  onPressed: () {
-                    _controller.pause();
-                    _controller = VideoPlayerController.asset(
-                        dataSource[(widget.number + 1) % 3])
-                      ..initialize().then((_) {
-                        setState(() {
-                          widget.number = (widget.number + 1) % 3;
-                        });
-                      });
-                    // Navigator.of(context).push(MaterialPageRoute(
-                    //     builder: (context) => VideoPlayerApp2()))
-                  },
-                  icon: const Icon(Icons.skip_next),
-                  color: Colors.deepPurpleAccent,
-                ),
-              ],
-            ),
-            Text(
-              asanas[widget.number],
-              style: const TextStyle(
-                fontSize: 28.0,
-                fontWeight: FontWeight.bold,
+        body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 20,
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: Text(
-                asanaInfo[widget.number],
+              _controller.value.isInitialized
+                  ? AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: Container(
+                          decoration: const BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(10.0),
+                                bottomRight: Radius.circular(10.0)),
+                          ),
+                          margin: const EdgeInsets.only(
+                              left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
+                          child: VideoPlayer(_controller)),
+                    )
+                  : Container(),
+
+              //video progress indicator
+              Container(
+                  decoration: const BoxDecoration(
+                    //color: Colors.blue,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10.0),
+                        bottomRight: Radius.circular(10.0)),
+                  ),
+                  margin: const EdgeInsets.only(
+                      left: 10.0, top: 10.0, right: 10.0, bottom: 20.0),
+                  child: VideoProgressIndicator(_controller,
+                      allowScrubbing: true)),
+
+              //following code is for button controller
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      _controller.pause();
+                      setState(() {
+                        _controller = VideoPlayerController.asset(
+                            dataSource[widget.number])
+                          ..initialize().then((_) {
+                            setState(() {});
+                          });
+                      });
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => VideoPlayerApp3()))
+                    },
+                    icon: const Icon(
+                      Icons.skip_previous,
+                      size: 40,
+                    ),
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        _controller.value.isPlaying
+                            ? _controller.pause()
+                            : _controller.play();
+                      });
+                    },
+                    icon: Icon(
+                      _controller.value.isPlaying
+                          ? Icons.pause
+                          : Icons.play_arrow,
+                      size: 40,
+                    ),
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      _controller.pause();
+                      _controller = VideoPlayerController.asset(
+                          dataSource[(widget.number + 1) % 3])
+                        ..initialize().then((_) {
+                          setState(() {
+                            widget.number = (widget.number + 1) % 3;
+                          });
+                        });
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //     builder: (context) => VideoPlayerApp2()))
+                    },
+                    icon: const Icon(Icons.skip_next, size: 40),
+                    color: Colors.deepPurpleAccent,
+                  ),
+                ],
+              ),
+              Text(
+                asanas[widget.number],
                 style: const TextStyle(
-                  fontSize: 15.0,
+                  fontSize: 30.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-            )
-          ],
+              Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                child: Text(
+                  asanaInfo[widget.number],
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              )
+            ],
+          ),
         ));
   }
 }

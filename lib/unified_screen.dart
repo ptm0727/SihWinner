@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sih_brain_games/custom_button.dart';
+import 'package:sih_brain_games/dark_mode_provider.dart';
 import 'package:sih_brain_games/game_screen.dart';
 import 'package:sih_brain_games/musicpage/music_screen.dart';
 import 'package:sih_brain_games/news/category.dart';
@@ -10,28 +13,33 @@ class Unified extends StatelessWidget {
   ValueNotifier<int> pageNum = ValueNotifier(2);
   PageController _cont = PageController(initialPage: 2);
   @override
+  var darkData;
   Widget build(BuildContext context) {
+    darkData = Provider.of<DarkMode>(context);
     return Scaffold(
-      backgroundColor: Color(0xFF283240),
+      backgroundColor: darkData.dark ? Color(0xFF283240) : Color(0xff8e9eab),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
-        title: const Center(
+        title: Center(
           child: Text(
             "OldMan",
             style: TextStyle(
-              fontSize: 50,
-            ),
+                fontSize: 50,
+                color: darkData.dark ? Colors.white : Colors.black),
           ),
         ),
       ),
       bottomNavigationBar: ValueListenableBuilder(
           valueListenable: pageNum,
           builder: (context, int page, child) => CurvedNavigationBar(
-                backgroundColor: Colors.blueGrey.shade800,
+                backgroundColor: darkData.dark
+                    ? Colors.blueGrey.shade800
+                    : Color(0xffeef2f3),
                 animationDuration: const Duration(milliseconds: 300),
-                buttonBackgroundColor: Colors.deepPurple,
-                color: Color(0xFF283240),
+                buttonBackgroundColor:
+                    darkData.dark ? Colors.deepPurple : Colors.green,
+                color: darkData.dark ? Color(0xFF283240) : Color(0xff7B8994),
                 index: page,
                 items: const <Widget>[
                   Icon(
@@ -39,10 +47,26 @@ class Unified extends StatelessWidget {
                     size: 30,
                     color: Colors.white,
                   ),
-                  Icon(Icons.work, size: 30),
-                  Icon(Icons.home_filled, size: 30),
-                  Icon(Icons.music_note_outlined, size: 30),
-                  Icon(Icons.settings, size: 30),
+                  Icon(
+                    Icons.work,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  Icon(
+                    Icons.home_filled,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  Icon(
+                    Icons.music_note_outlined,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                  Icon(
+                    Icons.settings,
+                    size: 30,
+                    color: Colors.white,
+                  ),
                 ],
                 onTap: (int index) {
                   pageNum.value = index;
@@ -51,16 +75,7 @@ class Unified extends StatelessWidget {
                       curve: Curves.easeIn);
                 },
               )),
-      body: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomCenter,
-                colors: [
-              Color(0xFF283240),
-              Color(0xFF283240),
-              Colors.blueGrey.shade800
-            ])),
+      body: GradientContainer(
         child: ValueListenableBuilder(
           valueListenable: pageNum,
           builder: (context, int page, child) => PageView(

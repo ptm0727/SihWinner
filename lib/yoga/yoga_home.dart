@@ -2,7 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:provider/provider.dart';
 import 'package:sih_brain_games/yoga/YVideos.dart';
+
+import '../dark_mode_provider.dart';
 
 // class yoga_home extends StatelessWidget {
 //   // This widget is the root of your application.
@@ -91,18 +94,31 @@ class YogaTile extends StatelessWidget {
       {required this.textString,
       required this.imagePath,
       required this.videoPlayerApp});
+  var darkData;
   @override
   Widget build(BuildContext context) {
+    darkData = Provider.of<DarkMode>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 15),
       child: Neumorphic(
-        style: NeumorphicStyle(
-            intensity: 0.8,
-            depth: 4,
-            shadowLightColor: Colors.blueGrey.shade700,
-            shadowDarkColor: Color(0xff0B0E12),
-            color: Color(0xff333E52),
-            boxShape: NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
+        style: darkData.dark
+            ? NeumorphicStyle(
+                intensity: 0.8,
+                depth: 4,
+                shadowLightColor: Colors.blueGrey.shade700,
+                shadowDarkColor: Color(0xff0B0E12),
+                color: Color(0xff333E52),
+                boxShape:
+                    NeumorphicBoxShape.roundRect(BorderRadius.circular(17)))
+            : NeumorphicStyle(
+                intensity: 0.7,
+                depth: 4,
+                shadowLightColor: Color(0xffeef2f3),
+                shadowDarkColor: Colors.grey.shade800,
+                color: Color(0xff83929E),
+                boxShape:
+                    NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
         child: GestureDetector(
           onTap: () => {
             Navigator.of(context)
