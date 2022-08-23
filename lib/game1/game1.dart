@@ -27,7 +27,7 @@ class _HomeState extends State<game1> {
   void changepoints()
   {
     pointsmodel p=box.get('points');
-    denominatormodel d=box1.get('denominators');
+    denominatormodel d=box1.get('d');
     double x=p.p1;
     x=x+points;
     double y=d.d1;
