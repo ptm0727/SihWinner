@@ -35,6 +35,7 @@ class _profile extends State<profile> {
   @override
   Widget build(BuildContext context) {
     pointsmodel p=box.get('points');
+    denominatormodel d=box1.get('d');
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       body: Padding(
@@ -69,27 +70,27 @@ class _profile extends State<profile> {
                 const SizedBox(
                   height: 100,
                 ),
-                displayscore("Memory ${p.p1.toInt()} "),
+                displayscore("Memory ${p.p1.toInt()} ${d.d1.toInt()}"),
                 const SizedBox(
                   height: 12,
                 ),
-                displayscore("Pair ${p.p2.toInt()}"),
+                displayscore("Pair ${p.p2.toInt()} ${d.d2.toInt()}"),
                 const SizedBox(
                   height: 12,
                 ),
-                displayscore("Speed ${p.p3.toInt()}"),
+                displayscore("Speed ${p.p3.toInt()} ${d.d3.toInt()}"),
                 const SizedBox(
                   height: 12,
                 ),
-                displayscore("Puzzle ${p.p4.toInt()}"),
+                displayscore("Puzzle ${p.p4.toInt()} ${d.d4.toInt()}"),
                 const SizedBox(
                   height: 12,
                 ),
-                displayscore("Math ${p.p5.toInt()}"),
+                displayscore("Math ${p.p5.toInt()} ${d.d5.toInt()}"),
                 const SizedBox(
                   height: 12,
                 ),
-                displayscore("Word ${p.p6.toInt()}"),
+                displayscore("Word ${p.p6.toInt()} ${d.d6.toInt()}"),
               ],
             ),
           ),

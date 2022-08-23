@@ -22,14 +22,10 @@ Future<void> main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(pointsmodelAdapter());
   box=await Hive.openBox<pointsmodel>('points');
-  //pointsmodel xyz=box.get('points');
-  /*double a1=xyz.p1;
-  double a2=xyz.p2;
-  double a3=xyz.p3;
-  double a4=xyz.p4;
-  double a5=xyz.p5;
-  double a6=xyz.p6;*/
-  //box.put('points',pointsmodel(p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, p6: 0,d1: 1, d2: 1, d3: 1, d4: 1, d5: 1, d6: 1));
+  box.put('points',pointsmodel(p1: 0, p2: 0, p3: 0, p4: 0, p5: 0, p6: 0,));
+  Hive.registerAdapter(denominatormodelAdapter());
+  box1=await Hive.openBox<denominatormodel>('d');
+  box1.put('d', denominatormodel(d1: 0.1, d2: 0.1, d3: 0.1, d4: 0.1, d5: 0.1, d6: 0.1));
   runApp(const MyApp());
 }
 

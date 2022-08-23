@@ -27,15 +27,16 @@ class _HomeState extends State<game1> {
   void changepoints()
   {
     pointsmodel p=box.get('points');
+    denominatormodel d=box1.get('denominators');
     double x=p.p1;
     x=x+points;
-    //double y=p.d1;
-    //y=y+800;
+    double y=d.d1;
+    y=y+800;
     box.put('points',
         pointsmodel(p1: x, p2: p.p2, p3: p.p3, p4: p.p4, p5: p.p5, p6: p.p6,
-        //a1: p.a1,a2: p.a2,a3: p.a3,d4: p.d4,d5: p.d5,d6: p.d6
         )
     );
+    box1.put('d', denominatormodel(d1: y, d2: d.d2, d3: d.d3, d4: d.d4, d5: d.d5, d6: d.d6));
   }
 
   void reStart() {
