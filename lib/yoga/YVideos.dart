@@ -97,9 +97,11 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
                 ),
                 IconButton(
                   onPressed: () {
+                    setState(() {
                     _controller.value.isPlaying
                         ? _controller.pause()
                         : _controller.play();
+                    });
                   },
                   icon: Icon(_controller.value.isPlaying?Icons.pause : Icons.play_arrow),
                   color: Colors.deepPurpleAccent,
