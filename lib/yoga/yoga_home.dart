@@ -112,7 +112,10 @@ class YogaTile extends StatelessWidget {
       child: ListTile(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         tileColor: Colors.white,
-        onTap: () => {},
+        onTap: () => {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => videoPlayerApp))
+        },
         title: Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: Column(
