@@ -76,7 +76,7 @@ class _Comment_SectionState extends State<Comment_Section> {
         width: double.infinity,
         padding: EdgeInsets.all(10),
         child: SingleChildScrollView(
-          child: Container(
+          child: SizedBox(
             height: 10000000,
             child: StreamBuilder<QuerySnapshot>(
               stream: FirebaseFirestore.instance
@@ -96,19 +96,30 @@ class _Comment_SectionState extends State<Comment_Section> {
                 var name = auth.currentUser?.uid;
                 print(data.docs.toString());
                 return ListView.builder(
-                    itemCount: data.size,
+                    itemCount: data.size*2+1,
                     itemBuilder: (context, index) {
-                      if(name == data.docs[index]['uid'])
-                        {
+                      if(index<data.size) {
+                        if(index == 0)
+                          return Text("My Comment");
+                        if (name == data.docs[index-1]['uid']) {
                           return commentdelete(
-                            data.docs[index]['comment'],
-                            data.docs[index]['id'],
+                            data.docs[index-1]['comment'],
+                            data.docs[index-1]['id'],
                           );
                         }
-                      else
-                      return comments(
-                        data.docs[index]['comment'],
-                      );
+                        return SizedBox.shrink();
+                      }
+                      else {
+                        if(index == (data.size))
+                          return Text("Other Comment");
+                        if (name == data.docs[index-data.size-1]['uid']) {
+                          return SizedBox.shrink();
+                        }
+                        else
+                          return comments(
+                            data.docs[index-data.size-1]['comment'],
+                          );
+                      }
                     });
               },
             ),
@@ -211,7 +222,7 @@ class _commentdeleteState extends State<commentdelete> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Container(
-        height: 90,
+
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [Colors.grey.shade800, Colors.grey.shade900]),
@@ -224,14 +235,14 @@ class _commentdeleteState extends State<commentdelete> {
             leading: SizedBox.shrink(),
             title: Center(
               child: Text(
-                "Delete "+a,
+                a,
                 style: const TextStyle(fontSize: 25, color: Colors.white),
               ),
             ),
             trailing: IconButton(
               icon: Icon(
                   color: Colors.white,
-                  Icons.abc_outlined
+                  Icons.more_horiz
               ),
               onPressed: (){
                 openDialog(widget.id);
