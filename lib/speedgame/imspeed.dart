@@ -35,15 +35,15 @@ class _MemoryGame1State extends State<imspeed> {
   {
     pointsmodel p=box.get('points');
     denominatormodel d=box1.get('d');
-    double x3=p.p1;
-    x3=x3+po;
-    double y3=d.d1;
-    y3=y3+60;
+    double x=p.p2;
+    x=x+po;
+    double y=d.d2;
+    y=y+60;
     box.put('points',
-        pointsmodel(p1: p.p1, p2: p.p2, p3: x3, p4: p.p4, p5: p.p5, p6: p.p6,
+        pointsmodel(p1: p.p1, p2: p.p2, p3: p.p3, p4: x, p5: p.p5, p6: p.p6,
         )
     );
-    box1.put('d', denominatormodel(d1: d.d1, d2: d.d2, d3: y3, d4: d.d4, d5: d.d5, d6: d.d6));
+    box1.put('d', denominatormodel(d1: d.d1, d2: d.d2, d3: p.p3, d4: y, d5: d.d5, d6: d.d6));
   }
   void stopTimer()
   {
