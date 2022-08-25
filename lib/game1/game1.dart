@@ -28,15 +28,15 @@ class _HomeState extends State<game1> {
   {
     pointsmodel p=box.get('points');
     denominatormodel d=box1.get('d');
-    double x=p.p1;
-    x=x+points;
-    double y=d.d1;
-    y=y+800;
+    double x2=p.p1;
+    x2=x2+points;
+    double y2=d.d1;
+    y2=y2+80;
     box.put('points',
-        pointsmodel(p1: x, p2: p.p2, p3: p.p3, p4: p.p4, p5: p.p5, p6: p.p6,
+        pointsmodel(p1: p.p1, p2: x2, p3: p.p3, p4: p.p4, p5: p.p5, p6: p.p6,
         )
     );
-    box1.put('d', denominatormodel(d1: y, d2: d.d2, d3: d.d3, d4: d.d4, d5: d.d5, d6: d.d6));
+    box1.put('d', denominatormodel(d1: d.d1, d2: y2, d3: d.d3, d4: d.d4, d5: d.d5, d6: d.d6));
   }
 
   void reStart() {
@@ -77,11 +77,11 @@ class _HomeState extends State<game1> {
               SizedBox(
                 height: 10,
               ),
-              points != 800 && moves>0? Column(
+              points != 80 && moves>0? Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   Text(
-                    "$points/800",
+                    "$points/80",
                     style: TextStyle(
                         fontSize: 20, fontWeight: FontWeight.w500),
                   ),
@@ -96,7 +96,7 @@ class _HomeState extends State<game1> {
               SizedBox(
                 height: 30,
               ),
-              points != 800 && moves>0? GridView(
+              points != 80 && moves>0? GridView(
                 shrinkWrap: true,
                 //physics: ClampingScrollPhysics(),
                 scrollDirection: Axis.vertical,
@@ -208,7 +208,7 @@ class _TileState extends State<Tile> {
           if (selectedTile != "") {
             if (selectedTile == myPairs[widget.tileIndex].getImageAssetPath()) {
               print("add point");
-              points = points + 100;
+              points = points + 10;
               print(selectedTile + " thishis" + widget.imagePathUrl);
 
               TileModel tileModel = new TileModel();
@@ -261,10 +261,12 @@ class _TileState extends State<Tile> {
         child: myPairs[widget.tileIndex].getImageAssetPath() != ""
             ? Image.asset(myPairs[widget.tileIndex].getIsSelected()
             ? myPairs[widget.tileIndex].getImageAssetPath()
-            : widget.imagePathUrl)
+            : widget.imagePathUrl,
+        )
             : Container(
           color: Colors.white,
-          child: Image.asset("assets/correct.png"),
+          child: Image.asset("assets/correct.png",
+          ),
         ),
       ),
     );
