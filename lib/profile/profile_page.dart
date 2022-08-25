@@ -126,7 +126,7 @@ class _profile extends State<profile> {
                 height: 20,
               ),
               Lottie.asset(
-                'animations/${total/500}.json',
+                'animations/1st.json',
                 width: 200,
                 height: 200,
                 repeat: false,
