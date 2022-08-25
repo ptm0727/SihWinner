@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sih_brain_games/speedgame/counter1.dart';
+import '../main.dart';
+import '../pointsmodel.dart';
 import 'GameTile.dart';
-int p=0;
+int po=0;
 class imspeed extends StatefulWidget {
   const imspeed({Key? key}) : super(key: key);
 
@@ -21,13 +23,27 @@ class _MemoryGame1State extends State<imspeed> {
     grid=generateTiles();
     start = true;
     s=20;
-    p=0;
+    po=0;
     startTimer();
     Future.delayed(Duration(seconds: 20), () {
       setState(() {
         start=false;
       });
     });
+  }
+  void changepoints()
+  {
+    pointsmodel p=box.get('points');
+    denominatormodel d=box1.get('d');
+    double x3=p.p1;
+    x3=x3+po;
+    double y3=d.d1;
+    y3=y3+60;
+    box.put('points',
+        pointsmodel(p1: p.p1, p2: p.p2, p3: x3, p4: p.p4, p5: p.p5, p6: p.p6,
+        )
+    );
+    box1.put('d', denominatormodel(d1: d.d1, d2: d.d2, d3: y3, d4: d.d4, d5: d.d5, d6: d.d6));
   }
   void stopTimer()
   {
@@ -83,14 +99,14 @@ class _MemoryGame1State extends State<imspeed> {
             style: TextStyle(color: Colors.black, fontSize: 25),
           ),
         ),
-        body: start?Container(
+        body: start&&po<=60?Container(
           padding: EdgeInsets.all(30),
           child: Consumer<Counter1>(
             builder: (_, counter, __) => Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                  Text(
-                  "$p/600",
+                  "$po/60",
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontWeight: FontWeight.w500,
@@ -151,7 +167,7 @@ class _MemoryGame1State extends State<imspeed> {
         ): AlertDialog(
           title:  Center(
             child: Text(
-              "Game over \nPoints Scored : $p",
+              "Game over \nPoints Scored : $po",
               style: const TextStyle(color: Colors.black, fontSize: 30),
             ),
           ),
@@ -161,6 +177,7 @@ class _MemoryGame1State extends State<imspeed> {
                 Expanded(
                   child: TextButton(
                       onPressed: () {
+                        changepoints();
                         Navigator.pop(context);
                       },
                       child: const Text(
@@ -171,6 +188,7 @@ class _MemoryGame1State extends State<imspeed> {
                 Expanded(
                   child: TextButton(
                       onPressed: () {
+                        changepoints();
                         Navigator.popUntil(
                             context, (route) => route.isFirst);
                       },
