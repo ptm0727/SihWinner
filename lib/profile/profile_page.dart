@@ -59,14 +59,14 @@ class _profile extends State<profile> {
       ChartData(4, p.p5 / d.d5),
       ChartData(5, p.p6 / d.d6),
     ];
-    final List<ChartData> chartData1 = [
+    /*final List<ChartData> chartData1 = [
       ChartData(1, 0.6),
       ChartData(2, 0.6),
       ChartData(3, 0.8),
       ChartData(4, 0.62),
       ChartData(5, 0.5),
       ChartData(6, 0.43),
-    ]..shuffle();
+    ]..shuffle();*/
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Padding(
