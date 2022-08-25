@@ -58,7 +58,7 @@ class _music extends State<music> {
         },
         icon: const Icon(
           Icons.arrow_forward,
-          color: Colors.deepPurpleAccent,
+          color: Colors.white,
         ));
   }
 
@@ -74,7 +74,7 @@ class _music extends State<music> {
         },
         icon: const Icon(
           Icons.arrow_back,
-          color: Colors.deepPurpleAccent,
+          color: Colors.white,
         ));
   }
 
@@ -100,33 +100,30 @@ class _music extends State<music> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
         elevation: 0,
         title: const Text(
           "Meditation music",
-          style: TextStyle(color: Colors.white, fontSize: 25),
+          style: TextStyle(fontSize: 25),
         ),
       ),
-      backgroundColor: Color(0xFF283240),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomCenter,
-                colors: [
-              Color(0xFF283240),
-              Color(0xFF283240),
-              Colors.blueGrey.shade800
-            ])),
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+      backgroundColor: Colors.white,
+      body: Padding(
+        padding: EdgeInsets.all(20),
+        child: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
+          child: Card(
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+            color: Color(0xff6053BC),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(
+                  height: 20,
+                ),
                 ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: Image.asset(
@@ -154,8 +151,8 @@ class _music extends State<music> {
                   style: const TextStyle(fontSize: 20),
                 ),
                 Slider(
-                  activeColor: Colors.purple,
-                  inactiveColor: Colors.blueGrey,
+                  activeColor: Colors.white,
+                  inactiveColor: Colors.grey,
                   min: 0,
                   max: duration.inSeconds.toDouble(),
                   value: position.inSeconds.toDouble(),
@@ -182,13 +179,14 @@ class _music extends State<music> {
                   children: [
                     btnSlow(),
                     CircleAvatar(
+                      backgroundColor: Colors.white,
                       radius: 35,
                       child: IconButton(
                         icon: Icon(
                           isPlaying ? Icons.pause : Icons.play_arrow,
                         ),
                         iconSize: 50,
-                        color: Colors.deepPurpleAccent,
+                        color: Colors.deepPurple,
                         onPressed: () async {
                           if (isPlaying) {
                             await audioPlayer.pause();
@@ -207,35 +205,27 @@ class _music extends State<music> {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-                  child: Neumorphic(
-                    style: NeumorphicStyle(
-                        intensity: 0.8,
-                        depth: 4,
-                        shadowLightColor: Colors.blueGrey.shade700,
-                        shadowDarkColor: Color(0xff0B0E12),
-                        color: Color(0xff333E52),
-                        boxShape: NeumorphicBoxShape.roundRect(
-                            BorderRadius.circular(17))),
-                    child: Theme(
-                      data: ThemeData(
-                          dividerColor: Colors.transparent,
-                          fontFamily: "Nunito"),
-                      child: const ExpansionTile(
+                  child: Theme(
+                    data: ThemeData(
+                        dividerColor: Colors.transparent, fontFamily: "Nunito"),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(20),
+                      child: ExpansionTile(
+                          collapsedBackgroundColor: Colors.white,
+                          backgroundColor: Colors.white,
                           collapsedIconColor: Colors.deepPurpleAccent,
                           title: Padding(
                             padding: EdgeInsets.only(left: 20),
                             child: Text(
                               "Follow the General Instructions",
-                              style:
-                                  TextStyle(fontSize: 22, color: Colors.white),
+                              style: TextStyle(fontSize: 22),
                             ),
                           ),
                           children: [
                             ListTile(
                               title: Text(
                                 "1. Sit upright comfortably\n2. Breathe deeply\n3. Gently close your eyes\n4. Slowly scan your body, and notice any sensations\n5. Be aware of any thoughts you are having\n6. When your mind wanders, focus on your breath\n7. Gently open your eyes when you are ready",
-                                style: TextStyle(
-                                    fontSize: 17, color: Colors.white),
+                                style: TextStyle(fontSize: 17),
                               ),
                             ),
                           ]),

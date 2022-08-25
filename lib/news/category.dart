@@ -17,44 +17,52 @@ class _Category_SectionState extends State<Category_Section> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
-            child: Divider(
-              thickness: 2,
-            ),
-          ),
-          const Center(
-            child: Text(
-              "News",
-              style: TextStyle(fontSize: 35, fontStyle: FontStyle.italic),
-            ),
-          ),
-          StreamBuilder<QuerySnapshot>(
-            stream: users,
-            builder:
-                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-              if (snapshot.hasError) {
-                return Text('Somthing when wrong');
-              }
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text('Loading');
-              }
-              final data = snapshot.requireData;
+      child: Padding(
+        padding: EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          color: Color(0xff6053BC),
+          child: Column(
+            children: [
+              const Center(
+                child: Text(
+                  "News",
+                  style: TextStyle(
+                      fontSize: 35,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white),
+                ),
+              ),
+              StreamBuilder<QuerySnapshot>(
+                stream: users,
+                builder: (BuildContext context,
+                    AsyncSnapshot<QuerySnapshot> snapshot) {
+                  if (snapshot.hasError) {
+                    return Text('Somthing when wrong');
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Text('Loading');
+                  }
+                  final data = snapshot.requireData;
 
-              return ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: data.size,
-                  itemBuilder: (context, index) {
-                    return AltButton(
-                      title: data.docs[index]['category'],
-                      destination: data.docs[index]['category'],
-                    );
-                  });
-            },
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: data.size,
+                      itemBuilder: (context, index) {
+                        return AltButton(
+                          title: data.docs[index]['category'],
+                          destination: data.docs[index]['category'],
+                        );
+                      });
+                },
+              ),
+              SizedBox(
+                height: 20,
+              )
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

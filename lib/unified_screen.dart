@@ -17,15 +17,13 @@ class Unified extends StatelessWidget {
   Widget build(BuildContext context) {
     darkData = Provider.of<DarkMode>(context);
     return Scaffold(
-      extendBodyBehindAppBar: true,
-      extendBody: true,
-      backgroundColor: darkData.dark ? Color(0xFF283240) : Color(0xffF09B59),
+      backgroundColor: darkData.dark ? Colors.black54 : Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Center(
           child: Text(
-            "OldMan",
+            "Sahasrara",
             style: TextStyle(
                 fontSize: 50,
                 color: darkData.dark ? Colors.white : Colors.black),

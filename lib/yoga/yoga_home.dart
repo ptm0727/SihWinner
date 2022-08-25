@@ -32,22 +32,27 @@ class _yoga_homeState extends State<yoga_home> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 2, horizontal: 40),
-            child: Divider(
-              thickness: 2,
-            ),
+      child: Padding(
+        padding: EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          color: Color(0xff6053BC),
+          child: Column(
+            children: [
+              const Center(
+                child: Text(
+                  "Yoga",
+                  style: TextStyle(
+                      fontSize: 35,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.white),
+                ),
+              ),
+              ..._getListData()
+            ],
           ),
-          const Center(
-            child: Text(
-              "Yoga",
-              style: TextStyle(fontSize: 35, fontStyle: FontStyle.italic),
-            ),
-          ),
-          ..._getListData()
-        ],
+        ),
       ),
     );
   }
@@ -100,53 +105,36 @@ class YogaTile extends StatelessWidget {
     darkData = Provider.of<DarkMode>(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 15),
-      child: Neumorphic(
-        style: darkData.dark
-            ? NeumorphicStyle(
-                intensity: 0.8,
-                depth: 4,
-                shadowLightColor: Colors.blueGrey.shade700,
-                shadowDarkColor: Color(0xff0B0E12),
-                color: Color(0xff333E52),
-                boxShape:
-                    NeumorphicBoxShape.roundRect(BorderRadius.circular(17)))
-            : NeumorphicStyle(
-                intensity: 0.7,
-                depth: 4,
-                shadowLightColor: Color(0xffeef2f3),
-                shadowDarkColor: Colors.grey.shade800,
-                color: Color(0xff83929E),
-                boxShape:
-                    NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
-        child: GestureDetector(
-          onTap: () => {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (context) => videoPlayerApp))
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Image.asset(
-                  imagePath,
-                  height: 100,
-                  width: 400,
-                  fit: BoxFit.cover,
+      padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 15),
+      child: ListTile(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        tileColor: Colors.white,
+        onTap: () => {},
+        title: Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const SizedBox(
+                height: 6,
+              ),
+              Image.asset(
+                imagePath,
+                height: 100,
+                width: 400,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              Text(
+                textString,
+                style: const TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.w400,
                 ),
-                const SizedBox(
-                  height: 6,
-                ),
-                Text(
-                  textString,
-                  style: const TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
