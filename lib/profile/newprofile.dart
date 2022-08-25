@@ -62,8 +62,15 @@ class _LeaderBoardState extends State<LeaderBoard> {
     return Stack(
       children: <Widget>[
         Scaffold(
+          appBar: AppBar(
+            //centerTitle: true,
+            //title: Text("Check your ranks"),
+            backgroundColor: Colors.transparent,
+            foregroundColor: Colors.blueGrey,
+            elevation: 0.0,
+          ),
             body: Container(
-          margin: EdgeInsets.only(top: 65.0),
+          margin: EdgeInsets.only(top: 0.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
