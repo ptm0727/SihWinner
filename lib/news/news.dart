@@ -68,7 +68,16 @@ class _NewsSectionState extends State<NewsSection> {
                           }
                           if (snapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return const Text('Loading');
+                            return Column(
+                              children: const [
+                                CircularProgressIndicator(),
+                                Text(
+                                  'Loading',
+                                  style: TextStyle(
+                                      fontSize: 20, color: Colors.white),
+                                ),
+                              ],
+                            );
                           }
                           final data = snapshot.requireData;
                           var name = auth.currentUser?.uid;
@@ -157,29 +166,30 @@ class comments extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Container(
-        height: 90,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.grey.shade800, Colors.grey.shade900]),
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(width: 2, color: Colors.cyan)),
-        child: ClipRRect(
-          clipBehavior: Clip.hardEdge,
-          borderRadius: BorderRadius.circular(5),
-          child: ListTile(
-            title: Center(
-              child: Text(
-                comment,
-                style: const TextStyle(fontSize: 25, color: Colors.white),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+    return RegularButton(onPressed: () {}, title: comment);
+    // return Padding(
+    //   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+    //   child: Container(
+    //     height: 90,
+    //     decoration: BoxDecoration(
+    //         gradient: LinearGradient(
+    //             colors: [Colors.grey.shade800, Colors.grey.shade900]),
+    //         borderRadius: BorderRadius.circular(15),
+    //         border: Border.all(width: 2, color: Colors.cyan)),
+    //     child: ClipRRect(
+    //       clipBehavior: Clip.hardEdge,
+    //       borderRadius: BorderRadius.circular(5),
+    //       child: ListTile(
+    //         title: Center(
+    //           child: Text(
+    //             comment,
+    //             style: const TextStyle(fontSize: 25, color: Colors.white),
+    //           ),
+    //         ),
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }
 

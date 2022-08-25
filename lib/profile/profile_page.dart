@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sih_brain_games/Login/auth_service.dart';
 import 'package:sih_brain_games/custom_button.dart';
 import 'package:sih_brain_games/pointsmodel.dart';
 import 'package:sih_brain_games/main.dart';
@@ -37,13 +38,22 @@ class _profile extends State<profile> {
     // );
   }
 
-  String checkstars(double b) {
+  Text medals(double b) {
     if (b <= 0.5) {
-      return "assets/img_5.png";
+      return Text("🥇",style: TextStyle(
+        color: Colors.brown,
+          fontSize: 25
+      ),);
     } else if (b > 0.5 && b <= .75) {
-      return "assets/img_6.png";
+      return Text("🥇",style: TextStyle(
+        color: Colors.grey,
+          fontSize: 25
+      ),);
     } else {
-      return "assets/img_7.png";
+      return Text("🥇",style: TextStyle(
+        color: Colors.amber,
+          fontSize: 25
+      ),);
     }
   }
 
@@ -51,6 +61,7 @@ class _profile extends State<profile> {
   Widget build(BuildContext context) {
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
+    final _auth = AuthService();
     final List<ChartData> chartData = [
       ChartData(0, p.p1 / d.d1),
       ChartData(1, p.p2 / d.d2),
@@ -68,9 +79,10 @@ class _profile extends State<profile> {
       ChartData(6, 0.43),
     ]..shuffle();*/
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Padding(
-        padding: EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
@@ -79,6 +91,11 @@ class _profile extends State<profile> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              RegularButton(
+                  onPressed: () {
+                    _auth.signOut();
+                  },
+                  title: "Sign Out"),
               const SizedBox(
                 height: 17,
               ),
@@ -156,11 +173,31 @@ class _profile extends State<profile> {
               const SizedBox(
                 height: 20,
               ),
-              displayscore("Pair ${p.p1.toInt()} / ${d.d1.toInt()}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Pair Game  ",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
+                  medals(p.p1/d.d1)
+                ],
+              ),
               const SizedBox(
                 height: 12,
               ),
-              displayscore("Memory ${p.p2.toInt()} / ${d.d2.toInt()}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Memory Game  ",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
+                  medals(p.p2/d.d2)
+                ],
+              ),
               const SizedBox(
                 height: 12,
               ),

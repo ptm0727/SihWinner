@@ -17,34 +17,38 @@ class GameScreen extends StatelessWidget {
       Button(
         imgPath: "assets/game_images/Ani-Mate.jpg",
         destination: game1(),
-        title: "ANI-MATE",
+        title: "Ani-Mate",
         subtitle: "Identify pairs in the given grid",
       ),
       Button(
           imgPath: "assets/game_images/HopSCOTCH.jpg",
           destination: GameHome(),
-          title: "HOPSCOTCH",
+          title: "Hopscotch",
           subtitle: "Click the numbers in the given order"),
       Button(
-          imgPath: "assets/game_images/CP.jpg",
-          destination: puz(),
-          title: "CHOR SIPAHI",
-      subtitle: "Save the human from the monsters",),
+        imgPath: "assets/game_images/CP.jpg",
+        destination: puz(),
+        title: "Chor Sipahi",
+        subtitle: "Save the human from the monsters",
+      ),
       Button(
-          imgPath: "assets/game_images/H&S.jpg",
-          destination: imspeed(),
-          title: "LUKA CHHUPI",
-        subtitle: "Hit the maximum Rabbits to score",),
+        imgPath: "assets/game_images/H&S.jpg",
+        destination: imspeed(),
+        title: "Luka Chhupi",
+        subtitle: "Hit the maximum Rabbits to score",
+      ),
       Button(
-          imgPath: "assets/game_images/mATH.jpg",
-          destination: mathgame(),
-          title: "ARE YOU RAMUNAJUN?",
-        subtitle: "Test your math Skills here",),
+        imgPath: "assets/game_images/mATH.jpg",
+        destination: mathgame(),
+        title: "Are you Ramanujan?",
+        subtitle: "Test your math Skills here",
+      ),
       Button(
-          imgPath: "assets/game_images/Word.jpg",
-          destination: Word_game(),
-          title: "GUESS WHO?",
-        subtitle: "Test you knowledge about the wild here",)
+        imgPath: "assets/game_images/Word.jpg",
+        destination: Word_game(),
+        title: "Guess Who?",
+        subtitle: "Test you knowledge about the wild here",
+      )
     ];
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
