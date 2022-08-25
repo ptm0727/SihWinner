@@ -41,18 +41,18 @@ class _profile extends State<profile> {
 
   Text medals(double b) {
     if (b <= 0.5) {
-      return Text("🥇",style: TextStyle(
+      return const Text("🥉",style: TextStyle(
         color: Colors.brown,
           fontSize: 25
       ),);
-    } else if (b > 0.5 && b <= .75) {
-      return Text("🥇",style: TextStyle(
+    } else if (b > 0.6 && b <= .8) {
+      return const Text("🥈🥉",style: TextStyle(
         color: Colors.grey,
           fontSize: 25
       ),);
     } else {
-      return Text("🥇",style: TextStyle(
-        color: Colors.amber,
+      return const Text("🥇🥈🥉",style: TextStyle(
+        color: Colors.grey,
           fontSize: 25
       ),);
     }
@@ -210,19 +210,59 @@ class _profile extends State<profile> {
               const SizedBox(
                 height: 12,
               ),
-              displayscore("Puzzle ${p.p3.toInt()} / ${d.d3.toInt()}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Puzzle Game  ",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
+                  medals(p.p3/d.d3)
+                ],
+              ),
               const SizedBox(
                 height: 12,
               ),
-              displayscore("Speed ${p.p4.toInt()} / ${d.d4.toInt()}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Speed Game  ",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
+                  medals(p.p4/d.d4)
+                ],
+              ),
               const SizedBox(
                 height: 12,
               ),
-              displayscore("Math ${p.p5.toInt()} / ${d.d5.toInt()}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Math Game  ",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
+                  medals(p.p5/d.d5)
+                ],
+              ),
               const SizedBox(
                 height: 12,
               ),
-              displayscore("Word ${p.p6.toInt()} / ${d.d6.toInt()}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Word Game  ",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
+                  medals(p.p6/d.d6)
+                ],
+              ),
               const SizedBox(
                 height: 12,
               ),
