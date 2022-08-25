@@ -72,8 +72,8 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                   var dick= {}
                                   ;
                                   print('Greater than 1');
-                                  if (data.docs[index]['game1'] ==
-                                      data.docs[index - 1]['game1']) {
+                                  if (data.docs[index]['game'] ==
+                                      data.docs[index - 1]['game']) {
                                     print('Same');
                                   } else {
                                     i++;
@@ -128,7 +128,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                         )),
                                                     Text("Points: " +
                                                         data.docs[index]
-                                                                ['game1']
+                                                                ['game']
                                                             .toString()),
                                                   ],
                                                 ),
