@@ -6,6 +6,7 @@ import 'package:sih_brain_games/game_screen.dart';
 import 'package:sih_brain_games/musicpage/music_screen.dart';
 import 'package:sih_brain_games/news/category.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:sih_brain_games/profile/newprofile.dart';
 import 'package:sih_brain_games/profile/profile_page.dart';
 import 'package:sih_brain_games/yoga/yoga_home.dart';
 
@@ -86,7 +87,7 @@ class Unified extends StatelessWidget {
               const yoga_home(),
               const GameScreen(),
               MusicScreen(),
-              profile()
+              LeaderBoard()
             ],
             onPageChanged: (updated) {
               pageNum.value = updated;

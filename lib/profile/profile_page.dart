@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:sih_brain_games/custom_button.dart';
@@ -5,6 +6,7 @@ import 'package:sih_brain_games/pointsmodel.dart';
 import 'package:sih_brain_games/main.dart';
 import 'dart:math';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import 'package:sih_brain_games/points_firebase.dart';
 
 class profile extends StatefulWidget {
   @override
@@ -48,6 +50,9 @@ class _profile extends State<profile> {
   Widget build(BuildContext context) {
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
+    final FirebaseAuth auth=FirebaseAuth.instance;
+    points_firebase x=points_firebase();
+    x.addPoints(p.p1 / d.d1, p.p1 / d.d1, p.p1 / d.d1, p.p1 / d.d1, p.p1 / d.d1, p.p1 / d.d1);
     final List<ChartData> chartData = [
       ChartData(0, p.p1 / d.d1),
       ChartData(1, p.p2 / d.d2),
