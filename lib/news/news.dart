@@ -31,7 +31,7 @@ class _NewsSectionState extends State<NewsSection> {
   Widget build(BuildContext context) {
     darkData = Provider.of<DarkMode>(context);
     return Scaffold(
-      backgroundColor: darkData.dark ? Color(0xFF283240) : Color(0xff8e9eab),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -48,50 +48,83 @@ class _NewsSectionState extends State<NewsSection> {
           controller: _cont,
           children: [
             SingleChildScrollView(
-              child: Container(
-                height: 10000000,
-                child: StreamBuilder<QuerySnapshot>(
-                  stream: users,
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                    if (snapshot.hasError) {
-                      return const Text('Somthing when wrong');
-                    }
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Text('Loading');
-                    }
-                    final data = snapshot.requireData;
-                    var name = auth.currentUser?.uid;
-                    return ListView.builder(
-                        itemCount: data.size*2+1,
-                        itemBuilder: (context, index) {
-                          if(index<=data.size) {
-                            if(index == 0)
-                              return Text("My Story");
-                            if (name == data.docs[index-1]['uid']) {
-                              return commentdelete(
-                                data.docs[index-1]['title'],
-                                data.docs[index-1]['content'],
-                                data.docs[index-1]['uid'],
-                                data.docs[index-1]['id'],
-                              );
-                            }
-                            return SizedBox.shrink();
+              child: Padding(
+                padding: EdgeInsets.all(0),
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30)),
+                  color: Color(0xff6053BC),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 10,
+                      ),
+                      StreamBuilder<QuerySnapshot>(
+                        stream: users,
+                        builder: (BuildContext context,
+                            AsyncSnapshot<QuerySnapshot> snapshot) {
+                          if (snapshot.hasError) {
+                            return const Text('Somthing when wrong');
                           }
-                          else {
-                            if(index == (data.size+1))
-                              return Text("Other Story");
-                            if (name == data.docs[index-data.size-1]['uid']) {
-                              return SizedBox.shrink();
-                            }
-                            else
-                              return comments(
-                                data.docs[index-data.size-1]['title'],
-                                data.docs[index-data.size-1]['id']
-                              );
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
+                            return const Text('Loading');
                           }
-                        });
-                  },
+                          final data = snapshot.requireData;
+                          var name = auth.currentUser?.uid;
+                          return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: data.size * 2 + 1,
+                              itemBuilder: (context, index) {
+                                if (index <= data.size) {
+                                  if (index == 0) {
+                                    return const Center(
+                                      child: Text(
+                                        "My Stories",
+                                        style: TextStyle(
+                                            fontSize: 35,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
+                                      ),
+                                    );
+                                  }
+                                  if (name == data.docs[index - 1]['uid']) {
+                                    return commentdelete(
+                                      data.docs[index - 1]['title'],
+                                      data.docs[index - 1]['content'],
+                                      data.docs[index - 1]['uid'],
+                                      data.docs[index - 1]['id'],
+                                    );
+                                  }
+                                  return SizedBox.shrink();
+                                } else {
+                                  if (index == (data.size + 1))
+                                    return const Center(
+                                      child: Text(
+                                        "Others Stories",
+                                        style: TextStyle(
+                                            fontSize: 35,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white),
+                                      ),
+                                    );
+                                  if (name ==
+                                      data.docs[index - data.size - 1]['uid']) {
+                                    return SizedBox.shrink();
+                                  } else
+                                    return comments(
+                                        data.docs[index - data.size - 1]
+                                            ['title'],
+                                        data.docs[index - data.size - 1]['id']);
+                                }
+                              });
+                        },
+                      ),
+                      SizedBox(
+                        height: 20,
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -99,24 +132,26 @@ class _NewsSectionState extends State<NewsSection> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => Add_Blog("","")));
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => Add_Blog("", "")));
         },
         tooltip: 'Comments',
-        child: const Icon(Icons.add,color: Colors.white,),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
       ),
     );
   }
 }
+
 class comments extends StatelessWidget {
   const comments(
-      this.comment,
-      this.id,{
-        Key? key,
-      }) : super(key: key);
+    this.comment,
+    this.id, {
+    Key? key,
+  }) : super(key: key);
   final comment;
   final id;
 
@@ -140,22 +175,22 @@ class comments extends StatelessWidget {
                 comment,
                 style: const TextStyle(fontSize: 25, color: Colors.white),
               ),
-            ),),
+            ),
+          ),
         ),
       ),
     );
   }
 }
 
-
 class commentdelete extends StatefulWidget {
   const commentdelete(
-      this.title,
-      this.content,
-      this.uid,
-      this.id,{
-        Key? key,
-      }) : super(key: key);
+    this.title,
+    this.content,
+    this.uid,
+    this.id, {
+    Key? key,
+  }) : super(key: key);
   final title;
   final id;
   final content;
@@ -167,7 +202,8 @@ class commentdelete extends StatefulWidget {
 
 class _commentdeleteState extends State<commentdelete> {
   Future<void> deletecomment(var id) {
-    return FirebaseFirestore.instance.collection('comment')
+    return FirebaseFirestore.instance
+        .collection('comment')
         .doc(id)
         .delete()
         .then((value) => print("User Deleted"))
@@ -177,29 +213,30 @@ class _commentdeleteState extends State<commentdelete> {
   Future openDialog(id) => showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("Comment"),
-        content: Text("Do You Want to Delete"),
-        actions: [
-          RaisedButton(onPressed: (){
-            deletecomment(id);
-            Navigator.pop(context);
-          },
-            child: Text("Yes"),
-          ),
-          RaisedButton(onPressed: (){
-            Navigator.pop(context);
-          },
-            child: Text("No"),
-          )
-        ],
-      ));
+            title: Text("Comment"),
+            content: Text("Do You Want to Delete"),
+            actions: [
+              RaisedButton(
+                onPressed: () {
+                  deletecomment(id);
+                  Navigator.pop(context);
+                },
+                child: Text("Yes"),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text("No"),
+              )
+            ],
+          ));
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       child: Container(
-
         decoration: BoxDecoration(
             gradient: LinearGradient(
                 colors: [Colors.grey.shade800, Colors.grey.shade900]),
@@ -217,19 +254,17 @@ class _commentdeleteState extends State<commentdelete> {
               ),
             ),
             trailing: IconButton(
-              icon: Icon(
-                  color: Colors.white,
-                  Icons.more_horiz
-              ),
-              onPressed: (){
+              icon: Icon(color: Colors.white, Icons.more_horiz),
+              onPressed: () {
                 openDialog(widget.id);
               },
             ),
-            onTap: (){
+            onTap: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => News(widget.title,widget.uid,widget.content,widget.id)));
+                      builder: (context) => News(widget.title, widget.uid,
+                          widget.content, widget.id)));
             },
           ),
         ),
@@ -237,8 +272,6 @@ class _commentdeleteState extends State<commentdelete> {
     );
   }
 }
-
-
 
 class headlines extends StatelessWidget {
   headlines(
@@ -284,9 +317,7 @@ class headlines extends StatelessWidget {
                 style: const TextStyle(fontSize: 25),
               ),
             ),
-            onTap: () {
-
-            }),
+            onTap: () {}),
       ),
     );
   }
