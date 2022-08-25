@@ -109,15 +109,19 @@ class _LeaderBoardState extends State<LeaderBoard> {
                               itemBuilder: (context, index) {
                                 print(index);
                                 if (index >= 1) {
-                                  var dick = {};
+                                  var dict = {};
                                   print('Greater than 1');
                                   if (data.docs[index]['game'] ==
                                       data.docs[index - 1]['game']) {
+
                                     print('Same');
                                   } else {
                                     i++;
                                   }
                                 }
+                                var name = auth.currentUser?.uid;
+                                if(data.docs[index].id == name)
+                                  name = "anonymous";
 
                                 return Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -155,8 +159,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                         alignment: Alignment
                                                             .centerLeft,
                                                         child: Text(
-                                                          data.docs[index]
-                                                              ['uid'],
+                                                          name.toString(),
                                                           style: TextStyle(
                                                               color: Colors
                                                                   .deepPurple,
