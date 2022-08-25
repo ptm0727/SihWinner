@@ -33,7 +33,7 @@ class _MusicScreen extends State<MusicScreen> {
                   "Meditation",
                   style: TextStyle(
                       fontSize: 35,
-                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
               ),

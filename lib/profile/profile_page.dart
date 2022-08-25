@@ -89,14 +89,14 @@ class _profile extends State<profile> {
               const Text(
                 "MyName",
                 style: TextStyle(
-                    //color: Colors.blueGrey,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 18),
               ),
               const Text(
                 "MyName@gmail.com",
                 style: TextStyle(
-                    // color: Colors.blueGrey,
+                    color: Colors.white,
                     fontWeight: FontWeight.w400,
                     fontSize: 16),
               ),

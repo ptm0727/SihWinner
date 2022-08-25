@@ -40,12 +40,15 @@ class _yoga_homeState extends State<yoga_home> {
           color: Color(0xff6053BC),
           child: Column(
             children: [
+              SizedBox(
+                height: 10,
+              ),
               const Center(
                 child: Text(
                   "Yoga",
                   style: TextStyle(
                       fontSize: 35,
-                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
               ),
@@ -131,7 +134,7 @@ class YogaTile extends StatelessWidget {
                 textString,
                 style: const TextStyle(
                   fontSize: 23,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

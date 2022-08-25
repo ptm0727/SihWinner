@@ -206,7 +206,7 @@ class Button extends StatelessWidget {
                   title,
                   style: const TextStyle(
                     fontSize: 23,
-                    fontWeight: FontWeight.w400,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -366,9 +366,7 @@ class RegularButton extends StatelessWidget {
           title: Center(
             child: Text(
               title,
-              style: const TextStyle(
-                fontSize: 25,
-              ),
+              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ),
           onTap: onPressed),
@@ -429,7 +427,7 @@ class AltButton extends StatelessWidget {
                 title,
                 style: const TextStyle(
                   fontSize: 23,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ],

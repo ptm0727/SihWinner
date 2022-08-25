@@ -51,12 +51,15 @@ class GameScreen extends StatelessWidget {
           color: Color(0xff6053BC),
           child: Column(
             children: [
+              SizedBox(
+                height: 10,
+              ),
               const Center(
                 child: Text(
                   "Games",
                   style: TextStyle(
                       fontSize: 35,
-                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
                       color: Colors.white),
                 ),
               ),
