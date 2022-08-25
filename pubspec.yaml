@@ -49,6 +49,7 @@ dependencies:
   hive_flutter: ^1.1.0
   flutter_neumorphic: ^3.2.0
   syncfusion_flutter_charts: ^20.2.45
+  favorite_button: ^0.0.4
 
 dev_dependencies:
   flutter_test:

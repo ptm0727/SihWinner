@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:provider/provider.dart';
 import 'package:sih_brain_games/custom_button.dart';
+import 'package:sih_brain_games/news/Add_Blog.dart';
 import 'package:sih_brain_games/news/newspage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -16,12 +18,14 @@ class NewsSection extends StatefulWidget {
 }
 
 class _NewsSectionState extends State<NewsSection> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
   ValueNotifier<int> pageNum = ValueNotifier(2);
   PageController _cont = PageController(initialPage: 1);
   var category;
   _NewsSectionState(this.category);
   final Stream<QuerySnapshot> users =
-      FirebaseFirestore.instance.collection('news').snapshots();
+      FirebaseFirestore.instance.collection('content').snapshots();
   var darkData;
   @override
   Widget build(BuildContext context) {
@@ -57,19 +61,35 @@ class _NewsSectionState extends State<NewsSection> {
                       return const Text('Loading');
                     }
                     final data = snapshot.requireData;
-
+                    var name = auth.currentUser?.uid;
                     return ListView.builder(
-                        itemCount: data.size,
+                        itemCount: data.size*2+1,
                         itemBuilder: (context, index) {
-                          if (category == data.docs[index]['category']) {
-                            return headlines(
-                                data.docs[index]['imageURL'],
-                                data.docs[index]['headline'],
-                                data.docs[index]['category'],
-                                data.docs[index]['article'],
-                                data.docs[index]['id']);
+                          if(index<=data.size) {
+                            if(index == 0)
+                              return Text("My Story");
+                            if (name == data.docs[index-1]['uid']) {
+                              return commentdelete(
+                                data.docs[index-1]['title'],
+                                data.docs[index-1]['content'],
+                                data.docs[index-1]['uid'],
+                                data.docs[index-1]['id'],
+                              );
+                            }
+                            return SizedBox.shrink();
                           }
-                          return const SizedBox.shrink();
+                          else {
+                            if(index == (data.size+1))
+                              return Text("Other Story");
+                            if (name == data.docs[index-data.size-1]['uid']) {
+                              return SizedBox.shrink();
+                            }
+                            else
+                              return comments(
+                                data.docs[index-data.size-1]['title'],
+                                data.docs[index-data.size-1]['id']
+                              );
+                          }
                         });
                   },
                 ),
@@ -78,20 +98,156 @@ class _NewsSectionState extends State<NewsSection> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Add_Blog("","")));
+        },
+        tooltip: 'Comments',
+        child: const Icon(Icons.add,color: Colors.white,),
+      ),
+    );
+  }
+}
+class comments extends StatelessWidget {
+  const comments(
+      this.comment,
+      this.id,{
+        Key? key,
+      }) : super(key: key);
+  final comment;
+  final id;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: Container(
+        height: 90,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.grey.shade800, Colors.grey.shade900]),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(width: 2, color: Colors.cyan)),
+        child: ClipRRect(
+          clipBehavior: Clip.hardEdge,
+          borderRadius: BorderRadius.circular(5),
+          child: ListTile(
+            title: Center(
+              child: Text(
+                comment,
+                style: const TextStyle(fontSize: 25, color: Colors.white),
+              ),
+            ),),
+        ),
+      ),
     );
   }
 }
 
+
+class commentdelete extends StatefulWidget {
+  const commentdelete(
+      this.title,
+      this.content,
+      this.id,
+      this.uid,{
+        Key? key,
+      }) : super(key: key);
+  final title;
+  final id;
+  final content;
+  final uid;
+
+  @override
+  State<commentdelete> createState() => _commentdeleteState();
+}
+
+class _commentdeleteState extends State<commentdelete> {
+  Future<void> deletecomment(var id) {
+    return FirebaseFirestore.instance.collection('comment')
+        .doc(id)
+        .delete()
+        .then((value) => print("User Deleted"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
+
+  Future openDialog(id) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Comment"),
+        content: Text("Do You Want to Delete"),
+        actions: [
+          RaisedButton(onPressed: (){
+            deletecomment(id);
+            Navigator.pop(context);
+          },
+            child: Text("Yes"),
+          ),
+          RaisedButton(onPressed: (){
+            Navigator.pop(context);
+          },
+            child: Text("No"),
+          )
+        ],
+      ));
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: Container(
+
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.grey.shade800, Colors.grey.shade900]),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(width: 2, color: Colors.cyan)),
+        child: ClipRRect(
+          clipBehavior: Clip.hardEdge,
+          borderRadius: BorderRadius.circular(5),
+          child: ListTile(
+            leading: SizedBox.shrink(),
+            title: Center(
+              child: Text(
+                widget.title,
+                style: const TextStyle(fontSize: 25, color: Colors.white),
+              ),
+            ),
+            trailing: IconButton(
+              icon: Icon(
+                  color: Colors.white,
+                  Icons.more_horiz
+              ),
+              onPressed: (){
+                openDialog(widget.id);
+              },
+            ),
+            onTap: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => News(widget.title,widget.uid,widget.content,widget.id)));
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
 class headlines extends StatelessWidget {
   headlines(
-    this.image,
     this.headline,
     this.category,
     this.article,
     this.id, {
     Key? key,
   }) : super(key: key);
-  final image;
   final headline;
   final category;
   final article;
@@ -128,21 +284,8 @@ class headlines extends StatelessWidget {
                 style: const TextStyle(fontSize: 25),
               ),
             ),
-            leading: Container(
-              child: Image(
-                image: FirebaseImage('gs://siholdman.appspot.com/' + image),
-                // Works with standard parameters, e.g.
-                fit: BoxFit.fitWidth,
-                width: 100,
-                // ... etc.
-              ),
-            ),
             onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          News(headline, image, article, id)));
+
             }),
       ),
     );
