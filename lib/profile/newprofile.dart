@@ -59,7 +59,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                           builder: (context, snapshot) {
                             if (snapshot.hasData) {
                               i = 0;
-
                               var data=snapshot.requireData;
                               return ListView.builder(
                                   itemCount: data.size,
