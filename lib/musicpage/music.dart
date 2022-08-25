@@ -147,7 +147,7 @@ class _music extends State<music> {
                   height: 25,
                 ),
                 Text(
-                  widget.c,
+                  widget.d,
                   style: const TextStyle(fontSize: 20),
                 ),
                 Slider(
