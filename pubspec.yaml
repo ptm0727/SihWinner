@@ -107,6 +107,13 @@ flutter:
         - asset: fonts/Nunito-Medium.ttf
         - asset: fonts/Nunito-MediumItalic.ttf
           style: italic
+    - family: SF
+      fonts:
+        - asset: fonts/SFFontItalics.ttf
+          style: italic
+        - asset: fonts/SFFontBold.ttf
+        - asset: fonts/SFFontRegular.ttf
+
 
   #   - family: Trajan Pro
   #     fonts:

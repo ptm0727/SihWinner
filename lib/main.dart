@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
             colorScheme: Provider.of<DarkMode>(context).dark
                 ? ColorScheme.dark()
                 : ColorScheme.light(),
-            fontFamily: "Nunito"),
+            fontFamily: "SF"),
         home: StreamProvider<User?>.value(
             value: AuthService().user, initialData: null, child: Dummy()));
   }
