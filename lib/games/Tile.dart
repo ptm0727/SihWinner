@@ -15,7 +15,7 @@ class _TileState extends State<Tile> {
   @override
   void initState() {
     widget.selected = true;
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 5), () {
       setState(() {
         widget.selected = false;
       });
@@ -74,6 +74,51 @@ class _TileState extends State<Tile> {
                                   },
                                   child: const Text(
                                     "Retry",
+                                    style: TextStyle(fontSize: 20),
+                                  )),
+                            ),
+                            Expanded(
+                              child: TextButton(
+                                  onPressed: () {
+                                    Navigator.popUntil(
+                                        context, (route) => route.isFirst);
+                                  },
+                                  child: const Text(
+                                    "Return Home",
+                                    style: TextStyle(fontSize: 20),
+                                  )),
+                            ),
+                          ],
+                        )
+                      ],
+                      actionsAlignment: MainAxisAlignment.center,
+                    );
+                  });
+            }
+            if (counter.getCounter == 10) {
+              showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Center(
+                        child: Text(
+                          "You won!",
+                          style: TextStyle(color: Colors.black, fontSize: 30),
+                        ),
+                      ),
+                      actions: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    widget.selected = false;
+                                    counter.setCounter = -10;
+                                  },
+                                  child: const Text(
+                                    "Replay",
                                     style: TextStyle(fontSize: 20),
                                   )),
                             ),
