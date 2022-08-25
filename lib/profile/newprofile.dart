@@ -120,7 +120,9 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                   }
                                 }
                                 var name = data.docs[index]['uid'];
-                                if(data.docs[index].id == name)
+                                if(data.docs[index].id == auth.currentUser?.uid)
+                                  name = "me";
+                                else if(data.docs[index].id == name )
                                   name = "anonymous";
 
                                 return Padding(
