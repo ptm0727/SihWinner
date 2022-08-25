@@ -48,10 +48,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
     });
   }
 
-
-
-
-
   @override
   Widget build(BuildContext context) {
     pointsmodel p = box.get('points');

@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:lottie/lottie.dart';
 import 'package:sih_brain_games/Login/auth_service.dart';
 import 'package:sih_brain_games/custom_button.dart';
 import 'package:sih_brain_games/pointsmodel.dart';
@@ -123,6 +124,13 @@ class _profile extends State<profile> {
               ),
               const SizedBox(
                 height: 20,
+              ),
+              Lottie.asset(
+                'animations/${total/500}.json',
+                width: 200,
+                height: 200,
+                repeat: false,
+                fit: BoxFit.fill,
               ),
               /*RadarChart(
                 radius: 150, length: 6, initialAngle: pi / 3,

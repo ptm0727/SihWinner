@@ -51,6 +51,7 @@ dependencies:
   syncfusion_flutter_charts: ^20.2.45
   favorite_button: ^0.0.4
   youtube_player_flutter: ^8.1.0
+  lottie: ^1.4.2
 
 dev_dependencies:
   flutter_test:
@@ -81,6 +82,7 @@ flutter:
     - assets/
     - assets/images_word_game/
     - assets/game_images/
+    - animations/
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
