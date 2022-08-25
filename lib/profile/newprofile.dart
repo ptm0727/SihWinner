@@ -54,7 +54,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
     denominatormodel d = box1.get('d');
     points_firebase x = points_firebase();
 
-
     var r = TextStyle(color: Colors.purpleAccent, fontSize: 34);
     return Stack(
       children: <Widget>[
@@ -90,10 +89,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
                 ),
               ),
               Flexible(
-                  child: StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance
+                  child: FutureBuilder<QuerySnapshot>(
+                      future: FirebaseFirestore.instance
                           .collection('points')
-                          .snapshots(),
+                          .get(),
                       builder: (context, snapshot) {
                         updatescore((p.p1 / d.d1 +
                                 p.p2 / d.d2 +
