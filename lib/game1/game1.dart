@@ -30,7 +30,7 @@ class _HomeState extends State<game1> {
     double x = p.p1;
     x = x + points;
     double y = d.d1;
-    y = y + 80;
+    y = y + 100;
     box.put(
         'points',
         pointsmodel(
@@ -83,12 +83,12 @@ class _HomeState extends State<game1> {
               SizedBox(
                 height: 10,
               ),
-              points != 80 && moves > 0
+              points != 100 && moves > 0
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "$points/80",
+                          "$points/100",
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.w500),
                         ),
@@ -104,7 +104,7 @@ class _HomeState extends State<game1> {
               SizedBox(
                 height: 30,
               ),
-              points != 80 && moves > 0
+              points != 100 && moves > 0
                   ? GridView(
                       shrinkWrap: true,
                       //physics: ClampingScrollPhysics(),
@@ -225,7 +225,13 @@ class _TileState extends State<Tile> {
           if (selectedTile != "") {
             if (selectedTile == myPairs[widget.tileIndex].getImageAssetPath()) {
               print("add point");
-              points = points + 10;
+              if(points==70) {
+                points = points + 30;
+              }
+              else{
+                points=points+10;
+              }
+
               print(selectedTile + " thishis" + widget.imagePathUrl);
 
               TileModel tileModel = new TileModel();

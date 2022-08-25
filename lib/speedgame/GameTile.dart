@@ -27,7 +27,12 @@ class _TileState extends State<GameTile> {
             if (counter.getCounter == widget.id) {
               print(counter.getCounter);
               setState(() {
-                po=po+2;
+                if(po<60) {
+                  po=po+3;
+                }
+                else {
+                    po=po+4;
+                  }
                 counter.increment();
               });
             }

@@ -59,6 +59,7 @@ class _profile extends State<profile> {
 
   @override
   Widget build(BuildContext context) {
+    int total=0;
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
     final _auth = AuthService();
@@ -222,25 +223,26 @@ class _profile extends State<profile> {
                     box.put(
                         'points',
                         pointsmodel(
-                          p1: 290,
-                          p2: 350,
-                          p3: 250,
-                          p4: 270,
-                          p5: 200,
-                          p6: 210,
+                          p1: p.p1+150,
+                          p2: p.p2+170,
+                          p3: p.p3+135,
+                          p4: p.p4+140,
+                          p5: p.p5+180,
+                          p6: p.p6+170,
                         ));
                     box1.put(
                         'd',
                         denominatormodel(
-                            d1: 360,
-                            d2: 400,
-                            d3: 260,
-                            d4: 360,
-                            d5: 250,
-                            d6: 250));
+                            d1: d.d1+200,
+                            d2: d.d2+200,
+                            d3: d.d3+200,
+                            d4: d.d4+200,
+                            d5: d.d5+200,
+                            d6: d.d6+200));
                     setState(() {
                       p = box.get('points');
                       d = box1.get('d');
+                      total=(p.p1+p.p2+p.p3+p.p4+p.p5+p.p6) as int;
                     });
                   },
                   child: const Text("Reset Points")),

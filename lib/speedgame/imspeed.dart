@@ -99,14 +99,14 @@ class _MemoryGame1State extends State<imspeed> {
             style: TextStyle(color: Colors.black, fontSize: 25),
           ),
         ),
-        body: start&&po<=60?Container(
+        body: start&&po<=100?Container(
           padding: EdgeInsets.all(30),
           child: Consumer<Counter1>(
             builder: (_, counter, __) => Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                  Text(
-                  "$po/60",
+                  "$po/100",
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontWeight: FontWeight.w500,
