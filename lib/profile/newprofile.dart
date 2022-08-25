@@ -48,6 +48,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
     });
   }
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
     pointsmodel p = box.get('points');
@@ -92,6 +96,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                   child: FutureBuilder<QuerySnapshot>(
                       future: FirebaseFirestore.instance
                           .collection('points')
+                          .orderBy('game', descending: true)
                           .get(),
                       builder: (context, snapshot) {
                         updatescore((p.p1 / d.d1 +
@@ -104,12 +109,13 @@ class _LeaderBoardState extends State<LeaderBoard> {
                         if (snapshot.hasData) {
                           i = 0;
                           var data = snapshot.requireData;
+
                           return ListView.builder(
                               itemCount: data.size,
                               itemBuilder: (context, index) {
+                                var dictionary = {};
                                 print(index);
                                 if (index >= 1) {
-                                  var dict = {};
                                   print('Greater than 1');
                                   if (data.docs[index]['game'] ==
                                       data.docs[index - 1]['game']) {
@@ -119,6 +125,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                     i++;
                                   }
                                 }
+
                                 var name = data.docs[index]['uid'];
                                 if(data.docs[index].id == auth.currentUser?.uid)
                                   name = "me";
