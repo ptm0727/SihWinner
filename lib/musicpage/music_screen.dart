@@ -82,6 +82,6 @@ class _MusicScreen extends State<MusicScreen> {
               ),
             ]),
           ),
-        ]));
+        ));
   }
 }
