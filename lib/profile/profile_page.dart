@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:radar_chart/radar_chart.dart';
 import 'package:sih_brain_games/custom_button.dart';
 import 'package:sih_brain_games/pointsmodel.dart';
 import 'package:sih_brain_games/main.dart';
 import 'dart:math';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 class profile extends StatefulWidget {
   @override
@@ -38,15 +38,23 @@ class _profile extends State<profile> {
   Widget build(BuildContext context) {
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
-
-    List<double> values1 = [
-      p.p1.toDouble() / 100, //d.d1.toDouble(),
-      p.p2.toDouble() / 100, //d.d2.toDouble(),
-      p.p3.toDouble() / 100, //d.d3.toDouble(),
-      p.p4.toDouble() / 100, //d.d4.toDouble(),
-      p.p5.toDouble() / 100, //d.d5.toDouble(),
-      p.p6.toDouble() / 100, //d.d6.toDouble(),
+    final List<ChartData> chartData = [
+      ChartData(0, 0.5),
+      ChartData(1, 0.6),
+      ChartData(2, 0.6),
+      ChartData(3, 0.6),
+      ChartData(4, 0.6),
+      ChartData(5, 0.6),
     ];
+    final List<ChartData> chartData1 = [
+      ChartData(1, 0.6),
+      ChartData(2, 0.6),
+      ChartData(3, 0.8),
+      ChartData(4, 0.62),
+      ChartData(5, 0.5),
+      ChartData(6, 0.43),
+
+    ]..shuffle();
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
       child: Column(
@@ -80,7 +88,7 @@ class _profile extends State<profile> {
           const SizedBox(
             height: 20,
           ),
-          RadarChart(
+          /*RadarChart(
             radius: 150, length: 6, initialAngle: pi / 3,
             //backgroundColor: Colors.white,
             //borderStroke: 2,
@@ -95,31 +103,65 @@ class _profile extends State<profile> {
                 backgroundColor: Colors.green.withOpacity(0.6),
               ),
             ],
-          ),
+          ),*/
+          /*SfCartesianChart(
+            primaryXAxis: CategoryAxis(
+              name: "abc"
+            ),
+
+              series: <ChartSeries<ChartData, int>>[
+                // Renders column chart
+                ColumnSeries<ChartData, int>(
+                    dataSource: chartData,
+                    xValueMapper: (ChartData data, _) => data.x,
+                    yValueMapper: (ChartData data, _) => data.y,
+                  enableTooltip: true,
+                  width: 0.5,
+                  spacing:0.2,
+                  xAxisName: " ",
+                )
+              ]
+          ),*/
+          /*SfCartesianChart(
+              primaryXAxis: CategoryAxis(
+                  labelPosition: ChartDataLabelPosition.inside,
+                  tickPosition: TickPosition.inside
+              ),
+            series: <ChartSeries>[
+              // Renders line chart
+              LineSeries<ChartData, int>(
+                  dataSource: chartData1,
+                  xValueMapper: (ChartData data, _) => data.x,
+                  yValueMapper: (ChartData data, _) => data.y
+              )
+            ],
+            // Renders column chart
+
+          ),*/
           const SizedBox(
             height: 20,
           ),
-          displayscore("Pair ${p.p1.toInt()} ${d.d1.toInt()}"),
+          displayscore("Pair ${p.p1.toInt()} / ${d.d1.toInt()}"),
           const SizedBox(
             height: 12,
           ),
-          displayscore("Memory ${p.p2.toInt()} ${d.d2.toInt()}"),
+          displayscore("Memory ${p.p2.toInt()} / ${d.d2.toInt()}"),
           const SizedBox(
             height: 12,
           ),
-          displayscore("Puzzle ${p.p3.toInt()} ${d.d3.toInt()}"),
+          displayscore("Puzzle ${p.p3.toInt()} / ${d.d3.toInt()}"),
           const SizedBox(
             height: 12,
           ),
-          displayscore("Speed ${p.p4.toInt()} ${d.d4.toInt()}"),
+          displayscore("Speed ${p.p4.toInt()} / ${d.d4.toInt()}"),
           const SizedBox(
             height: 12,
           ),
-          displayscore("Math ${p.p5.toInt()} ${d.d5.toInt()}"),
+          displayscore("Math ${p.p5.toInt()} / ${d.d5.toInt()}"),
           const SizedBox(
             height: 12,
           ),
-          displayscore("Word ${p.p6.toInt()} ${d.d6.toInt()}"),
+          displayscore("Word ${p.p6.toInt()} / ${d.d6.toInt()}"),
           const SizedBox(
             height: 12,
           ),
@@ -149,4 +191,10 @@ class _profile extends State<profile> {
       ),
     );
   }
+
+}
+class ChartData {
+  ChartData(this.x, this.y);
+  final int x;
+  final double y;
 }
