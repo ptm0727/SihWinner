@@ -119,7 +119,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                     i++;
                                   }
                                 }
-                                var name = auth.currentUser?.uid;
+                                var name = data.docs[index]['uid'];
                                 if(data.docs[index].id == name)
                                   name = "anonymous";
 
