@@ -15,12 +15,46 @@ class _LeaderBoardState extends State<LeaderBoard> {
   int i = 0;
   Color my = Colors.brown, CheckMyColor = Colors.white;
   final FirebaseAuth auth = FirebaseAuth.instance;
+  Future<void> updatescore(var p1) {
+    return FirebaseFirestore.instance
+        .collection('points')
+        .where('uid', isEqualTo: auth.currentUser?.uid)
+        .get()
+        .then((QuerySnapshot querySnapshot) {
+      var n = querySnapshot.docs.length;
+      if (n == 0) {
+        FirebaseFirestore.instance
+            .collection('points')
+            .doc(auth.currentUser?.uid)
+            .set({
+          'id':auth.currentUser?.uid,
+
+              'game': p1,
+              'uid': auth.currentUser?.uid,
+              'date': DateTime.now().toString()
+            })
+            .then((value) => print("User Added"))
+            .catchError((error) => print("Failed to add user: $error"));
+      }
+      else{
+        FirebaseFirestore.instance
+            .collection('points')
+            .doc(auth.currentUser?.uid)
+            .update({'game': p1})
+            .then((value) => print("User Updated"))
+            .catchError((error) => print("Failed to update user: $error"));
+      }
+      print(n);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
-    points_firebase x=points_firebase();
-    x.addPoints((p.p1 / d.d1+p.p2 / d.d2+p.p3 / d.d3+p.p4 / d.d4+p.p5 / d.d5+p.p6 / d.d6)/6);
+    points_firebase x = points_firebase();
+
+
     var r = TextStyle(color: Colors.purpleAccent, fontSize: 34);
     return Stack(
       children: <Widget>[
@@ -61,6 +95,13 @@ class _LeaderBoardState extends State<LeaderBoard> {
                           .collection('points')
                           .snapshots(),
                       builder: (context, snapshot) {
+                        updatescore((p.p1 / d.d1 +
+                                p.p2 / d.d2 +
+                                p.p3 / d.d3 +
+                                p.p4 / d.d4 +
+                                p.p5 / d.d5 +
+                                p.p6 / d.d6) /
+                            6);
                         if (snapshot.hasData) {
                           i = 0;
                           var data = snapshot.requireData;
@@ -69,8 +110,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                               itemBuilder: (context, index) {
                                 print(index);
                                 if (index >= 1) {
-                                  var dick= {}
-                                  ;
+                                  var dick = {};
                                   print('Greater than 1');
                                   if (data.docs[index]['game'] ==
                                       data.docs[index - 1]['game']) {
@@ -127,8 +167,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                           maxLines: 6,
                                                         )),
                                                     Text("Points: " +
-                                                        data.docs[index]
-                                                                ['game']
+                                                        data.docs[index]['game']
                                                             .toString()),
                                                   ],
                                                 ),

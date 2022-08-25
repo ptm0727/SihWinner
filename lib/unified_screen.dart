@@ -87,8 +87,8 @@ class Unified extends StatelessWidget {
               const yoga_home(),
               const GameScreen(),
               MusicScreen(),
-              profile(),
-              //LeaderBoard()
+              // profile(),
+              LeaderBoard()
             ],
             onPageChanged: (updated) {
               pageNum.value = updated;
