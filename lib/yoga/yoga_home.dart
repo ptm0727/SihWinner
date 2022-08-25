@@ -46,19 +46,19 @@ class _yoga_homeState extends State<yoga_home> {
               style: TextStyle(fontSize: 35, fontStyle: FontStyle.italic),
             ),
           ),
-          getEffectsWidget(),
+          ..._getListData()
         ],
       ),
     );
   }
 
-  getEffectsWidget() {
-    return ListView(
-        physics: ClampingScrollPhysics(),
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        children: _getListData());
-  }
+  // getEffectsWidget() {
+  //   return ListView(
+  //       physics: ClampingScrollPhysics(),
+  //       shrinkWrap: true,
+  //       scrollDirection: Axis.vertical,
+  //       children: _getListData());
+  // }
 
   _getListData() {
     List<Widget> widgets = [];

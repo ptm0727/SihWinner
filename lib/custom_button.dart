@@ -7,12 +7,12 @@ import 'news/news.dart';
 
 class Button extends StatelessWidget {
   Widget destination;
-  String? leading;
+  String imgPath;
   String title;
   String? subtitle;
   Widget? trailing;
   Button(
-      {this.leading,
+      {required this.imgPath,
       required this.destination,
       required this.title,
       this.subtitle,
@@ -22,7 +22,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     darkData = Provider.of<DarkMode>(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 15),
       child: Neumorphic(
         style: darkData.dark
             ? NeumorphicStyle(
@@ -41,47 +41,128 @@ class Button extends StatelessWidget {
                 color: Color(0xff83929E),
                 boxShape:
                     NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
-        child: Theme(
-          data:
-              ThemeData(dividerColor: Colors.transparent, fontFamily: "Nunito"),
-          child: ExpansionTile(
-              textColor: darkData.dark ? Colors.white : Colors.black,
-              title: Padding(
-                padding: const EdgeInsets.only(left: 50),
-                child: Text(
-                  title,
-                  style: const TextStyle(
-                      fontSize: 26, fontWeight: FontWeight.w500),
+        child: ExpansionTile(
+          title: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                imgPath,
+                height: 100,
+                width: 400,
+                fit: BoxFit.cover,
+              ),
+              const SizedBox(
+                height: 6,
+              ),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.w400,
                 ),
               ),
-              children: [
-                ListTile(
-                  title: Text(
-                    subtitle ?? "",
-                    style: const TextStyle(
-                        fontSize: 17, fontWeight: FontWeight.w500),
+            ],
+          ),
+          children: [
+            ListTile(
+              title: Text(
+                subtitle ?? "",
+                style: TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                  color: darkData.dark ? Colors.white : Colors.black,
+                ),
+              ),
+              trailing: MaterialButton(
+                elevation: 0,
+                color: darkData.dark ? Colors.deepPurple : Colors.green,
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => destination));
+                },
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
+                child: Text(
+                  "Play",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: darkData.dark ? Colors.white : Colors.black,
                   ),
-                  trailing: MaterialButton(
-                    elevation: 0,
-                    color: darkData.dark ? Colors.deepPurple : Colors.green,
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => destination));
-                    },
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
-                    child: const Text(
-                      "Play",
-                      style: const TextStyle(
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                )
-              ]),
+                ),
+              ),
+            )
+          ],
         ),
       ),
     );
+    //   Padding(
+    //   padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+    //   child: Neumorphic(
+    //     style: darkData.dark
+    //         ? NeumorphicStyle(
+    //             intensity: 0.8,
+    //             depth: 4,
+    //             shadowLightColor: Colors.blueGrey.shade700,
+    //             shadowDarkColor: Color(0xff0B0E12),
+    //             color: Color(0xff333E52),
+    //             boxShape:
+    //                 NeumorphicBoxShape.roundRect(BorderRadius.circular(17)))
+    //         : NeumorphicStyle(
+    //             intensity: 0.7,
+    //             depth: 4,
+    //             shadowLightColor: Colors.white,
+    //             shadowDarkColor: Colors.grey.shade800,
+    //             color: Colors.white70,
+    //             boxShape:
+    //                 NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
+    //     child: Theme(
+    //       data:
+    //           ThemeData(dividerColor: Colors.transparent, fontFamily: "Nunito"),
+    //       child: ExpansionTile(
+    //           textColor: darkData.dark ? Colors.white : Colors.black,
+    //           title: Padding(
+    //             padding: const EdgeInsets.only(left: 50),
+    //             child: Text(
+    //               title,
+    //               style: TextStyle(
+    //                 fontSize: 26,
+    //                 fontWeight: FontWeight.w500,
+    //                 color: darkData.dark ? Colors.white : Colors.black,
+    //               ),
+    //             ),
+    //           ),
+    //           children: [
+    //             ListTile(
+    //               title: Text(
+    //                 subtitle ?? "",
+    //                 style: TextStyle(
+    //                   fontSize: 17,
+    //                   fontWeight: FontWeight.w500,
+    //                   color: darkData.dark ? Colors.white : Colors.black,
+    //                 ),
+    //               ),
+    //               trailing: MaterialButton(
+    //                 elevation: 0,
+    //                 color: darkData.dark ? Colors.deepPurple : Colors.green,
+    //                 onPressed: () {
+    //                   Navigator.push(context,
+    //                       MaterialPageRoute(builder: (context) => destination));
+    //                 },
+    //                 shape: RoundedRectangleBorder(
+    //                     borderRadius: BorderRadius.circular(30)),
+    //                 child: Text(
+    //                   "Play",
+    //                   style: TextStyle(
+    //                     fontSize: 18,
+    //                     color: darkData.dark ? Colors.white : Colors.black,
+    //                   ),
+    //                 ),
+    //               ),
+    //             )
+    //           ]),
+    //     ),
+    //   ),
+    // );
   }
 }
 
@@ -92,6 +173,7 @@ class GradientContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.only(top: 80),
       decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -102,7 +184,13 @@ class GradientContainer extends StatelessWidget {
                       Color(0xFF283240),
                       Colors.blueGrey.shade800
                     ]
-                  : [Color(0xff8e9eab), Color(0xff8e9eab), Color(0xffeef2f3)])),
+                  : [
+                      Color(0xaaF09B59),
+                      // Color(0xffF09B59),
+                      Color(0xffeef2f3),
+                      //   Color(0xaf75FA8D),
+                      Color(0xaa75FA8D),
+                    ])),
       child: child,
     );
   }
@@ -137,9 +225,9 @@ class RegularButton extends StatelessWidget {
             : NeumorphicStyle(
                 intensity: 0.7,
                 depth: 4,
-                shadowLightColor: Color(0xffeef2f3),
+                shadowLightColor: Colors.white,
                 shadowDarkColor: Colors.grey.shade800,
-                color: Color(0xff83929E),
+                color: Colors.white70,
                 boxShape:
                     NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
         child: ListTile(
@@ -186,9 +274,9 @@ class AltButton extends StatelessWidget {
             : NeumorphicStyle(
                 intensity: 0.7,
                 depth: 4,
-                shadowLightColor: Color(0xffeef2f3),
+                shadowLightColor: Colors.white,
                 shadowDarkColor: Colors.grey.shade800,
-                color: Color(0xff83929E),
+                color: Colors.white70,
                 boxShape:
                     NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
         child: ListTile(

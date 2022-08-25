@@ -28,7 +28,7 @@ class _TileState extends State<Tile> {
       setState(() {
         widget.selected = true;
       });
-      Future.delayed(Duration(seconds: 5), () {
+      Future.delayed(const Duration(seconds: 5), () {
         setState(() {
           widget.selected = false;
         });
@@ -37,10 +37,10 @@ class _TileState extends State<Tile> {
     }
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             primary: Colors.indigo),
         onPressed: () {

@@ -14,18 +14,31 @@ class GameScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> list = [
       Button(
+        imgPath: "assets/brain.png",
         destination: game1(),
         title: "Pair game",
         subtitle: "Identify pairs in the given grid",
       ),
       Button(
-          leading: "assets/brain.png",
+          imgPath: "assets/brain.png",
           destination: MemoryGame1(),
           title: "Memory game"),
-      Button(destination: puz(), title: "Puzzle game"),
-      Button(destination: imspeed(), title: "Speed game"),
-      Button(destination: mathgame(), title: "Math game"),
-      Button(destination: Word_game(), title: "Word game")
+      Button(
+          imgPath: "assets/brain.png",
+          destination: puz(),
+          title: "Puzzle game"),
+      Button(
+          imgPath: "assets/brain.png",
+          destination: imspeed(),
+          title: "Speed game"),
+      Button(
+          imgPath: "assets/brain.png",
+          destination: mathgame(),
+          title: "Math game"),
+      Button(
+          imgPath: "assets/brain.png",
+          destination: Word_game(),
+          title: "Word game")
     ];
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),
@@ -43,11 +56,12 @@ class GameScreen extends StatelessWidget {
               style: TextStyle(fontSize: 35, fontStyle: FontStyle.italic),
             ),
           ),
-          ListView.builder(
-              physics: ClampingScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: list.length,
-              itemBuilder: (context, index) => list[index]),
+          // ListView.builder(
+          //     physics: ClampingScrollPhysics(),
+          //     shrinkWrap: true,
+          //     itemCount: list.length,
+          //     itemBuilder: (context, index) => list[index]),
+          ...list
         ],
       ),
     );

@@ -11,10 +11,9 @@ class MemoryGame1 extends StatefulWidget {
 }
 
 class _MemoryGame1State extends State<MemoryGame1> {
-  @override
   List<Tile> grid = [];
-  int _totalNumOfTiles = 9;
-  List<int> _numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  final int _totalNumOfTiles = 9;
+  final List<int> _numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   List<Tile> generateTiles() {
     grid.clear();
