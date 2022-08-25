@@ -17,13 +17,9 @@ class _MemoryGame1State extends State<MemoryGame1> {
   List<Tile> grid = [];
   int _totalNumOfTiles = 9;
   List<int> _numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  late final Timer timer;
-  int _showSecs = 10;
   var counter;
+
   List<Tile> generateTiles() {
-    // Future.delayed(Duration(seconds: 10), () {
-    //   startTimer();
-    // });
     grid.clear();
     List<Tile> gridTiles = [];
     _numbers.shuffle();
@@ -34,65 +30,6 @@ class _MemoryGame1State extends State<MemoryGame1> {
     grid = gridTiles;
     return gridTiles;
   }
-
-  // void stopTimer() {
-  //   timer.cancel();
-  // }
-
-  // void startTimer() {
-  //   if (_showSecs > 0) {
-  //     timer = Timer.periodic(Duration(seconds: 1), (_) {
-  //       setState(() {
-  //         _showSecs--;
-  //       });
-  //       if (_showSecs == 0) {
-  //         stopTimer();
-  //         showDialog(
-  //             barrierDismissible: false,
-  //             context: context,
-  //             builder: (context) {
-  //               return AlertDialog(
-  //                 title: const Center(
-  //                   child: Text(
-  //                     "Game over",
-  //                     style: TextStyle(color: Colors.black, fontSize: 30),
-  //                   ),
-  //                 ),
-  //                 actions: [
-  //                   Row(
-  //                     children: [
-  //                       Expanded(
-  //                         child: TextButton(
-  //                             onPressed: () {
-  //                               Navigator.pop(context);
-  //                               counter.setCounter = -10;
-  //                             },
-  //                             child: const Text(
-  //                               "Retry",
-  //                               style: TextStyle(fontSize: 20),
-  //                             )),
-  //                       ),
-  //                       Expanded(
-  //                         child: TextButton(
-  //                             onPressed: () {
-  //                               Navigator.popUntil(
-  //                                   context, (route) => route.isFirst);
-  //                             },
-  //                             child: const Text(
-  //                               "Return Home",
-  //                               style: TextStyle(fontSize: 20),
-  //                             )),
-  //                       ),
-  //                     ],
-  //                   )
-  //                 ],
-  //                 actionsAlignment: MainAxisAlignment.center,
-  //               );
-  //             });
-  //       }
-  //     });
-  //   }
-  // }
 
   @override
   void initState() {
@@ -142,11 +79,11 @@ class _MemoryGame1State extends State<MemoryGame1> {
                       crossAxisCount: 3),
                   children: counter.getCounter < 0 ? generateTiles() : grid,
                 ),
-                Text(
-                  "Time Left : ${_showSecs}",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey.shade700, fontSize: 20),
-                ),
+                // Text(
+                //   "Time Left : ${_showSecs}",
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(color: Colors.grey.shade700, fontSize: 20),
+                // ),
               ],
             ),
           ],

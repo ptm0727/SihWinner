@@ -38,21 +38,30 @@ class Button extends StatelessWidget {
                 depth: 4,
                 shadowLightColor: Color(0xffeef2f3),
                 shadowDarkColor: Colors.grey.shade800,
-                color: Color(0xff83929E),
+                color: NeumorphicColors.background,
                 boxShape:
                     NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
         child: ExpansionTile(
-          title: Column(
-            mainAxisSize: MainAxisSize.min,
+          textColor: darkData.dark ? Colors.white : Colors.black,
+          collapsedTextColor: darkData.dark ? Colors.white : Colors.black,
+          title: Stack(
             children: [
-              Image.asset(
-                imgPath,
-                height: 100,
-                width: 400,
-                fit: BoxFit.cover,
-              ),
-              const SizedBox(
-                height: 6,
+              Padding(
+                padding: const EdgeInsets.all(0),
+                child: ShaderMask(
+                  shaderCallback: (bounds) {
+                    return LinearGradient(
+                      colors: [Colors.grey, Colors.transparent],
+                    ).createShader(bounds);
+                  },
+                  child: Image.asset(
+                    imgPath,
+                    height: 100,
+                    width: 300,
+                    fit: BoxFit.cover,
+                  ),
+                  //blendMode: BlendMode.srcATop,
+                ),
               ),
               Text(
                 title,
