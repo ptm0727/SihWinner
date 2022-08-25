@@ -99,19 +99,19 @@ class _profile extends State<profile> {
           const SizedBox(
             height: 20,
           ),
-          displayscore("Memory ${p.p1.toInt()} ${d.d1.toInt()}"),
+          displayscore("Pair ${p.p1.toInt()} ${d.d1.toInt()}"),
           const SizedBox(
             height: 12,
           ),
-          displayscore("Pair ${p.p2.toInt()} ${d.d2.toInt()}"),
+          displayscore("Memory ${p.p2.toInt()} ${d.d2.toInt()}"),
           const SizedBox(
             height: 12,
           ),
-          displayscore("Speed ${p.p3.toInt()} ${d.d3.toInt()}"),
+          displayscore("Puzzle ${p.p3.toInt()} ${d.d3.toInt()}"),
           const SizedBox(
             height: 12,
           ),
-          displayscore("Puzzle ${p.p4.toInt()} ${d.d4.toInt()}"),
+          displayscore("Speed ${p.p4.toInt()} ${d.d4.toInt()}"),
           const SizedBox(
             height: 12,
           ),
@@ -120,6 +120,31 @@ class _profile extends State<profile> {
             height: 12,
           ),
           displayscore("Word ${p.p6.toInt()} ${d.d6.toInt()}"),
+          const SizedBox(
+            height: 12,
+          ),
+          ElevatedButton(
+              onPressed: (){
+                box.put(
+                    'points',
+                    pointsmodel(
+                      p1: 0,
+                      p2: 0,
+                      p3: 0,
+                      p4: 0,
+                      p5: 0,
+                      p6: 0,
+                    ));
+                box1.put('d',
+                    denominatormodel(d1: 0.1, d2: 0.1, d3: 0.1, d4: 0.1, d5: 0.1, d6: 0.1));
+                setState(() {
+                  p = box.get('points');
+                  d = box1.get('d');
+                });
+              }, child: const Text("Reset Points")),
+          const SizedBox(
+            height: 100,
+          ),
         ],
       ),
     );
