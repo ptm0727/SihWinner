@@ -2,6 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../main.dart';
+import '../points_firebase.dart';
+import '../pointsmodel.dart';
+
 class LeaderBoard extends StatefulWidget {
   @override
   _LeaderBoardState createState() => _LeaderBoardState();
@@ -13,6 +17,10 @@ class _LeaderBoardState extends State<LeaderBoard> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
+    pointsmodel p = box.get('points');
+    denominatormodel d = box1.get('d');
+    points_firebase x=points_firebase();
+    x.addPoints((p.p1 / d.d1+p.p2 / d.d2+p.p3 / d.d3+p.p4 / d.d4+p.p5 / d.d5+p.p6 / d.d6)/6);
     var r = TextStyle(color: Colors.purpleAccent, fontSize: 34);
     return Stack(
       children: <Widget>[
@@ -51,7 +59,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                   child: StreamBuilder<QuerySnapshot>(
                       stream: FirebaseFirestore.instance
                           .collection('points')
-                          .where('uid', isEqualTo: auth.currentUser?.uid)
                           .snapshots(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
@@ -62,6 +69,8 @@ class _LeaderBoardState extends State<LeaderBoard> {
                               itemBuilder: (context, index) {
                                 print(index);
                                 if (index >= 1) {
+                                  var dick= {}
+                                  ;
                                   print('Greater than 1');
                                   if (data.docs[index]['game1'] ==
                                       data.docs[index - 1]['game1']) {
@@ -94,7 +103,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                         children: <Widget>[
                                           Row(
                                             children: <Widget>[
-
                                               Padding(
                                                 padding: const EdgeInsets.only(
                                                     left: 20.0, top: 10.0),
@@ -139,7 +147,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                               style: r,
                                                             )
                                                           : Text(''),
-
                                             ],
                                           ),
                                         ],
