@@ -33,6 +33,20 @@ class _profile extends State<profile> {
     //   ),
     // );
   }
+  String checkstars(double b)
+  {
+   if(b<=0.5) {
+     return "assets/img_5.png";
+   }
+   else if(b>0.5 && b<=.75)
+     {
+       return "assets/img_6.png";
+     }
+   else{
+     return "assets/img_7.png";
+   }
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +133,7 @@ class _profile extends State<profile> {
                   width: 0.5,
                   spacing:0.2,
                   xAxisName: " ",
-                  color: Colors.deepPurple,
+                  //color: Colors.deepPurple,
                 )
               ]
           ),
@@ -159,6 +173,7 @@ class _profile extends State<profile> {
             height: 12,
           ),
           displayscore("Math ${p.p5.toInt()} / ${d.d5.toInt()}"),
+
           const SizedBox(
             height: 12,
           ),
