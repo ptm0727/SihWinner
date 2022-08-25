@@ -17,7 +17,9 @@ class Unified extends StatelessWidget {
   Widget build(BuildContext context) {
     darkData = Provider.of<DarkMode>(context);
     return Scaffold(
-      backgroundColor: darkData.dark ? Color(0xFF283240) : Color(0xff8e9eab),
+      extendBodyBehindAppBar: true,
+      extendBody: true,
+      backgroundColor: darkData.dark ? Color(0xFF283240) : Color(0xffF09B59),
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -33,39 +35,40 @@ class Unified extends StatelessWidget {
       bottomNavigationBar: ValueListenableBuilder(
           valueListenable: pageNum,
           builder: (context, int page, child) => CurvedNavigationBar(
-                backgroundColor: darkData.dark
-                    ? Colors.blueGrey.shade800
-                    : Color(0xffeef2f3),
+                // backgroundColor: darkData.dark
+                //     ? Colors.blueGrey.shade800
+                //     : Color(0xffeef2f3),
+                backgroundColor: Colors.transparent,
                 animationDuration: const Duration(milliseconds: 300),
                 buttonBackgroundColor:
-                    darkData.dark ? Colors.deepPurple : Colors.green,
-                color: darkData.dark ? Color(0xFF283240) : Color(0xff7B8994),
+                    darkData.dark ? Colors.deepPurple : Color(0xff6495ed),
+                color: darkData.dark ? Color(0xFF283240) : Colors.white,
                 index: page,
-                items: const <Widget>[
+                items: <Widget>[
                   Icon(
                     Icons.newspaper_outlined,
                     size: 30,
-                    color: Colors.white,
+                    color: page == 0 ? Colors.white : Colors.grey,
                   ),
                   Icon(
-                    Icons.work,
+                    Icons.play_arrow,
                     size: 30,
-                    color: Colors.white,
+                    color: page == 1 ? Colors.white : Colors.grey,
                   ),
                   Icon(
                     Icons.home_filled,
                     size: 30,
-                    color: Colors.white,
+                    color: page == 2 ? Colors.white : Colors.grey,
                   ),
                   Icon(
                     Icons.music_note_outlined,
                     size: 30,
-                    color: Colors.white,
+                    color: page == 3 ? Colors.white : Colors.grey,
                   ),
                   Icon(
                     Icons.settings,
                     size: 30,
-                    color: Colors.white,
+                    color: page == 4 ? Colors.white : Colors.grey,
                   ),
                 ],
                 onTap: (int index) {

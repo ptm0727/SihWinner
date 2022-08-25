@@ -15,7 +15,7 @@ class _TileState extends State<Tile> {
   @override
   void initState() {
     widget.selected = true;
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 5), () {
       setState(() {
         widget.selected = false;
       });
@@ -28,7 +28,7 @@ class _TileState extends State<Tile> {
       setState(() {
         widget.selected = true;
       });
-      Future.delayed(Duration(seconds: 5), () {
+      Future.delayed(const Duration(seconds: 5), () {
         setState(() {
           widget.selected = false;
         });
@@ -37,10 +37,10 @@ class _TileState extends State<Tile> {
     }
     return Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
                 borderRadius: BorderRadius.all(Radius.circular(20))),
             primary: Colors.indigo),
         onPressed: () {
@@ -74,6 +74,51 @@ class _TileState extends State<Tile> {
                                   },
                                   child: const Text(
                                     "Retry",
+                                    style: TextStyle(fontSize: 20),
+                                  )),
+                            ),
+                            Expanded(
+                              child: TextButton(
+                                  onPressed: () {
+                                    Navigator.popUntil(
+                                        context, (route) => route.isFirst);
+                                  },
+                                  child: const Text(
+                                    "Return Home",
+                                    style: TextStyle(fontSize: 20),
+                                  )),
+                            ),
+                          ],
+                        )
+                      ],
+                      actionsAlignment: MainAxisAlignment.center,
+                    );
+                  });
+            }
+            if (counter.getCounter == 10) {
+              showDialog(
+                  barrierDismissible: false,
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      title: const Center(
+                        child: Text(
+                          "You won!",
+                          style: TextStyle(color: Colors.black, fontSize: 30),
+                        ),
+                      ),
+                      actions: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    widget.selected = false;
+                                    counter.setCounter = -10;
+                                  },
+                                  child: const Text(
+                                    "Replay",
                                     style: TextStyle(fontSize: 20),
                                   )),
                             ),
