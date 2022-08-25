@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/math_game/maths_game_home.dart';
 
+
+
 class result extends StatefulWidget {
   int score;
   result(this.score);

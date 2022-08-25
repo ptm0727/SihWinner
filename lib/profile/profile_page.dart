@@ -170,15 +170,15 @@ class _profile extends State<profile> {
                 box.put(
                     'points',
                     pointsmodel(
-                      p1: 0,
-                      p2: 0,
-                      p3: 0,
-                      p4: 0,
-                      p5: 0,
-                      p6: 0,
+                      p1: 290,
+                      p2: 350,
+                      p3: 250,
+                      p4: 270,
+                      p5: 200,
+                      p6: 210,
                     ));
                 box1.put('d',
-                    denominatormodel(d1: 0.1, d2: 0.1, d3: 0.1, d4: 0.1, d5: 0.1, d6: 0.1));
+                    denominatormodel(d1: 360, d2: 400, d3: 260, d4: 270, d5: 250, d6: 250));
                 setState(() {
                   p = box.get('points');
                   d = box1.get('d');
