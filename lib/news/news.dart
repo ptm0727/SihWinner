@@ -152,8 +152,8 @@ class commentdelete extends StatefulWidget {
   const commentdelete(
       this.title,
       this.content,
-      this.id,
-      this.uid,{
+      this.uid,
+      this.id,{
         Key? key,
       }) : super(key: key);
   final title;
