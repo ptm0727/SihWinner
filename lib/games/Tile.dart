@@ -15,7 +15,7 @@ class _TileState extends State<Tile> {
   @override
   void initState() {
     widget.selected = true;
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(Duration(seconds: 10), () {
       setState(() {
         widget.selected = false;
       });
@@ -95,7 +95,7 @@ class _TileState extends State<Tile> {
                     );
                   });
             }
-            if (counter.getCounter == 10) {
+            if (counter.getCounter + 1 == 10) {
               showDialog(
                   barrierDismissible: false,
                   context: context,
