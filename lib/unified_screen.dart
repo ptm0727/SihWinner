@@ -30,6 +30,24 @@ class Unified extends StatelessWidget {
                 color: darkData.dark ? Colors.white : Colors.black),
           ),
         ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8.0),
+            child: FloatingActionButton(
+              elevation: 0,
+              backgroundColor: Colors.deepPurple,
+              child: Icon(
+                Icons.leaderboard_outlined,
+                color: Colors.white,
+              ),
+              tooltip: "Leaderboard",
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LeaderBoard()));
+              },
+            ),
+          )
+        ],
       ),
       bottomNavigationBar: ValueListenableBuilder(
           valueListenable: pageNum,
@@ -88,7 +106,7 @@ class Unified extends StatelessWidget {
               const GameScreen(),
               MusicScreen(),
               // profile(),
-              LeaderBoard()
+              profile()
             ],
             onPageChanged: (updated) {
               pageNum.value = updated;

@@ -183,6 +183,7 @@ class Button extends StatelessWidget {
         child: Theme(
           data: ThemeData(dividerColor: Colors.transparent),
           child: ExpansionTile(
+            initiallyExpanded: true,
             collapsedBackgroundColor:
                 !darkData.dark ? Colors.white : Colors.black,
             backgroundColor: !darkData.dark ? Colors.white : Colors.black,
@@ -202,23 +203,28 @@ class Button extends StatelessWidget {
                 SizedBox(
                   height: 20,
                 ),
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 23,
-                    fontWeight: FontWeight.bold,
+                Center(
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
             ),
             children: [
               ListTile(
-                title: Text(
-                  subtitle ?? "",
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.w500,
-                    color: darkData.dark ? Colors.white : Colors.black,
+                title: Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: Text(
+                    subtitle ?? "",
+                    style: TextStyle(
+                      fontSize: 17,
+                      //fontWeight: FontWeight.w500,
+                      color: darkData.dark ? Colors.white : Colors.black,
+                    ),
                   ),
                 ),
                 trailing: MaterialButton(

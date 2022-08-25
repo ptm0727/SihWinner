@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:sih_brain_games/Login/auth_service.dart';
 import 'package:sih_brain_games/custom_button.dart';
 import 'package:sih_brain_games/pointsmodel.dart';
 import 'package:sih_brain_games/main.dart';
@@ -51,6 +52,7 @@ class _profile extends State<profile> {
   Widget build(BuildContext context) {
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
+    final _auth = AuthService();
     final List<ChartData> chartData = [
       ChartData(0, p.p1 / d.d1),
       ChartData(1, p.p2 / d.d2),
@@ -68,9 +70,10 @@ class _profile extends State<profile> {
       ChartData(6, 0.43),
     ]..shuffle();*/
     return SingleChildScrollView(
-      physics: BouncingScrollPhysics(),
+      physics: const BouncingScrollPhysics(),
       child: Padding(
-        padding: EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
+        padding:
+            const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
@@ -79,6 +82,11 @@ class _profile extends State<profile> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              RegularButton(
+                  onPressed: () {
+                    _auth.signOut();
+                  },
+                  title: "Sign Out"),
               const SizedBox(
                 height: 17,
               ),
