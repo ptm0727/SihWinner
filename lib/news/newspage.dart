@@ -1,5 +1,7 @@
 
 
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,7 +23,35 @@ class News extends StatefulWidget {
 class _NewsState extends State<News> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final users =
-  FirebaseFirestore.instance.collection('content');
+  FirebaseFirestore.instance.collection('content').snapshots();
+  String generateRandomString(int len) {
+    var r = Random();
+    const _chars =
+        'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+    return List.generate(len, (index) => _chars[r.nextInt(_chars.length)])
+        .join();
+  }
+  Future<void> likecontent(id) {
+    var res = generateRandomString(30);
+    var name = auth.currentUser?.uid;
+    return FirebaseFirestore.instance
+        .collection('likes')
+        .doc(res)
+        .set({'uid': auth.currentUser?.uid, 'id': res, 'story': id})
+        .then((value) => print("Content Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
+
+  Future<void> dislikecontent(id) {
+    var res = generateRandomString(30);
+    var name = auth.currentUser?.uid;
+    return FirebaseFirestore.instance
+        .collection('likes')
+        .doc(id)
+        .delete()
+        .then((value) => print("User Deleted"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +66,7 @@ class _NewsState extends State<News> {
       ),
       body: Container(
         width: double.infinity,
+
         decoration: BoxDecoration(
 
         ),
@@ -57,9 +88,12 @@ class _NewsState extends State<News> {
         ),
       ),
       floatingActionButton: StreamBuilder<QuerySnapshot>(
-        stream: users.snapshots(),
+        stream: FirebaseFirestore.instance.collection('likes').where('story', isEqualTo: widget.id).where('uid', isEqualTo: widget.uid).snapshots(),
         builder: (BuildContext context,
             AsyncSnapshot<QuerySnapshot> snapshot) {
+
+
+
           if (snapshot.hasError) {
             return const Text('Somthing when wrong');
           }
@@ -68,13 +102,24 @@ class _NewsState extends State<News> {
           }
           final data = snapshot.requireData;
           var name = auth.currentUser?.uid;
+          if(data.size == 0)
           return FavoriteButton(
-            isFavorite: true,
+            isFavorite: false,
             // iconDisabledColor: Colors.white,
             valueChanged: (_isFavorite) {
+              likecontent(widget.id);
               print('Is Favorite : $_isFavorite');
             },
           );
+          else
+            return FavoriteButton(
+              isFavorite: true,
+              // iconDisabledColor: Colors.white,
+              valueChanged: (_isFavorite) {
+                dislikecontent(data.docs[0]['id']);
+                print('Is Favorite : $_isFavorite');
+              },
+            );
         },
       ),
 
