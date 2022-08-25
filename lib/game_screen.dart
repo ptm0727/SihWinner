@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sih_brain_games/custom_button.dart';
 import 'package:sih_brain_games/game1/game1.dart';
 import 'package:sih_brain_games/games/memory_game_new.dart';
+import 'package:sih_brain_games/games/memory_game_screen.dart';
 import 'package:sih_brain_games/math_game/maths_game_home.dart';
 import 'package:sih_brain_games/puzzlegame/puzzle%20home.dart';
 import 'package:sih_brain_games/speedgame/imspeed.dart';
@@ -21,7 +22,7 @@ class GameScreen extends StatelessWidget {
       ),
       Button(
           imgPath: "assets/brain.png",
-          destination: MemoryGame1(),
+          destination: GameHome(),
           title: "Memory game"),
       Button(
           imgPath: "assets/brain.png",

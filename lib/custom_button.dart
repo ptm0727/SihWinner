@@ -185,11 +185,9 @@ class GradientContainer extends StatelessWidget {
                       Colors.blueGrey.shade800
                     ]
                   : [
-                      Color(0xaaF09B59),
-                      // Color(0xffF09B59),
-                      Color(0xffeef2f3),
-                      //   Color(0xaf75FA8D),
-                      Color(0xaa75FA8D),
+                      NeumorphicColors.background,
+                      NeumorphicColors.background,
+                      Colors.white
                     ])),
       child: child,
     );
