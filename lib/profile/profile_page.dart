@@ -38,13 +38,22 @@ class _profile extends State<profile> {
     // );
   }
 
-  String checkstars(double b) {
+  Text medals(double b) {
     if (b <= 0.5) {
-      return "assets/img_5.png";
+      return Text("🥇",style: TextStyle(
+        color: Colors.brown,
+          fontSize: 25
+      ),);
     } else if (b > 0.5 && b <= .75) {
-      return "assets/img_6.png";
+      return Text("🥇",style: TextStyle(
+        color: Colors.grey,
+          fontSize: 25
+      ),);
     } else {
-      return "assets/img_7.png";
+      return Text("🥇",style: TextStyle(
+        color: Colors.amber,
+          fontSize: 25
+      ),);
     }
   }
 
@@ -164,11 +173,31 @@ class _profile extends State<profile> {
               const SizedBox(
                 height: 20,
               ),
-              displayscore("Pair ${p.p1.toInt()} / ${d.d1.toInt()}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Pair Game  ",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
+                  medals(p.p1/d.d1)
+                ],
+              ),
               const SizedBox(
                 height: 12,
               ),
-              displayscore("Memory ${p.p2.toInt()} / ${d.d2.toInt()}"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Memory Game  ",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
+                  medals(p.p2/d.d2)
+                ],
+              ),
               const SizedBox(
                 height: 12,
               ),
