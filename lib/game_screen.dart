@@ -23,23 +23,28 @@ class GameScreen extends StatelessWidget {
       Button(
           imgPath: "assets/game_images/HopSCOTCH.jpg",
           destination: GameHome(),
-          title: "Memory game"),
+          title: "Memory game",
+          subtitle: "Click the numbers in the given order"),
       Button(
           imgPath: "assets/game_images/CP.jpg",
           destination: puz(),
-          title: "Puzzle game"),
+          title: "Puzzle game",
+      subtitle: "Save the human from the monsters",),
       Button(
           imgPath: "assets/game_images/H&S.jpg",
           destination: imspeed(),
-          title: "Speed game"),
+          title: "Speed game",
+        subtitle: "Hit the maximum Rabbits to score",),
       Button(
           imgPath: "assets/game_images/mATH.jpg",
           destination: mathgame(),
-          title: "Math game"),
+          title: "Math game",
+        subtitle: "Test your math Skills here",),
       Button(
           imgPath: "assets/game_images/Word.jpg",
           destination: Word_game(),
-          title: "Word game")
+          title: "Word game",
+        subtitle: "Test you knowledge about the wild here",)
     ];
     return SingleChildScrollView(
       physics: BouncingScrollPhysics(),

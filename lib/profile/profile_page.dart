@@ -131,7 +131,7 @@ class _profile extends State<profile> {
                       width: 0.5,
                       spacing: 0.2,
                       xAxisName: " ",
-                      //color: Colors.deepPurple,
+                      color: Colors.amber,
                     )
                   ]),
               /*SfCartesianChart(

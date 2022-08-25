@@ -45,16 +45,15 @@ class _Word_gameState extends State<Word_game> {
   ];
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        // primarySwatch: Colors.amber,
-      ),
-      home: Scaffold(
+     return Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
             centerTitle: true,
-            backgroundColor: Colors.indigoAccent,
-            title: Text('Let\'s Test Your Knowledge '),
+            backgroundColor: Colors.transparent,
+            foregroundColor: Colors.black,
+            elevation: 0.0,
+            title: const Text('Guess the animal in the picture'
+            ),
           ),
           body: ListView(
             scrollDirection: Axis.vertical,
@@ -79,8 +78,8 @@ class _Word_gameState extends State<Word_game> {
                               child: Padding(
                                   padding: EdgeInsets.all(20.0),
                                   child: Card(
-                                      elevation: 50,
-                                      shadowColor: Colors.black,
+                                      elevation: 0,
+                                      //shadowColor: Colors.black,
                                       child: TextFormField(
                                         decoration: const InputDecoration(
                                           hintText:
@@ -102,8 +101,8 @@ class _Word_gameState extends State<Word_game> {
                               child: Padding(
                                 padding: const EdgeInsets.symmetric(vertical: 20.0),
                                 child: Card(
-                                    elevation: 50,
-                                    shadowColor: Color.fromARGB(0, 35, 35, 35),
+                                    elevation: 0,
+                                    //shadowColor: Color.fromARGB(0, 35, 35, 35),
                                     child: ElevatedButton(
                                       onPressed: () {
                                         // Validate will return true if the form is valid, or false if
@@ -119,7 +118,6 @@ class _Word_gameState extends State<Word_game> {
                         ],
                       )))
             ],
-          )),
-    );
+          ));
   }
 }
