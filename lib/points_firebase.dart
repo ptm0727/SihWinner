@@ -20,7 +20,7 @@ class points_firebase {
     return FirebaseFirestore.instance
         .collection('points')
         .doc(res)
-        .set({'game1': p1,'game2': p2,'game3': p3,'game4': p4,'game5': p5,'game6': p6,'uid': auth.currentUser?.uid,'id':res})
+        .set({'game1': p1,'game2': p2,'game3': p3,'game4': p4,'game5': p5,'game6': p6,'uid': auth.currentUser?.uid,'id':res,'date': DateTime.now().toString()})
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
