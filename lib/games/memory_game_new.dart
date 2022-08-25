@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sih_brain_games/games/counter.dart';
-import 'Tile.dart';
 
+import 'Tile.dart';
 class MemoryGame1 extends StatefulWidget {
   const MemoryGame1({Key? key}) : super(key: key);
 
@@ -79,6 +79,7 @@ class _MemoryGame1State extends State<MemoryGame1> {
                       crossAxisCount: 3),
                   children: counter.getCounter < 0 ? generateTiles() : grid,
                 ),
+
                 // Text(
                 //   "Time Left : ${_showSecs}",
                 //   textAlign: TextAlign.center,
