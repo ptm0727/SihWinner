@@ -38,7 +38,7 @@ class _NewsSectionState extends State<NewsSection> {
         foregroundColor: darkData.dark ? Colors.white : Colors.black,
         title: Center(
           child: Text(
-            category,
+            "BLOG",
             style: TextStyle(fontSize: 30),
           ),
         ),
@@ -234,42 +234,58 @@ class _commentdeleteState extends State<commentdelete> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-      child: Container(
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.grey.shade800, Colors.grey.shade900]),
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(width: 2, color: Colors.cyan)),
-        child: ClipRRect(
-          clipBehavior: Clip.hardEdge,
-          borderRadius: BorderRadius.circular(5),
-          child: ListTile(
-            leading: SizedBox.shrink(),
-            title: Center(
-              child: Text(
-                widget.title,
-                style: const TextStyle(fontSize: 25, color: Colors.white),
-              ),
-            ),
-            trailing: IconButton(
-              icon: Icon(color: Colors.white, Icons.more_horiz),
-              onPressed: () {
-                openDialog(widget.id);
-              },
-            ),
-            onTap: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => News(widget.title, widget.uid,
-                          widget.content, widget.id)));
-            },
-          ),
-        ),
+    return RegularButton(
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    News(widget.title, widget.uid, widget.content, widget.id)));
+      },
+      title: widget.title,
+      trailing: IconButton(
+        icon: Icon(color: Colors.white, Icons.more_horiz),
+        onPressed: () {
+          openDialog(widget.id);
+        },
       ),
     );
+    //   Padding(
+    //   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+    //   child: Container(
+    //     decoration: BoxDecoration(
+    //         gradient: LinearGradient(
+    //             colors: [Colors.grey.shade800, Colors.grey.shade900]),
+    //         borderRadius: BorderRadius.circular(15),
+    //         border: Border.all(width: 2, color: Colors.cyan)),
+    //     child: ClipRRect(
+    //       clipBehavior: Clip.hardEdge,
+    //       borderRadius: BorderRadius.circular(5),
+    //       child: ListTile(
+    //         leading: SizedBox.shrink(),
+    //         title: Center(
+    //           child: Text(
+    //             widget.title,
+    //             style: const TextStyle(fontSize: 25, color: Colors.white),
+    //           ),
+    //         ),
+    //         trailing: IconButton(
+    //           icon: Icon(color: Colors.white, Icons.more_horiz),
+    //           onPressed: () {
+    //             openDialog(widget.id);
+    //           },
+    //         ),
+    //         onTap: () {
+    //           Navigator.push(
+    //               context,
+    //               MaterialPageRoute(
+    //                   builder: (context) => News(widget.title, widget.uid,
+    //                       widget.content, widget.id)));
+    //         },
+    //       ),
+    //     ),
+    //   ),
+    // );
   }
 }
 

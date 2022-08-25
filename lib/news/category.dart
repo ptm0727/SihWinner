@@ -30,7 +30,7 @@ class _Category_SectionState extends State<Category_Section> {
               ),
               const Center(
                 child: Text(
-                  "News",
+                  "Blogs",
                   style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold,
