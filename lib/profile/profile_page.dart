@@ -39,12 +39,12 @@ class _profile extends State<profile> {
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
     final List<ChartData> chartData = [
-      ChartData(0, 0.5),
-      ChartData(1, 0.6),
-      ChartData(2, 0.6),
-      ChartData(3, 0.6),
-      ChartData(4, 0.6),
-      ChartData(5, 0.6),
+      ChartData(0, p.p1/d.d1),
+      ChartData(1, p.p2/d.d2),
+      ChartData(2, p.p3/d.d3),
+      ChartData(3, p.p4/d.d4),
+      ChartData(4, p.p5/d.d5),
+      ChartData(5, p.p6/d.d6),
     ];
     final List<ChartData> chartData1 = [
       ChartData(1, 0.6),
@@ -104,7 +104,7 @@ class _profile extends State<profile> {
               ),
             ],
           ),*/
-          /*SfCartesianChart(
+          SfCartesianChart(
             primaryXAxis: CategoryAxis(
               name: "abc"
             ),
@@ -119,9 +119,10 @@ class _profile extends State<profile> {
                   width: 0.5,
                   spacing:0.2,
                   xAxisName: " ",
+                  color: Colors.deepPurple,
                 )
               ]
-          ),*/
+          ),
           /*SfCartesianChart(
               primaryXAxis: CategoryAxis(
                   labelPosition: ChartDataLabelPosition.inside,
@@ -178,7 +179,7 @@ class _profile extends State<profile> {
                       p6: 210,
                     ));
                 box1.put('d',
-                    denominatormodel(d1: 360, d2: 400, d3: 260, d4: 270, d5: 250, d6: 250));
+                    denominatormodel(d1: 360, d2: 400, d3: 260, d4: 360, d5: 250, d6: 250));
                 setState(() {
                   p = box.get('points');
                   d = box1.get('d');
