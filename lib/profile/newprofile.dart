@@ -178,7 +178,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                           maxLines: 6,
                                                         )),
                                                     Text("Points: " +
-                                                        data.docs[index]['game']
+                                                        ((data.docs[index]['game']*1000).toInt())
                                                             .toString()),
                                                   ],
                                                 ),
