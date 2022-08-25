@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/custom_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,7 +15,7 @@ class Comment_Section extends StatefulWidget {
 
 class _Comment_SectionState extends State<Comment_Section> {
   ValueNotifier<int> pageNum = ValueNotifier(2);
-
+  final FirebaseAuth auth = FirebaseAuth.instance;
   String generateRandomString(int len) {
     var r = Random();
     const _chars =
@@ -25,10 +26,11 @@ class _Comment_SectionState extends State<Comment_Section> {
 
   Future<void> addComment(var comm) {
     var res = generateRandomString(30);
+    var name = auth.currentUser?.uid;
     return FirebaseFirestore.instance
         .collection('comment')
         .doc(res)
-        .set({'comment': comm, 'news': widget.id, 'id': res})
+        .set({'comment': comm, 'news': widget.id, 'id': res,'uid': name})
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }
@@ -91,11 +93,19 @@ class _Comment_SectionState extends State<Comment_Section> {
                 }
 
                 final data = snapshot.requireData;
-
+                var name = auth.currentUser?.uid;
                 print(data.docs.toString());
                 return ListView.builder(
                     itemCount: data.size,
                     itemBuilder: (context, index) {
+                      if(name == data.docs[index]['uid'])
+                        {
+                          return commentdelete(
+                            data.docs[index]['comment'],
+                            data.docs[index]['id'],
+                          );
+                        }
+                      else
                       return comments(
                         data.docs[index]['comment'],
                       );
@@ -146,6 +156,88 @@ class comments extends StatelessWidget {
                   style: const TextStyle(fontSize: 25, color: Colors.white),
                 ),
               ),),
+        ),
+      ),
+    );
+  }
+}
+
+
+class commentdelete extends StatefulWidget {
+  const commentdelete(
+      this.comment,
+      this.id,{
+        Key? key,
+      }) : super(key: key);
+  final comment;
+  final id;
+
+  @override
+  State<commentdelete> createState() => _commentdeleteState();
+}
+
+class _commentdeleteState extends State<commentdelete> {
+  Future<void> deletecomment(var id) {
+    return FirebaseFirestore.instance.collection('comment')
+        .doc(id)
+        .delete()
+        .then((value) => print("User Deleted"))
+        .catchError((error) => print("Failed to delete user: $error"));
+  }
+
+  Future openDialog(id) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Comment"),
+        content: Text("Do You Want to Delete"),
+        actions: [
+          RaisedButton(onPressed: (){
+            deletecomment(id);
+            Navigator.pop(context);
+          },
+          child: Text("Yes"),
+          ),
+          RaisedButton(onPressed: (){
+            Navigator.pop(context);
+          },
+            child: Text("No"),
+          )
+        ],
+      ));
+
+  @override
+  Widget build(BuildContext context) {
+    var a = widget.comment;
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+      child: Container(
+        height: 90,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: [Colors.grey.shade800, Colors.grey.shade900]),
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(width: 2, color: Colors.cyan)),
+        child: ClipRRect(
+          clipBehavior: Clip.hardEdge,
+          borderRadius: BorderRadius.circular(5),
+          child: ListTile(
+            leading: SizedBox.shrink(),
+            title: Center(
+              child: Text(
+                "Delete "+a,
+                style: const TextStyle(fontSize: 25, color: Colors.white),
+              ),
+            ),
+            trailing: IconButton(
+              icon: Icon(
+                  color: Colors.white,
+                  Icons.abc_outlined
+              ),
+              onPressed: (){
+                openDialog(widget.id);
+              },
+            ),
+          ),
         ),
       ),
     );
