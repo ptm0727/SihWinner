@@ -83,7 +83,7 @@ class _NewsSectionState extends State<NewsSection> {
                           var name = auth.currentUser?.uid;
                           return ListView.builder(
                               shrinkWrap: true,
-                              itemCount: data.size * 2 + 1,
+                              itemCount: data.size * 2 + 2,
                               itemBuilder: (context, index) {
                                 if (index <= data.size) {
                                   if (index == 0) {
@@ -118,13 +118,13 @@ class _NewsSectionState extends State<NewsSection> {
                                       ),
                                     );
                                   if (name ==
-                                      data.docs[index - data.size - 1]['uid']) {
+                                      data.docs[index - data.size - 2]['uid']) {
                                     return SizedBox.shrink();
                                   } else
                                     return comments(
-                                        data.docs[index - data.size - 1]
+                                        data.docs[index - data.size - 2]
                                             ['title'],
-                                        data.docs[index - data.size - 1]['id']);
+                                        data.docs[index - data.size - 2]['id']);
                                 }
                               });
                         },
