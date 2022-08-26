@@ -7,6 +7,7 @@ import 'package:sih_brain_games/custom_button.dart';
 import 'package:sih_brain_games/news/Add_Blog.dart';
 import 'package:sih_brain_games/news/newspage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:sih_brain_games/profile_details.dart';
 
 import '../dark_mode_provider.dart';
 
@@ -261,7 +262,7 @@ class _commentdeleteState extends State<commentdelete> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    News(widget.title, widget.uid, widget.content, widget.id)));
+                    Profile_Details()));
       },
       title: widget.title,
       trailing: IconButton(
