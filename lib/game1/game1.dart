@@ -5,6 +5,7 @@ import 'package:sih_brain_games/game1/data.dart';
 import 'dart:async';
 
 import 'package:sih_brain_games/main.dart';
+import 'package:sih_brain_games/rules_speed.dart';
 
 class game1 extends StatefulWidget {
   @override
@@ -74,6 +75,17 @@ class _HomeState extends State<game1> {
           "Test your memory",
           style: TextStyle(color: Colors.black, fontSize: 25),
         ),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Rules(game: "am")));
+              },
+              icon: Icon(
+                Icons.question_mark,
+                color: Colors.black,
+              ))
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -225,11 +237,10 @@ class _TileState extends State<Tile> {
           if (selectedTile != "") {
             if (selectedTile == myPairs[widget.tileIndex].getImageAssetPath()) {
               print("add point");
-              if(points==70) {
+              if (points == 70) {
                 points = points + 30;
-              }
-              else{
-                points=points+10;
+              } else {
+                points = points + 10;
               }
 
               print(selectedTile + " thishis" + widget.imagePathUrl);
