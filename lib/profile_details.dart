@@ -16,7 +16,11 @@ class _Profile_DetailsState extends State<Profile_Details> {
         title: Text("Edit Profile"),
       ),
       body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        child: SingleChildScrollView(
 
+        ),
       ),
     );
   }

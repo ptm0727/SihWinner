@@ -21,16 +21,29 @@ class _Word_gameState extends State<Word_game> {
   var count1=0;
 
   void changingState() {
+    if(count < 4)
     setState(() {
       count = (count + 1);
       count1 = 0;
     });
+    else
+      openDialog();
   }
-    void changingOption() {
-      setState(() {
-        count1 = (count1 + 1);
-      });
-  }
+
+  Future openDialog() => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("Well Done"),
+        actions: [
+          RaisedButton(
+            onPressed: () {
+              Navigator.pop(context);
+              Navigator.pop(context);
+            },
+            child: Text("Return Home"),
+          ),
+        ],
+      ));
 
   var map = [
     [['lion'],['pigeon'],['bat'],['snake']],
