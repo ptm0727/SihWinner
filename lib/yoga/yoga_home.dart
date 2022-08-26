@@ -34,7 +34,7 @@ class _yoga_homeState extends State<yoga_home> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Padding(
-        padding: EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
+        padding: EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 10),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),

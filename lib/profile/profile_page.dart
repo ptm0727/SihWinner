@@ -38,51 +38,57 @@ class _profile extends State<profile> {
     //   ),
     // );
   }
-  String selanime(int t)
-  {
-    if(t==1){
+
+  String selanime(int t) {
+    if (t == 1) {
       return 'animations/1st.json';
-    }
-    else if(t==2)
-      {
-        return 'animations/2nd.json';
-      }
-    else if(t==3)
-    {
+    } else if (t == 2) {
+      return 'animations/2nd.json';
+    } else if (t == 3) {
       return 'animations/3rd.json';
-    }
-    else if(t>=4)
-      {
-        return 'animations/4th.json';
-      }
-    else{
+    } else if (t >= 4) {
+      return 'animations/4th.json';
+    } else {
       return 'animations/0th.json';
     }
   }
 
+  String seltext(int t) {
+    if (t == 1) {
+      return 'Help the eggs hatch by reaching 1000 points';
+    } else if (t == 2) {
+      return 'Hurray you Hatched the egg now help the chick by reaching 1500 points';
+    } else if (t == 3) {
+      return 'Now help the chick grow by reaching 2000 points';
+    } else if (t >= 4) {
+      return 'Now you have a grown Chicken going to work';
+    } else {
+      return 'Help the chicken lay eggs by reaching 500 points';
+    }
+  }
 
   Text medals(double b) {
     if (b <= 0.5) {
-      return const Text("🥉",style: TextStyle(
-        color: Colors.brown,
-          fontSize: 25
-      ),);
+      return const Text(
+        "🥉",
+        style: TextStyle(color: Colors.brown, fontSize: 25),
+      );
     } else if (b > 0.6 && b <= .8) {
-      return const Text("🥈",style: TextStyle(
-        color: Colors.grey,
-          fontSize: 25
-      ),);
+      return const Text(
+        "🥈",
+        style: TextStyle(color: Colors.grey, fontSize: 25),
+      );
     } else {
-      return const Text("🥇",style: TextStyle(
-        color: Colors.grey,
-          fontSize: 25
-      ),);
+      return const Text(
+        "🥇",
+        style: TextStyle(color: Colors.grey, fontSize: 25),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
-     double total=0;
+    double total = 0;
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
     final _auth = AuthService();
@@ -106,7 +112,7 @@ class _profile extends State<profile> {
       physics: const BouncingScrollPhysics(),
       child: Padding(
         padding:
-            const EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 10),
+            const EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 10),
         child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
@@ -144,15 +150,19 @@ class _profile extends State<profile> {
                     fontWeight: FontWeight.w400,
                     fontSize: 16),
               ),
-              const SizedBox(
-                height: 20,
-              ),
               Lottie.asset(
-                selanime((p.p1+p.p2+p.p3+p.p4+p.p5+p.p6)~/500),
+                selanime((p.p1 + p.p2 + p.p3 + p.p4 + p.p5 + p.p6) ~/ 500),
                 width: 200,
                 height: 200,
                 repeat: true,
                 fit: BoxFit.fill,
+              ),
+              Text(
+                seltext((p.p1 + p.p2 + p.p3 + p.p4 + p.p5 + p.p6) ~/ 500),
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16),
               ),
               /*RadarChart(
                 radius: 150, length: 6, initialAngle: pi / 3,
@@ -170,6 +180,9 @@ class _profile extends State<profile> {
                   ),
                 ],
               ),*/
+              const SizedBox(
+                height: 20,
+              ),
               SfCartesianChart(
                   primaryXAxis: CategoryAxis(name: "abc"),
                   series: <ChartSeries<ChartData, int>>[
@@ -207,35 +220,20 @@ class _profile extends State<profile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("Pair Game  ",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
+                  Text(
+                    "Pair Game  ",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
                   ),
-                  medals(p.p1/d.d1),
-                  Text("${(p.p1).toInt()}",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("Memory Game  ",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
-                  ),
-                  medals(p.p2/d.d2),
-                  Text("${(p.p2).toInt()}",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
+                  medals(p.p1 / d.d1),
+                  Text(
+                    "${(p.p1).toInt()}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
                   ),
                 ],
               ),
@@ -245,35 +243,20 @@ class _profile extends State<profile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("Puzzle Game  ",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
+                  Text(
+                    "Memory Game  ",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
                   ),
-                  medals(p.p3/d.d3),
-                  Text("${(p.p3).toInt()}",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text("Speed Game  ",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
-                  ),
-                  medals(p.p4/d.d4),
-                  Text("${(p.p4).toInt()}",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
+                  medals(p.p2 / d.d2),
+                  Text(
+                    "${(p.p2).toInt()}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
                   ),
                 ],
               ),
@@ -283,16 +266,20 @@ class _profile extends State<profile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("Math Game  ",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
+                  Text(
+                    "Puzzle Game  ",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
                   ),
-                  medals(p.p5/d.d5),
-                  Text("${(p.p5).toInt()}",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
+                  medals(p.p3 / d.d3),
+                  Text(
+                    "${(p.p3).toInt()}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
                   ),
                 ],
               ),
@@ -302,16 +289,66 @@ class _profile extends State<profile> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("Word Game  ",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
+                  Text(
+                    "Speed Game  ",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
                   ),
-                  medals(p.p6/d.d6),
-                  Text("${(p.p6).toInt()}",style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 25),
+                  medals(p.p4 / d.d4),
+                  Text(
+                    "${(p.p4).toInt()}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "Math Game  ",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
+                  ),
+                  medals(p.p5 / d.d5),
+                  Text(
+                    "${(p.p5).toInt()}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Text(
+                    "Word Game  ",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
+                  ),
+                  medals(p.p6 / d.d6),
+                  Text(
+                    "${(p.p6).toInt()}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 25),
                   ),
                 ],
               ),
@@ -323,22 +360,22 @@ class _profile extends State<profile> {
                     box.put(
                         'points',
                         pointsmodel(
-                          p1: p.p1+150,
-                          p2: p.p2+170,
-                          p3: p.p3+135,
-                          p4: p.p4+140,
-                          p5: p.p5+180,
-                          p6: p.p6+170,
+                          p1: p.p1 + 150,
+                          p2: p.p2 + 170,
+                          p3: p.p3 + 135,
+                          p4: p.p4 + 140,
+                          p5: p.p5 + 180,
+                          p6: p.p6 + 170,
                         ));
                     box1.put(
                         'd',
                         denominatormodel(
-                            d1: d.d1+200,
-                            d2: d.d2+200,
-                            d3: d.d3+200,
-                            d4: d.d4+200,
-                            d5: d.d5+200,
-                            d6: d.d6+200));
+                            d1: d.d1 + 200,
+                            d2: d.d2 + 200,
+                            d3: d.d3 + 200,
+                            d4: d.d4 + 200,
+                            d5: d.d5 + 200,
+                            d6: d.d6 + 200));
                     setState(() {
                       p = box.get('points');
                       d = box1.get('d');

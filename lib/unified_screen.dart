@@ -11,8 +11,8 @@ import 'package:sih_brain_games/profile/profile_page.dart';
 import 'package:sih_brain_games/yoga/yoga_home.dart';
 
 class Unified extends StatelessWidget {
-  ValueNotifier<int> pageNum = ValueNotifier(2);
-  PageController _cont = PageController(initialPage: 2);
+  ValueNotifier<int> pageNum = ValueNotifier(0);
+  PageController _cont = PageController(initialPage: 0);
   @override
   var darkData;
   Widget build(BuildContext context) {
@@ -52,9 +52,6 @@ class Unified extends StatelessWidget {
       bottomNavigationBar: ValueListenableBuilder(
           valueListenable: pageNum,
           builder: (context, int page, child) => CurvedNavigationBar(
-                // backgroundColor: darkData.dark
-                //     ? Colors.blueGrey.shade800
-                //     : Color(0xffeef2f3),
                 backgroundColor: Colors.transparent,
                 animationDuration: const Duration(milliseconds: 300),
                 buttonBackgroundColor:
@@ -63,7 +60,7 @@ class Unified extends StatelessWidget {
                 index: page,
                 items: <Widget>[
                   Icon(
-                    Icons.newspaper_outlined,
+                    Icons.home_filled,
                     size: 30,
                     color: page == 0 ? Colors.white : Colors.grey,
                   ),
@@ -73,12 +70,12 @@ class Unified extends StatelessWidget {
                     color: page == 1 ? Colors.white : Colors.grey,
                   ),
                   Icon(
-                    Icons.home_filled,
+                    Icons.music_note_outlined,
                     size: 30,
                     color: page == 2 ? Colors.white : Colors.grey,
                   ),
                   Icon(
-                    Icons.music_note_outlined,
+                    Icons.newspaper_outlined,
                     size: 30,
                     color: page == 3 ? Colors.white : Colors.grey,
                   ),
@@ -95,24 +92,47 @@ class Unified extends StatelessWidget {
                       curve: Curves.easeIn);
                 },
               )),
-      body: GradientContainer(
-        child: ValueListenableBuilder(
-          valueListenable: pageNum,
-          builder: (context, int page, child) => PageView(
-            controller: _cont,
-            children: [
-              const Category_Section(),
-              const yoga_home(),
-              const GameScreen(),
-              MusicScreen(),
-              // profile(),
-              profile()
-            ],
-            onPageChanged: (updated) {
-              pageNum.value = updated;
-            },
+      body: Stack(
+        children: [
+          GradientContainer(
+            child: ValueListenableBuilder(
+              valueListenable: pageNum,
+              builder: (context, int page, child) => PageView(
+                controller: _cont,
+                children: [
+                  const GameScreen(),
+                  const yoga_home(),
+                  MusicScreen(),
+                  const Category_Section(),
+
+                  // profile(),
+                  profile()
+                ],
+                onPageChanged: (updated) {
+                  pageNum.value = updated;
+                },
+              ),
+            ),
           ),
-        ),
+          Container(
+            height: MediaQuery.of(context).size.height / 2,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: Colors.black,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.chevron_right, color: Colors.black))
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
