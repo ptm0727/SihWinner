@@ -65,7 +65,7 @@ class _NewsState extends State<News> {
           padding: EdgeInsets.only(left: 30),
           child: Text(
             widget.headline,
-            style: TextStyle(fontSize: 40, color: Colors.white,fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 30, color: Colors.white,fontWeight: FontWeight.bold),
           ),
         ),
       ),
