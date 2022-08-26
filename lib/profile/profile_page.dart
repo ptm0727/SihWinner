@@ -59,6 +59,27 @@ class _profile extends State<profile> {
       return 'animations/0th.json';
     }
   }
+  String seltext(int t)
+  {
+    if(t==1){
+      return 'Help the eggs hatch by reaching 1000 points';
+    }
+    else if(t==2)
+    {
+      return 'Hurray you Hatched the egg now help the chick by reaching 1500 points';
+    }
+    else if(t==3)
+    {
+      return 'Now help the chick grow by reaching 2000 points';
+    }
+    else if(t>=4)
+    {
+      return 'Now you have a grown Chicken going to work';
+    }
+    else{
+      return 'Help the chicken lay eggs by reaching 500 points';
+    }
+  }
 
 
   Text medals(double b) {
@@ -144,15 +165,20 @@ class _profile extends State<profile> {
                     fontWeight: FontWeight.w400,
                     fontSize: 16),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+
               Lottie.asset(
                 selanime((p.p1+p.p2+p.p3+p.p4+p.p5+p.p6)~/500),
                 width: 200,
                 height: 200,
                 repeat: true,
                 fit: BoxFit.fill,
+              ),
+              Text(
+                seltext((p.p1+p.p2+p.p3+p.p4+p.p5+p.p6)~/500),
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 16),
               ),
               /*RadarChart(
                 radius: 150, length: 6, initialAngle: pi / 3,
@@ -170,6 +196,9 @@ class _profile extends State<profile> {
                   ),
                 ],
               ),*/
+              const SizedBox(
+                height: 20,
+              ),
               SfCartesianChart(
                   primaryXAxis: CategoryAxis(name: "abc"),
                   series: <ChartSeries<ChartData, int>>[
