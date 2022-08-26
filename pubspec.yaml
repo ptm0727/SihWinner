@@ -30,8 +30,6 @@ dependencies:
   flutter:
     sdk: flutter
   video_player: ^2.4.6
-  alan_voice: 3.0.0
-  text_to_speech: 0.2.3
 
 
 
@@ -52,7 +50,6 @@ dependencies:
   flutter_neumorphic: ^3.2.0
   syncfusion_flutter_charts: ^20.2.45
   favorite_button: ^0.0.4
-  youtube_player_flutter: ^8.1.0
   lottie: ^1.4.2
   image_picker: ^0.8.5+3
   carousel_slider: ^4.1.1

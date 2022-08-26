@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:sih_brain_games/speedgame/counter1.dart';
 import '../main.dart';
 import '../pointsmodel.dart';
+import '../rules_speed.dart';
 import 'GameTile.dart';
 int po=0;
 class imspeed extends StatefulWidget {
@@ -35,10 +36,10 @@ class _MemoryGame1State extends State<imspeed> {
   {
     pointsmodel p=box.get('points');
     denominatormodel d=box1.get('d');
-    double x=p.p2;
+    double x=p.p4;
     x=x+po;
-    double y=d.d2;
-    y=y+60;
+    double y=d.d4;
+    y=y+100;
     box.put('points',
         pointsmodel(p1: p.p1, p2: p.p2, p3: p.p3, p4: x, p5: p.p5, p6: p.p6,
         )
@@ -97,7 +98,19 @@ class _MemoryGame1State extends State<imspeed> {
           title: const Text(
             "Test your Speed",
             style: TextStyle(color: Colors.black, fontSize: 25),
-          ),
+          ),actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Rules(game: "lc")));
+              },
+              icon: Icon(
+                Icons.question_mark,
+                color: Colors.black,
+              ))
+        ],
         ),
         body: start&&po<=100?Container(
           padding: EdgeInsets.all(30),

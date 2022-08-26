@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/word_game/word_gmae_images.dart';
+
+import '../rules_speed.dart';
 //import 'package:flutter_application_2/Question.dart';
 
 
@@ -72,7 +74,19 @@ class _Word_gameState extends State<Word_game> {
 
             elevation: 0.0,
             title: const Text('Guess the animal '
-, style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold, color: Colors.black),            ),
+, style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold, color: Colors.black),            ),actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Rules(game: "gw")));
+                },
+                icon: Icon(
+                  Icons.question_mark,
+                  color: Colors.black,
+                ))
+          ],
           ),
           body: ListView(
             scrollDirection: Axis.vertical,

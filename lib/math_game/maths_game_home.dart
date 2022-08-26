@@ -2,6 +2,8 @@ import 'package:sih_brain_games/math_game/Math_question_list.dart';
 import 'package:flutter/material.dart';
 import 'package:sih_brain_games/math_game/math_result.dart';
 
+import '../rules_speed.dart';
+
 // void main() {
 //   runApp(const MyApp());
 // }
@@ -44,7 +46,20 @@ class _mathgameState extends State<mathgame> {
         title: Text(
           'Are you Ramanujan ? ',
           style: TextStyle(fontWeight: FontWeight.bold),
-        ),
+        ),actions: [
+        IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Rules(game: "ayr")));
+            },
+            icon: Icon(
+              Icons.question_mark,
+              color: Colors.black,
+            ))
+      ],
+
         //actions: [
         // leading: IconButton(
         //   //alignment: Alignment.topLeft,

@@ -37,9 +37,9 @@ class _TileState extends State<Tile> {
     {
       pointsmodel p=box.get('points');
       denominatormodel d=box1.get('d');
-      double x=p.p1;
+      double x=p.p2;
       x=x+counter.getCounter*10;
-      double y=d.d1;
+      double y=d.d2;
       y=y+100;
       box.put('points',
           pointsmodel(p1: p.p1, p2: x, p3: p.p3, p4: p.p4, p5: p.p5, p6: p.p6,
