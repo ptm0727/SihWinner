@@ -74,7 +74,8 @@ class _puz extends State<puz> with TickerProviderStateMixin {
           "Puzzle game",
           style: TextStyle(color: Colors.black, fontSize: 25),
         ),
-        leading: IconButton(icon: const Icon(Icons.arrow_back),
+        leading: IconButton(icon: const Icon(Icons.arrow_back,
+        color: Colors.black,),
           onPressed: (){
           changepoints();
           Navigator.pop(context);

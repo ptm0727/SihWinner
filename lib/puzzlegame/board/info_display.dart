@@ -16,7 +16,7 @@ class InfoDisplay extends StatelessWidget {
     final unitSize = BoardConfig.of(context).unitSize;
     final textStyle = TextStyle(
       fontSize: unitSize * 0.35,
-      color: Colors.blueGrey.shade300,
+      color: Colors.white,
       fontWeight: FontWeight.bold,
       shadows: [
         BoxShadow(
@@ -65,7 +65,7 @@ class InfoDisplay extends StatelessWidget {
                   },
                   child: Icon(
                     Icons.refresh,
-                    color: Colors.white70,
+                    color: Colors.white,
                     size: unitSize * 0.35,
                     semanticLabel: 'Reset Button',
                   ),
@@ -74,7 +74,7 @@ class InfoDisplay extends StatelessWidget {
                   onPressed: () => Hint.show(context, gameState),
                   child: Icon(
                     Icons.lightbulb_outline,
-                    color: Colors.white70,
+                    color: Colors.white,
                     size: unitSize * 0.35,
                     semanticLabel: 'Hint Button',
                   ),
