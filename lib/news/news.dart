@@ -92,15 +92,7 @@ class _NewsSectionState extends State<NewsSection> {
                                 itemBuilder: (context, index) {
                                   if (index <= data.size) {
                                     if (index == 0) {
-                                      return const Center(
-                                        child: Text(
-                                          "My Stories",
-                                          style: TextStyle(
-                                              fontSize: 35,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      );
+                                      return SizedBox.shrink();
                                     }
                                     if (name == data.docs[index - 1]['uid']) {
                                       return commentdelete(
@@ -115,7 +107,7 @@ class _NewsSectionState extends State<NewsSection> {
                                     if (index == (data.size + 1))
                                       return const Center(
                                         child: Text(
-                                          "Others Stories",
+                                          "Stories",
                                           style: TextStyle(
                                               fontSize: 35,
                                               fontWeight: FontWeight.bold,

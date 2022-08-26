@@ -145,9 +145,14 @@ class _profile extends State<profile> {
               const SizedBox(
                 height: 17,
               ),
-              const CircleAvatar(
-                radius: 56,
-                backgroundImage: AssetImage('assets/img.png'),
+              GestureDetector(
+                onTap: (){
+
+                },
+                child: CircleAvatar(
+                  radius: 56,
+                  backgroundImage: AssetImage('assets/img.png'),
+                ),
               ),
               const SizedBox(
                 height: 12,
@@ -158,23 +163,6 @@ class _profile extends State<profile> {
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
                     fontSize: 25),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 100),
-                child: ListTile(
-                  tileColor: Colors.white,
-                  shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                  title: Center(
-                    child: Text(
-                      "Sign Out",
-                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    _auth.signOut();
-                  },
-                ),
               ),
               Lottie.asset(
                 selanime((p.p1+p.p2+p.p3+p.p4+p.p5+p.p6)~/500),
@@ -435,6 +423,23 @@ class _profile extends State<profile> {
                     });
                   },
                   child: const Text("Reset Points")),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 100),
+                child: ListTile(
+                  tileColor: Colors.white,
+                  shape:
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  title: Center(
+                    child: Text(
+                      "Sign Out",
+                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    _auth.signOut();
+                  },
+                ),
+              ),
             ],
           ),
         ),
