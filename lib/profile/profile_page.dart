@@ -363,7 +363,27 @@ class _profile extends State<profile> {
                 ],
               ),
               const SizedBox(
-                height: 100,
+                height: 50,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 100),
+                child: ListTile(
+                  tileColor: Colors.white,
+                  shape:
+                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  title: Center(
+                    child: Text(
+                      "Sign Out",
+                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  onTap: () {
+                    _auth.signOut();
+                  },
+                ),
+              ),
+              const SizedBox(
+                height: 50,
               ),
               Text("debug options",style: TextStyle(
                   color: Colors.white,
@@ -423,23 +443,7 @@ class _profile extends State<profile> {
                     });
                   },
                   child: const Text("Reset Points")),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 100),
-                child: ListTile(
-                  tileColor: Colors.white,
-                  shape:
-                  RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                  title: Center(
-                    child: Text(
-                      "Sign Out",
-                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  onTap: () {
-                    _auth.signOut();
-                  },
-                ),
-              ),
+
             ],
           ),
         ),
