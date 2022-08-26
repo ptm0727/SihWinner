@@ -375,7 +375,8 @@ class RegularButton extends StatelessWidget {
               style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ),
-          onTap: onPressed),
+          onTap: onPressed,
+      trailing: trailing,),
     );
   }
 }
