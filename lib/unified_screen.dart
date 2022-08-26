@@ -11,8 +11,8 @@ import 'package:sih_brain_games/profile/profile_page.dart';
 import 'package:sih_brain_games/yoga/yoga_home.dart';
 
 class Unified extends StatelessWidget {
-  ValueNotifier<int> pageNum = ValueNotifier(2);
-  PageController _cont = PageController(initialPage: 2);
+  ValueNotifier<int> pageNum = ValueNotifier(0);
+  PageController _cont = PageController(initialPage: 0);
   @override
   var darkData;
   Widget build(BuildContext context) {
@@ -63,7 +63,7 @@ class Unified extends StatelessWidget {
                 index: page,
                 items: <Widget>[
                   Icon(
-                    Icons.newspaper_outlined,
+                    Icons.home_filled,
                     size: 30,
                     color: page == 0 ? Colors.white : Colors.grey,
                   ),
@@ -73,12 +73,12 @@ class Unified extends StatelessWidget {
                     color: page == 1 ? Colors.white : Colors.grey,
                   ),
                   Icon(
-                    Icons.home_filled,
+                    Icons.music_note_outlined,
                     size: 30,
                     color: page == 2 ? Colors.white : Colors.grey,
                   ),
                   Icon(
-                    Icons.music_note_outlined,
+                    Icons.newspaper_outlined,
                     size: 30,
                     color: page == 3 ? Colors.white : Colors.grey,
                   ),
@@ -101,10 +101,11 @@ class Unified extends StatelessWidget {
           builder: (context, int page, child) => PageView(
             controller: _cont,
             children: [
-              const Category_Section(),
-              const yoga_home(),
               const GameScreen(),
+              const yoga_home(),
               MusicScreen(),
+              const Category_Section(),
+
               // profile(),
               profile()
             ],
