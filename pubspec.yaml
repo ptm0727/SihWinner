@@ -30,6 +30,8 @@ dependencies:
   flutter:
     sdk: flutter
   video_player: ^2.4.6
+  alan_voice: 3.0.0
+  text_to_speech: 0.2.3
 
 
 
