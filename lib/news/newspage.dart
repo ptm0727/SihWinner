@@ -88,7 +88,7 @@ class _NewsState extends State<News> {
         ),
       ),
       floatingActionButton: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('likes').where('story', isEqualTo: widget.id).where('uid', isEqualTo: widget.uid).snapshots(),
+        stream: FirebaseFirestore.instance.collection('likes').where('story', isEqualTo: widget.id).where('uid', isEqualTo: auth.currentUser?.uid).snapshots(),
         builder: (BuildContext context,
             AsyncSnapshot<QuerySnapshot> snapshot) {
 

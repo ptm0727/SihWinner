@@ -122,8 +122,9 @@ class _NewsSectionState extends State<NewsSection> {
                                     return SizedBox.shrink();
                                   } else
                                     return comments(
-                                        data.docs[index - data.size - 2]
-                                            ['title'],
+                                        data.docs[index - data.size - 2]['title'],
+                                        data.docs[index - data.size - 2]['content'],
+                                        data.docs[index - data.size - 2]['uid'],
                                         data.docs[index - data.size - 2]['id']);
                                 }
                               });
@@ -157,16 +158,27 @@ class _NewsSectionState extends State<NewsSection> {
 
 class comments extends StatelessWidget {
   const comments(
-    this.comment,
+    this.title,
+    this.content,
+    this.uid,
     this.id, {
     Key? key,
   }) : super(key: key);
-  final comment;
+  final title;
   final id;
+  final content;
+  final uid;
 
   @override
   Widget build(BuildContext context) {
-    return RegularButton(onPressed: () {}, title: comment);
+    return RegularButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => News(title, uid, content, id)));
+        },
+        title: title);
     // return Padding(
     //   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
     //   child: Container(
@@ -213,7 +225,7 @@ class commentdelete extends StatefulWidget {
 class _commentdeleteState extends State<commentdelete> {
   Future<void> deletecomment(var id) {
     return FirebaseFirestore.instance
-        .collection('comment')
+        .collection('content')
         .doc(id)
         .delete()
         .then((value) => print("User Deleted"))
@@ -223,8 +235,7 @@ class _commentdeleteState extends State<commentdelete> {
   Future openDialog(id) => showDialog(
       context: context,
       builder: (context) => AlertDialog(
-            title: Text("Comment"),
-            content: Text("Do You Want to Delete"),
+            title: Text("Delete  Story"),
             actions: [
               RaisedButton(
                 onPressed: () {
@@ -254,7 +265,7 @@ class _commentdeleteState extends State<commentdelete> {
       },
       title: widget.title,
       trailing: IconButton(
-        icon: Icon(color: Colors.white, Icons.more_horiz),
+        icon: Icon(color: Colors.black, Icons.more_horiz),
         onPressed: () {
           openDialog(widget.id);
         },
