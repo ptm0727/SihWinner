@@ -17,6 +17,10 @@ class profile extends StatefulWidget {
 }
 
 class _profile extends State<profile> {
+  final FirebaseAuth auth = FirebaseAuth.instance;
+
+
+
   Widget displayscore(String s) {
     return RegularButton(onPressed: () {}, title: s);
     // return Container(
@@ -101,11 +105,14 @@ class _profile extends State<profile> {
     }
   }
 
+
+
   @override
   Widget build(BuildContext context) {
      double total=0;
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
+    usernamemodel u = box2.get('u');
     final _auth = AuthService();
     final List<ChartData> chartData = [
       ChartData(0, p.p1 / d.d1),
@@ -123,6 +130,7 @@ class _profile extends State<profile> {
       ChartData(5, 0.75),
       ChartData(6, 0.43),
     ];
+    var name = auth.currentUser?.email;
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Padding(
@@ -146,19 +154,12 @@ class _profile extends State<profile> {
               const SizedBox(
                 height: 12,
               ),
-              const Text(
-                "MyName",
+              Text(
+                u.username,
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
-              const Text(
-                "MyName@gmail.com",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16),
+                    fontSize: 25),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 100),
