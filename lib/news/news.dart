@@ -262,7 +262,7 @@ class _commentdeleteState extends State<commentdelete> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    Profile_Details()));
+                    News(widget.title,widget.uid,widget.content,widget.id)));
       },
       title: widget.title,
       trailing: IconButton(

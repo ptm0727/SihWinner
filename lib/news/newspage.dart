@@ -1,7 +1,7 @@
 
 
 import 'dart:math';
-
+import 'package:alan_voice/alan_voice.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:favorite_button/favorite_button.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,6 +21,7 @@ class News extends StatefulWidget {
 }
 
 class _NewsState extends State<News> {
+
   final FirebaseAuth auth = FirebaseAuth.instance;
   final users =
   FirebaseFirestore.instance.collection('content').snapshots();
