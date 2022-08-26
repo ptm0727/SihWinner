@@ -15,7 +15,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
   int i = 0;
   Color my = Colors.brown, CheckMyColor = Colors.white;
   final FirebaseAuth auth = FirebaseAuth.instance;
-  Future<void> updatescore(var p1,var u) {
+  Future<void> updatescore(var p1, var u) {
     return FirebaseFirestore.instance
         .collection('points')
         .where('uid', isEqualTo: auth.currentUser?.uid)
@@ -108,13 +108,15 @@ class _LeaderBoardState extends State<LeaderBoard> {
                             .orderBy('game', descending: true)
                             .get(),
                         builder: (context, snapshot) {
-                          updatescore((p.p1 / d.d1 +
-                                  p.p2 / d.d2 +
-                                  p.p3 / d.d3 +
-                                  p.p4 / d.d4 +
-                                  p.p5 / d.d5 +
-                                  p.p6 / d.d6) /
-                              6,u.username);
+                          updatescore(
+                              (p.p1 / d.d1 +
+                                      p.p2 / d.d2 +
+                                      p.p3 / d.d3 +
+                                      p.p4 / d.d4 +
+                                      p.p5 / d.d5 +
+                                      p.p6 / d.d6) /
+                                  6,
+                              u.username);
                           if (snapshot.hasData) {
                             i = 0;
                             var data = snapshot.requireData;
@@ -138,7 +140,6 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                     }
 
                                     var name = data.docs[index]['username'];
-
 
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -196,7 +197,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                                                         .toInt())
                                                                     .toString(),
                                                             style: TextStyle(
-                                                                fontSize: 10,
+                                                                fontSize: 14,
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .bold)),
