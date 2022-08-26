@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sih_brain_games/games/memory_game_new.dart';
 
+import '../rules_speed.dart';
+
 class GameHome extends StatelessWidget {
   const GameHome({Key? key}) : super(key: key);
 
@@ -17,6 +19,19 @@ class GameHome extends StatelessWidget {
             "Test your memory",
             style: TextStyle(color: Colors.black, fontSize: 25),
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => Rules(game: "hs")));
+                },
+                icon: Icon(
+                  Icons.question_mark,
+                  color: Colors.black,
+                ))
+          ],
         ),
         body: ChangeNotifierProvider<Counter>(
           create: (context) => Counter(),
