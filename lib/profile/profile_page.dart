@@ -38,6 +38,28 @@ class _profile extends State<profile> {
     //   ),
     // );
   }
+  String selanime(int t)
+  {
+    if(t==1){
+      return 'animations/1st.json';
+    }
+    else if(t==2)
+      {
+        return 'animations/2nd.json';
+      }
+    else if(t==3)
+    {
+      return 'animations/3rd.json';
+    }
+    else if(t>=4)
+      {
+        return 'animations/4th.json';
+      }
+    else{
+      return 'animations/0th.json';
+    }
+  }
+
 
   Text medals(double b) {
     if (b <= 0.5) {
@@ -46,12 +68,12 @@ class _profile extends State<profile> {
           fontSize: 25
       ),);
     } else if (b > 0.6 && b <= .8) {
-      return const Text("🥈🥉",style: TextStyle(
+      return const Text("🥈",style: TextStyle(
         color: Colors.grey,
           fontSize: 25
       ),);
     } else {
-      return const Text("🥇🥈🥉",style: TextStyle(
+      return const Text("🥇",style: TextStyle(
         color: Colors.grey,
           fontSize: 25
       ),);
@@ -60,7 +82,7 @@ class _profile extends State<profile> {
 
   @override
   Widget build(BuildContext context) {
-    int total=0;
+     double total=0;
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
     final _auth = AuthService();
@@ -126,10 +148,10 @@ class _profile extends State<profile> {
                 height: 20,
               ),
               Lottie.asset(
-                'animations/1st.json',
+                selanime((p.p1+p.p2+p.p3+p.p4+p.p5+p.p6)~/500),
                 width: 200,
                 height: 200,
-                repeat: false,
+                repeat: true,
                 fit: BoxFit.fill,
               ),
               /*RadarChart(
@@ -183,84 +205,114 @@ class _profile extends State<profile> {
                 height: 20,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("Pair Game  ",style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                       fontSize: 25),
                   ),
-                  medals(p.p1/d.d1)
+                  medals(p.p1/d.d1),
+                  Text("${(p.p1).toInt()}",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 12,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("Memory Game  ",style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                       fontSize: 25),
                   ),
-                  medals(p.p2/d.d2)
+                  medals(p.p2/d.d2),
+                  Text("${(p.p2).toInt()}",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 12,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("Puzzle Game  ",style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                       fontSize: 25),
                   ),
-                  medals(p.p3/d.d3)
+                  medals(p.p3/d.d3),
+                  Text("${(p.p3).toInt()}",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 12,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("Speed Game  ",style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                       fontSize: 25),
                   ),
-                  medals(p.p4/d.d4)
+                  medals(p.p4/d.d4),
+                  Text("${(p.p4).toInt()}",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 12,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("Math Game  ",style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                       fontSize: 25),
                   ),
-                  medals(p.p5/d.d5)
+                  medals(p.p5/d.d5),
+                  Text("${(p.p5).toInt()}",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
                 ],
               ),
               const SizedBox(
                 height: 12,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text("Word Game  ",style: TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
                       fontSize: 25),
                   ),
-                  medals(p.p6/d.d6)
+                  medals(p.p6/d.d6),
+                  Text("${(p.p6).toInt()}",style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 25),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -290,7 +342,6 @@ class _profile extends State<profile> {
                     setState(() {
                       p = box.get('points');
                       d = box1.get('d');
-                      total=(p.p1+p.p2+p.p3+p.p4+p.p5+p.p6) as int;
                     });
                   },
                   child: const Text("Reset Points")),
