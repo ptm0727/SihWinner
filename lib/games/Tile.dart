@@ -49,6 +49,7 @@ class _TileState extends State<Tile> {
     }
     if (counter.getCounter < 0) {
       setState(() {
+
         widget.selected = true;
       });
       Future.delayed(const Duration(seconds: 6), () {
@@ -73,6 +74,7 @@ class _TileState extends State<Tile> {
             setState(() {
               widget.selected = true;
             });
+
             if (counter.getCounter != widget.id) {
               showDialog(
                   barrierDismissible: false,

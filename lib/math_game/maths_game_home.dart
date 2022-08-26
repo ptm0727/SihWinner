@@ -1,23 +1,32 @@
+import 'package:sih_brain_games/math_game/Math_question_list.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
-
 import 'package:sih_brain_games/math_game/math_result.dart';
-import 'dart:math';
 
-
+// void main() {
+//   runApp(const MyApp());
+// }
+//
+// class MyApp extends StatelessWidget {
+//   const MyApp({Key? key}) : super(key: key);
+//
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       home: homepage(),
+//       debugShowCheckedModeBanner: false, //to stop the debug
+//     );
+//   }
+// }
 
 class mathgame extends StatefulWidget {
   const mathgame({Key? key}) : super(key: key);
-  //int a = 0;
+
   @override
-  State<mathgame> createState() => _mathgame();
+  State<mathgame> createState() => _mathgameState();
 }
 
-class _mathgame extends State<mathgame> {
-  ////
-  ///
-  ///
-  ///
+class _mathgameState extends State<mathgame> {
   Color maincolor = Color(0xFF252c4a);
   Color secondcolor = Color(0xFF117eeb);
   bool isPresssed = false;
@@ -25,286 +34,138 @@ class _mathgame extends State<mathgame> {
   Color iftrue = Colors.green;
   Color btncolor = Color(0xFF117eeb);
   int score = 0;
-  int a = 1, x = 0, y = 0;
-  int b = 1, c = 2, d = 3;
-  late int ans = 0;
-  int count = 0;
-  final abc = TextEditingController();
-  Random random = Random();
-  Random random2 = Random.secure();
-  int answer = 0;
-  String answerfinal = 'CorrectAnswer';
-  final mycontroller1 = TextEditingController();
-  final mycontroller2 = TextEditingController();
-
-/////
-  ///
-  ///
-  ///
-  ///
-  // Widget questionGen(int a, int b) {
-  //   return Container(
-  //     padding: EdgeInsets.all(20),
-  //     child: Row(children: [
-  //       Container(width: MediaQueryof(context).size.width*0.5,)
-
-  //     ]),
-  //   );
-  // }
-
-  ///
-  ///
-  ///
-  ///
-  ///
-  ///
-  ///
-  ///
-
-  void CheckEqui1(int x, int y, int ans) {
-    if (ans == (x + y)) {
-      answerfinal = 'Correct Answer';
-      //multiplication();
-
-      setState(() {
-        b = generateRandomNumber1();
-        c = generateRandomNumber2();
-        a = ans;
-        score += 1;
-      });
-    } else {
-      setState(() {
-        answerfinal = 'Wrong Answer';
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => result(score)));
-      });
-    }
-  }
-
-  void CheckEqui2(int x, int y, int ans) {
-    if (ans == (x * y)) {
-      answerfinal = 'Correct Answer';
-      //multiplication();
-
-      setState(() {
-        b = generateRandomNumber1();
-        c = generateRandomNumber2();
-        a = ans;
-        score += 2;
-      });
-    } else {
-      setState(() {
-        answerfinal = 'Wrong Answer';
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => result(score)));
-      });
-    }
-  }
-
-  int generateRandomNumber2() {
-    setState(() {
-      x = random.nextInt(10) + 5;
-    });
-    return x;
-  }
-
-  int generateRandomNumber1() {
-    setState(() {
-      y = random2.nextInt(5) + 2;
-    });
-    return y;
-  }
-
-/////
-  ///
-  ///
-  ///
-  ///
-
   PageController? _pagecontroller = PageController(initialPage: 0);
-  @override
   Widget build(BuildContext context) {
-    mycontroller1.text = "";
-    mycontroller2.text = " ";
-    b = generateRandomNumber2();
-    c = generateRandomNumber1();
     return Scaffold(
-        backgroundColor: maincolor,
-        appBar: AppBar(
-          title: Text('Math Game'),
-          centerTitle: true,
-          backgroundColor: secondcolor,
-        ),
-        body: SingleChildScrollView(
-          child: Container(
-            padding: EdgeInsets.only(top: 20),
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "The current value is",
-                      style: TextStyle(
-                          color: Colors.amberAccent,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
+      backgroundColor: maincolor,
+      body: Padding(
+        padding: EdgeInsets.all(10),
+        child: PageView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _pagecontroller,
+            onPageChanged: (page) {
+              setState(() {
+                isPresssed = false;
+              });
+            },
+            itemCount: questions.length,
+            itemBuilder: (context, index) {
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: double.infinity,
+                    child: Text(
+                      "Question ${index + 1}/${questions.length} ",
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w300,
+                          fontSize: 28.0),
                     ),
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "$a",
-                      style: TextStyle(
-                          color: Colors.amberAccent,
-                          fontSize: 30,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 100,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                  ),
+                  const Divider(
+                    color: Colors.white,
+                    height: 8.0,
+                    thickness: 1.0,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "${questions[index].question}",
+                    style: TextStyle(
+                        color: Colors.white,
+                        //fontWeight: FontWeight.w300,
+                        fontSize: 32.0),
+                  ),
+                  SizedBox(
+                    height: 35,
+                  ),
+                  for (int i = 0; i < questions[index].answers!.length; i++)
                     Container(
-                      padding: EdgeInsets.all(10),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Add $b",
-                            style: TextStyle(
-                                color: Colors.amberAccent,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "and get 1 points",
-                            style: TextStyle(
-                                color: Colors.amberAccent,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 20),
-                          SizedBox(
-                            width: 80,
-                            height: 60,
-                            child: TextField(
-                              controller: mycontroller1,
-                              decoration: const InputDecoration(
-                                  labelText: 'Your Answer',
-                                  border: OutlineInputBorder()),
-                              textInputAction: TextInputAction.done,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          FloatingActionButton(
-                            onPressed: () {
-                              CheckEqui1(a, b,
-                                  double.parse(mycontroller1.text).toInt());
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    // Retrieve the text the that user has entered by using the
-                                    // TextEditingController.
-                                    content: Text(answerfinal),
-                                  );
-                                },
-                              );
-                            },
-                            tooltip: 'Show me the value!',
-                            child: const Icon(Icons.text_fields),
-                          ),
-                        ],
+                      width: double.infinity,
+                      margin: EdgeInsets.only(
+                        bottom: 18,
+                      ),
+                      padding: EdgeInsets.only(left: 30, right: 30),
+                      child: MaterialButton(
+                        padding: EdgeInsets.all(20),
+                        color: isPresssed
+                            ? (questions[index]
+                            .answers!
+                            .entries
+                            .toList()[i]
+                            .value)
+                            ? iftrue
+                            : ifWrong
+                            : btncolor,
+                        shape: const StadiumBorder(),
+                        //color: secondcolor,
+                        onPressed: isPresssed
+                            ? () {}
+                            : () {
+                          setState(() {
+                            isPresssed = true;
+                          });
+                          if (questions[index]
+                              .answers!
+                              .entries
+                              .toList()[i]
+                              .value) {
+                            score += 10;
+                            print(score);
+                          }
+                        },
+                        child: Text(
+                          questions[index].answers!.keys.toList()[i],
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      OutlinedButton(
+                        // ignore: sort_child_properties_last
 
-                    ///
-                    ///
-                    ///
-                    ///
-                    ///
-                    ///
-                    Container(
-                      padding: EdgeInsets.all(10),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Multiply $c",
-                            style: TextStyle(
-                                color: Colors.amberAccent,
-                                fontSize: 30,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "and get 2 points",
-                            style: TextStyle(
-                                color: Colors.amberAccent,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 30),
-                          SizedBox(
-                            width: 80,
-                            height: 60,
-                            child: TextField(
-                              controller: mycontroller2,
-                              decoration: const InputDecoration(
-                                  labelText: 'Your Answer',
-                                  border: OutlineInputBorder()),
-                              textInputAction: TextInputAction.done,
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          SizedBox(height: 10),
-                          FloatingActionButton(
-                            onPressed: () {
-                              CheckEqui2(a, c,
-                                  double.parse(mycontroller2.text).toInt());
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return AlertDialog(
-                                    // Retrieve the text the that user has entered by using the
-                                    // TextEditingController.
-                                    content: Text(answerfinal),
-                                  );
-                                },
-                              );
-                            },
-                            tooltip: 'Show me the value!',
-                            child: const Icon(Icons.text_fields),
-                          ),
-                        ],
+                        style: OutlinedButton.styleFrom(
+                          side: BorderSide(color: Colors.orange, width: 1.0),
+                          shape: StadiumBorder(),
+                          // backgroundColor: Colors.orange,
+                          // shadowColor: Colors.amber
+                        ),
+                        onPressed: isPresssed
+                            ? index + 1 == questions.length
+                            ? () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      result(score)));
+                        }
+                            : () {
+                          _pagecontroller!.nextPage(
+                              duration: Duration(microseconds: 70),
+                              curve: Curves.linear);
+                        }
+                            : null,
+                        child: Text(
+                          index + 1 == questions.length
+                              ? "See result"
+                              : "Next Question",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
-                    )
-                    //
-                    ///
-                    ///
-                    ///
-                    ///
-                    ///
-                  ],
-                )
-              ],
-            ),
-          ),
-        ));
+                    ],
+                  )
+                ],
+              );
+            }),
+      ),
+    );
   }
 }
