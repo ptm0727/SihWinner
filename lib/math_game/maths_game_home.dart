@@ -39,21 +39,21 @@ class _mathgameState extends State<mathgame> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Color(0xff6053BC),
-          title: Text(
-            'Are you Ramanujan ? ',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          //actions: [
-          // leading: IconButton(
-          //   //alignment: Alignment.topLeft,
-          //     onPressed: () => {},
-          //     //onPressed: (() => add_new_Tranc_process(context)),
-          //     icon: Icon(
-          //       Icons.arrow_back,
-          //       color: Colors.white,
-          //     ))
+        centerTitle: true,
+        backgroundColor: Color(0xff6053BC),
+        title: Text(
+          'Are you Ramanujan ? ',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        //actions: [
+        // leading: IconButton(
+        //   //alignment: Alignment.topLeft,
+        //     onPressed: () => {},
+        //     //onPressed: (() => add_new_Tranc_process(context)),
+        //     icon: Icon(
+        //       Icons.arrow_back,
+        //       color: Colors.white,
+        //     ))
         //],
       ),
       body: Padding(
@@ -124,30 +124,30 @@ class _mathgameState extends State<mathgame> {
                           padding: EdgeInsets.all(20),
                           color: isPresssed
                               ? (questions[index]
-                              .answers!
-                              .entries
-                              .toList()[i]
-                              .value)
-                              ? iftrue
-                              : ifWrong
+                                      .answers!
+                                      .entries
+                                      .toList()[i]
+                                      .value)
+                                  ? iftrue
+                                  : ifWrong
                               : Colors.white,
                           shape: const StadiumBorder(),
                           //color: secondcolor,
                           onPressed: isPresssed
                               ? () {}
                               : () {
-                            setState(() {
-                              isPresssed = true;
-                            });
-                            if (questions[index]
-                                .answers!
-                                .entries
-                                .toList()[i]
-                                .value) {
-                              score += 10;
-                              print(score);
-                            }
-                          },
+                                  setState(() {
+                                    isPresssed = true;
+                                  });
+                                  if (questions[index]
+                                      .answers!
+                                      .entries
+                                      .toList()[i]
+                                      .value) {
+                                    score += 10;
+                                    print(score);
+                                  }
+                                },
                           child: Text(
                             questions[index].answers!.keys.toList()[i],
                             style: TextStyle(
@@ -168,23 +168,21 @@ class _mathgameState extends State<mathgame> {
                           style: OutlinedButton.styleFrom(
                             side: BorderSide(color: Colors.white, width: 1.0),
                             shape: StadiumBorder(),
-                            // backgroundColor: Colors.orange,
-                            // shadowColor: Colors.amber
                           ),
                           onPressed: isPresssed
                               ? index + 1 == questions.length
-                              ? () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        result(score)));
-                          }
-                              : () {
-                            _pagecontroller!.nextPage(
-                                duration: Duration(microseconds: 70),
-                                curve: Curves.linear);
-                          }
+                                  ? () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  result(score)));
+                                    }
+                                  : () {
+                                      _pagecontroller!.nextPage(
+                                          duration: Duration(microseconds: 70),
+                                          curve: Curves.linear);
+                                    }
                               : null,
                           child: Text(
                             index + 1 == questions.length

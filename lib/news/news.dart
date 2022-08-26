@@ -40,7 +40,7 @@ class _NewsSectionState extends State<NewsSection> {
         title: Center(
           child: Text(
             "BLOG",
-            style: TextStyle(fontSize: 30),
+            style: TextStyle(fontSize: 40),
           ),
         ),
       ),
@@ -123,8 +123,10 @@ class _NewsSectionState extends State<NewsSection> {
                                     return SizedBox.shrink();
                                   } else
                                     return comments(
-                                        data.docs[index - data.size - 2]['title'],
-                                        data.docs[index - data.size - 2]['content'],
+                                        data.docs[index - data.size - 2]
+                                            ['title'],
+                                        data.docs[index - data.size - 2]
+                                            ['content'],
                                         data.docs[index - data.size - 2]['uid'],
                                         data.docs[index - data.size - 2]['id']);
                                 }
@@ -262,7 +264,7 @@ class _commentdeleteState extends State<commentdelete> {
             context,
             MaterialPageRoute(
                 builder: (context) =>
-                    News(widget.title,widget.uid,widget.content,widget.id)));
+                    News(widget.title, widget.uid, widget.content, widget.id)));
       },
       title: widget.title,
       trailing: IconButton(

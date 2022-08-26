@@ -226,20 +226,20 @@ class Button extends StatelessWidget {
                     ),
                   ),
                 ),
-                trailing: MaterialButton(
-                  elevation: 0,
-                  color: darkData.dark ? Colors.deepPurple : Colors.green,
+                trailing: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Color(0xff6053BC), width: 2.3),
+                    shape: StadiumBorder(),
+                  ),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => destination));
                   },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  child: Text(
+                  child: const Text(
                     "Play",
                     style: TextStyle(
                       fontSize: 18,
-                      color: darkData.dark ? Colors.white : Colors.black,
+                      color: Color(0xff6053BC),
                     ),
                   ),
                 ),
