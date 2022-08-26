@@ -41,11 +41,11 @@ class _BoardDecorationState extends State<BoardDecoration>
     final unitSize = BoardConfig.of(context).unitSize;
 
     final thickBorder = BorderSide(
-      color: const Color(0x5f2d6665),
+      color: const Color(0xff6053BC),
       width: unitSize,
     );
     final thinBorder = BorderSide(
-      color: const Color(0x5f2d6665),
+      color: Color(0xff6053BC),
       width: unitSize * 0.3,
     );
 
@@ -110,16 +110,16 @@ class _BeamTransition extends AnimatedWidget {
           colors: [
             Colors.transparent,
             ColorTween(
-              begin: const Color(0x5fffff00),
-              end: const Color(0x6fffff00),
+              begin: const Color(0xffffffff),
+              end: const Color(0xffffffff),
             ).transform(v)!,
             ColorTween(
-              begin: const Color(0x86ffff00),
-              end: const Color(0x94ffff00),
+              begin: const Color(0xffffffff),
+              end: const Color(0xffffffff),
             ).transform(v)!,
             ColorTween(
-              begin: const Color(0x4fffff00),
-              end: const Color(0x3fffff00),
+              begin: const Color(0xffffffff),
+              end: const Color(0xffffffff),
             ).transform(v)!,
             Colors.transparent,
           ],

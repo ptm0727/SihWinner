@@ -162,7 +162,7 @@ class _Snake {
 
     if (i == 0) return Colors.white;
     return Color.lerp(
-      const Color(0xff00ff00),
+      const Color(0xff03fc03),
       const Color(0x0000ff00),
       i / length,
     )!;

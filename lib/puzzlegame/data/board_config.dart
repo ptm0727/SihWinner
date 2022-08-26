@@ -12,15 +12,15 @@ class BoardConfig extends InheritedWidget {
   final bool hideTexts;
 
   /// Colors used for the core piece.
-  final Color corePieceColor1 = const Color(0xff359090);
-  final Color corePieceColor2 = const Color(0xff1f7878);
+  final Color corePieceColor1 = const Color(0xff048630);
+  final Color corePieceColor2 = const Color(0xff04bb45);
 
   /// Colors used for other pieces.
-  final Color pieceColor1 = const Color(0xff357070);
-  final Color pieceColor2 = const Color(0xff1f5757);
+  final Color pieceColor1 = const Color(0xffbb041d);
+  final Color pieceColor2 = const Color(0xffef051f);
 
-  final Color pieceAttachmentColor = const Color(0xff0b4040);
-  final Color pieceShadowColor = const Color(0xff0f2424);
+  final Color pieceAttachmentColor = const Color(0xff6053BC);
+  final Color pieceShadowColor = const Color(0xff6053BC);
 
   /// A series of LayerLink objects that correspond to each puzzle piece.
   /// This is used by the "hint" animation to insert an overlay exactly on top
