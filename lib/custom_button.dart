@@ -372,7 +372,7 @@ class RegularButton extends StatelessWidget {
           title: Center(
             child: Text(
               title,
-              style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
             ),
           ),
           onTap: onPressed,

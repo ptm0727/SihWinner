@@ -161,7 +161,7 @@ class _profile extends State<profile> {
                     fontSize: 16),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 60),
+                padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 100),
                 child: ListTile(
                   tileColor: Colors.white,
                   shape:
@@ -169,7 +169,7 @@ class _profile extends State<profile> {
                   title: Center(
                     child: Text(
                       "Sign Out",
-                      style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
                     ),
                   ),
                   onTap: () {
@@ -185,7 +185,7 @@ class _profile extends State<profile> {
                 fit: BoxFit.fill,
               ),
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
                 child: Text(
                   seltext((p.p1+p.p2+p.p3+p.p4+p.p5+p.p6)~/500),
                   style: const TextStyle(
