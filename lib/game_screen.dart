@@ -18,36 +18,36 @@ class GameScreen extends StatelessWidget {
         imgPath: "assets/game_images/Ani-Mate.jpg",
         destination: game1(),
         title: "Ani-Mate",
-        subtitle: "Identify pairs in the given grid",
+        subtitle: "Improves memory and association skills",
       ),
       Button(
           imgPath: "assets/game_images/HopSCOTCH.jpg",
           destination: GameHome(),
           title: "Hopscotch",
-          subtitle: "Click the numbers in the given order"),
+          subtitle: "Improved memory and sequencing skills"),
       Button(
         imgPath: "assets/game_images/CP.jpg",
         destination: puz(),
         title: "Chor Sipahi",
-        subtitle: "Save the human from the monsters",
+        subtitle: "Hand-eye coordination and logical thinking ability",
       ),
       Button(
         imgPath: "assets/game_images/H&S.jpg",
         destination: imspeed(),
         title: "Luka Chhupi",
-        subtitle: "Hit the maximum Rabbits to score",
+        subtitle: "Speed and hand-eye coordination",
       ),
       Button(
         imgPath: "assets/game_images/mATH.jpg",
         destination: mathgame(),
         title: "Are you Ramanujan?",
-        subtitle: "Test your math Skills here",
+        subtitle: "Data analysis and logical thinking ability",
       ),
       Button(
         imgPath: "assets/game_images/Word.jpg",
         destination: Word_game(),
         title: "Guess Who?",
-        subtitle: "Test you knowledge about the wild here",
+        subtitle: "Visual stimulation",
       )
     ];
     return SingleChildScrollView(
