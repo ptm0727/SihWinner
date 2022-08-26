@@ -52,9 +52,6 @@ class Unified extends StatelessWidget {
       bottomNavigationBar: ValueListenableBuilder(
           valueListenable: pageNum,
           builder: (context, int page, child) => CurvedNavigationBar(
-                // backgroundColor: darkData.dark
-                //     ? Colors.blueGrey.shade800
-                //     : Color(0xffeef2f3),
                 backgroundColor: Colors.transparent,
                 animationDuration: const Duration(milliseconds: 300),
                 buttonBackgroundColor:
@@ -95,25 +92,47 @@ class Unified extends StatelessWidget {
                       curve: Curves.easeIn);
                 },
               )),
-      body: GradientContainer(
-        child: ValueListenableBuilder(
-          valueListenable: pageNum,
-          builder: (context, int page, child) => PageView(
-            controller: _cont,
-            children: [
-              const GameScreen(),
-              const yoga_home(),
-              MusicScreen(),
-              const Category_Section(),
+      body: Stack(
+        children: [
+          GradientContainer(
+            child: ValueListenableBuilder(
+              valueListenable: pageNum,
+              builder: (context, int page, child) => PageView(
+                controller: _cont,
+                children: [
+                  const GameScreen(),
+                  const yoga_home(),
+                  MusicScreen(),
+                  const Category_Section(),
 
-              // profile(),
-              profile()
-            ],
-            onPageChanged: (updated) {
-              pageNum.value = updated;
-            },
+                  // profile(),
+                  profile()
+                ],
+                onPageChanged: (updated) {
+                  pageNum.value = updated;
+                },
+              ),
+            ),
           ),
-        ),
+          Container(
+            height: MediaQuery.of(context).size.height / 2,
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.chevron_left,
+                      color: Colors.black,
+                    )),
+                IconButton(
+                    onPressed: () {},
+                    icon: Icon(Icons.chevron_right, color: Colors.black))
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

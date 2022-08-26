@@ -24,23 +24,23 @@ Future<void> main() async {
   Hive.registerAdapter(pointsmodelAdapter());
   box = await Hive.openBox<pointsmodel>('points');
   // if (box.isEmpty) {
-    box.put(
-        'points',
-        pointsmodel(
-          p1: 0,
-          p2: 0,
-          p3: 0,
-          p4: 0,
-          p5: 0,
-          p6: 0,
-        ));
+  box.put(
+      'points',
+      pointsmodel(
+        p1: 0,
+        p2: 0,
+        p3: 0,
+        p4: 0,
+        p5: 0,
+        p6: 0,
+      ));
   // }
   Hive.registerAdapter(denominatormodelAdapter());
   box1 = await Hive.openBox<denominatormodel>('d');
-  // if (box1.isEmpty) {
+  if (box1.isEmpty) {
     box1.put('d',
         denominatormodel(d1: 0.1, d2: 0.1, d3: 0.1, d4: 0.1, d5: 0.1, d6: 0.1));
-  // }
+  }
   runApp(ChangeNotifierProvider<DarkMode>(
       create: (_) => DarkMode(), child: MyApp()));
 }
