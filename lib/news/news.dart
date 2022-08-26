@@ -92,7 +92,15 @@ class _NewsSectionState extends State<NewsSection> {
                                 itemBuilder: (context, index) {
                                   if (index <= data.size) {
                                     if (index == 0) {
-                                      return SizedBox.shrink();
+                                      return const Center(
+                                        child: Text(
+                                          "Stories",
+                                          style: TextStyle(
+                                              fontSize: 35,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      );
                                     }
                                     if (name == data.docs[index - 1]['uid']) {
                                       return commentdelete(
@@ -105,15 +113,7 @@ class _NewsSectionState extends State<NewsSection> {
                                     return SizedBox.shrink();
                                   } else {
                                     if (index == (data.size + 1))
-                                      return const Center(
-                                        child: Text(
-                                          "Stories",
-                                          style: TextStyle(
-                                              fontSize: 35,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      );
+                                      return SizedBox.shrink();
                                     if (name ==
                                         data.docs[index - data.size - 2]['uid']) {
                                       return SizedBox.shrink();
