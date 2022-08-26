@@ -26,72 +26,155 @@ class Unified extends StatelessWidget {
           child: Text(
             "Sahasrara",
             style: TextStyle(
-                fontSize: 50,
+                fontSize: 45,
+                fontWeight: FontWeight.bold,
                 color: darkData.dark ? Colors.white : Colors.black),
           ),
         ),
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 8.0),
-            child: FloatingActionButton(
-              elevation: 0,
-              backgroundColor: Colors.deepPurple,
-              child: Icon(
-                Icons.leaderboard_outlined,
-                color: Colors.white,
-              ),
-              tooltip: "Leaderboard",
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LeaderBoard()));
-              },
-            ),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: ValueListenableBuilder(
+                valueListenable: pageNum,
+                builder: (context, int page, _) {
+                  if (page == 0 || page == 4) {
+                    return Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: FloatingActionButton.extended(
+                        elevation: 0,
+                        backgroundColor: Colors.deepPurple,
+                        label: const Text(
+                          "Friends",
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),
+                        ),
+                        icon: const Icon(
+                          Icons.leaderboard_outlined,
+                          color: Colors.white,
+                        ),
+                        tooltip: "Leaderboard",
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LeaderBoard()));
+                        },
+                      ),
+                    );
+                  } else {
+                    return Container();
+                  }
+                }),
           )
         ],
       ),
-      bottomNavigationBar: ValueListenableBuilder(
-          valueListenable: pageNum,
-          builder: (context, int page, child) => CurvedNavigationBar(
-                backgroundColor: Colors.transparent,
-                animationDuration: const Duration(milliseconds: 300),
-                buttonBackgroundColor:
-                    darkData.dark ? Colors.deepPurple : Color(0xff6495ed),
-                color: darkData.dark ? Color(0xFF283240) : Colors.white,
-                index: page,
-                items: <Widget>[
-                  Icon(
+      bottomNavigationBar: Stack(
+        children: [
+          ValueListenableBuilder(
+              valueListenable: pageNum,
+              builder: (context, int page, child) => CurvedNavigationBar(
+                    backgroundColor: Colors.transparent,
+                    animationDuration: const Duration(milliseconds: 300),
+                    buttonBackgroundColor: Color(0xff6495ed),
+                    color: Colors.white,
+                    index: page,
+                    items: <Widget>[
+                      Icon(
+                        Icons.home_filled,
+                        size: 30,
+                        color: page == 0 ? Colors.white : Colors.grey,
+                      ),
+                      Icon(
+                        Icons.play_arrow,
+                        size: 30,
+                        color: page == 1 ? Colors.white : Colors.grey,
+                      ),
+                      Icon(
+                        Icons.music_note_outlined,
+                        size: 30,
+                        color: page == 2 ? Colors.white : Colors.grey,
+                      ),
+                      Icon(
+                        Icons.newspaper_outlined,
+                        size: 30,
+                        color: page == 3 ? Colors.white : Colors.grey,
+                      ),
+                      Icon(
+                        Icons.settings,
+                        size: 30,
+                        color: page == 4 ? Colors.white : Colors.grey,
+                      ),
+                    ],
+                    onTap: (int index) {
+                      pageNum.value = index;
+                      _cont.animateToPage(index,
+                          duration: Duration(milliseconds: 200),
+                          curve: Curves.easeIn);
+                    },
+                  )),
+          BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            backgroundColor: Colors.transparent,
+            selectedItemColor: Colors.grey.shade800,
+            unselectedItemColor: Colors.grey.shade800,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            selectedLabelStyle: TextStyle(
+              fontSize: 17,
+            ),
+            unselectedLabelStyle: TextStyle(
+              fontSize: 17,
+            ),
+            elevation: 0,
+            items: const [
+              BottomNavigationBarItem(
+                  backgroundColor: Colors.transparent,
+                  label: "Game",
+                  icon: Icon(
                     Icons.home_filled,
                     size: 30,
-                    color: page == 0 ? Colors.white : Colors.grey,
-                  ),
-                  Icon(
-                    Icons.play_arrow,
+                    color: Colors.transparent,
+                  )),
+              BottomNavigationBarItem(
+                  label: "Yoga",
+                  icon: Icon(
+                    Icons.home_filled,
                     size: 30,
-                    color: page == 1 ? Colors.white : Colors.grey,
-                  ),
-                  Icon(
-                    Icons.music_note_outlined,
+                    color: Colors.transparent,
+                  )),
+              BottomNavigationBarItem(
+                  label: "Meditation",
+                  icon: Icon(
+                    Icons.home_filled,
                     size: 30,
-                    color: page == 2 ? Colors.white : Colors.grey,
-                  ),
-                  Icon(
-                    Icons.newspaper_outlined,
+                    color: Colors.transparent,
+                  )),
+              BottomNavigationBarItem(
+                  label: "Stories",
+                  icon: Icon(
+                    Icons.home_filled,
                     size: 30,
-                    color: page == 3 ? Colors.white : Colors.grey,
-                  ),
-                  Icon(
-                    Icons.settings,
+                    color: Colors.transparent,
+                  )),
+              BottomNavigationBarItem(
+                  label: "Profile",
+                  icon: Icon(
+                    Icons.home_filled,
                     size: 30,
-                    color: page == 4 ? Colors.white : Colors.grey,
-                  ),
-                ],
-                onTap: (int index) {
-                  pageNum.value = index;
-                  _cont.animateToPage(index,
-                      duration: Duration(milliseconds: 200),
-                      curve: Curves.easeIn);
-                },
-              )),
+                    color: Colors.transparent,
+                  )),
+            ],
+            onTap: (int index) {
+              pageNum.value = index;
+              _cont.animateToPage(index,
+                  duration: Duration(milliseconds: 200), curve: Curves.easeIn);
+            },
+          )
+        ],
+      ),
       body: Stack(
         children: [
           GradientContainer(
@@ -104,8 +187,6 @@ class Unified extends StatelessWidget {
                   const yoga_home(),
                   MusicScreen(),
                   const Category_Section(),
-
-                  // profile(),
                   profile()
                 ],
                 onPageChanged: (updated) {
@@ -114,24 +195,49 @@ class Unified extends StatelessWidget {
               ),
             ),
           ),
-          Container(
-            height: MediaQuery.of(context).size.height / 2,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.chevron_left,
-                      color: Colors.black,
-                    )),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.chevron_right, color: Colors.black))
-              ],
-            ),
-          ),
+          ValueListenableBuilder(
+              valueListenable: pageNum,
+              builder: (context, int page, _) => Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 1.4,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        pageNum.value != 0
+                            ? IconButton(
+                                onPressed: () {
+                                  pageNum.value = pageNum.value - 1;
+                                  _cont.animateToPage(page - 1,
+                                      duration: Duration(milliseconds: 200),
+                                      curve: Curves.easeIn);
+                                },
+                                icon: Icon(
+                                  Icons.chevron_left,
+                                  color: Colors.black,
+                                  size: 40,
+                                ))
+                            : Container(),
+                        pageNum.value != 4
+                            ? Container(
+                                margin: EdgeInsets.only(right: 4),
+                                child: IconButton(
+                                    onPressed: () {
+                                      pageNum.value = page + 1;
+                                      _cont.animateToPage(page + 1,
+                                          duration: Duration(milliseconds: 200),
+                                          curve: Curves.easeIn);
+                                    },
+                                    icon: Icon(
+                                      Icons.chevron_right,
+                                      color: Colors.black,
+                                      size: 40,
+                                    )),
+                              )
+                            : Container()
+                      ],
+                    ),
+                  )),
         ],
       ),
     );

@@ -139,9 +139,9 @@ class _DialogState extends State<_Dialog> {
             children: [
               TextSpan(text: '\nObjective\n', style: header),
               const TextSpan(text: '\nThe goal is to move ',style: TextStyle(color: Colors.blueGrey)),
-              TextSpan(text: 'Human', style: em),
+              TextSpan(text: '🕵🏻', style: em),
               const TextSpan(text: ' to ',style: TextStyle(color: Colors.blueGrey)),
-              TextSpan(text: 'the exit', style: em),
+              TextSpan(text: 'the Jail', style: em),
               const TextSpan(text: ' in as few ',style: TextStyle(color: Colors.blueGrey)),
               TextSpan(text: 'steps', style: em),
               const TextSpan(text: ' as possible.',style: TextStyle(color: Colors.blueGrey)),
@@ -154,15 +154,15 @@ class _DialogState extends State<_Dialog> {
             children: [
               TextSpan(text: '\nPieces\n', style: header),
               const TextSpan(text: '\nThe largest piece is ',style: TextStyle(color: Colors.blueGrey)),
-              TextSpan(text: 'HUMAN', style: em),
+              TextSpan(text: '🕵🏻', style: em),
               const TextSpan(text: '. All other pieces are ',style: TextStyle(color: Colors.blueGrey)),
-              TextSpan(text: 'MONSTERS', style: em,),
+              TextSpan(text: '👮🏻', style: em,),
               const TextSpan(text: ' preventing ',style: TextStyle(color: Colors.blueGrey)),
-              TextSpan(text: 'HUMAN', style: em),
+              TextSpan(text: '🕵🏻', style: em),
               const TextSpan(text: ' from reaching ',style: TextStyle(color: Colors.blueGrey)),
-              TextSpan(text: 'the exit', style: em),
+              TextSpan(text: 'the Jail', style: em),
               const TextSpan(text: '. Swipe them away to clear a path for ',style: TextStyle(color: Colors.blueGrey)),
-              TextSpan(text: 'HUMAN', style: em),
+              TextSpan(text: '🕵🏻', style: em),
               const TextSpan(text: '.',style: TextStyle(color: Colors.blueGrey)),
             ],
           ),
@@ -172,24 +172,24 @@ class _DialogState extends State<_Dialog> {
           children: [
             const SizedBox(height: 16),
             _buildPuzzlePiece(
-              Piece(0, label: 'HUMAN', width: 2, height: 2, x: 0, y: 0),
+              Piece(0, label: '🕵🏻', width: 2, height: 2, x: 0, y: 0),
             ),
-            Text('HUMAN', style: em),
+            Text('CHOR', style: em),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 _buildPuzzlePiece(
-                  Piece(1, label: 'M', width: 2, height: 1, x: 0, y: 0),
+                  Piece(1, label: '👮🏻', width: 2, height: 1, x: 0, y: 0),
                 ),
                 _buildPuzzlePiece(
-                  Piece(2, label: 'M', width: 1, height: 1, x: 0, y: 0),
+                  Piece(2, label: '👮🏻', width: 1, height: 1, x: 0, y: 0),
                 ),
                 _buildPuzzlePiece(
-                  Piece(3, label: 'M', width: 1, height: 2, x: 0, y: 0),
+                  Piece(3, label: '👮🏻', width: 1, height: 2, x: 0, y: 0),
                 ),
               ],
             ),
-            Text('MONSTERS', style: em),
+            Text('Police', style: em),
           ],
         ),
         RichText(
@@ -197,15 +197,15 @@ class _DialogState extends State<_Dialog> {
             style: body,
             children: [
               TextSpan(
-                text: '\nThe Exit\n',
+                text: '\nThe Jail\n',
                 style: header,
               ),
-              const TextSpan(text: '\nThe exit is located ',style: TextStyle(color: Colors.blueGrey)),
+              const TextSpan(text: '\nThe jail is located ',style: TextStyle(color: Colors.blueGrey)),
               TextSpan(text: 'at the bottom', style: em),
               const TextSpan(text: ' of the game board for each level. Once ',style: TextStyle(color: Colors.blueGrey)),
-              TextSpan(text: 'HUMAN', style: em),
+              TextSpan(text: '🕵🏻', style: em),
               const TextSpan(
-                  text: ' reaches the exit, '
+                  text: ' reaches the Jail, '
                       'the game will advance to the next level.',style: TextStyle(color: Colors.blueGrey)),
             ],
           ),

@@ -141,6 +141,7 @@ class _music extends State<music> {
                   style: const TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    color: Colors.white
                   ),
                 ),
                 const SizedBox(
@@ -148,7 +149,8 @@ class _music extends State<music> {
                 ),
                 Text(
                   widget.d,
-                  style: const TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20
+                  ,color: Colors.white),
                 ),
                 Slider(
                   activeColor: Colors.white,

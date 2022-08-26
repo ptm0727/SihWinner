@@ -19,7 +19,7 @@ class Cao3D extends StatelessWidget {
     required this.depth,
     this.rotateX = 0.0,
     rotateY = 0.0,
-    this.label = 'HUMAN',
+    this.label = '🕵🏻',
   })  : rotateY = rotateY % (pi * 2),
         assert(
             rotateX <= 1.2 && rotateX >= -1.2,

@@ -45,7 +45,7 @@ class _ShinyTextState extends State<ShinyText>
                 colors: const [
                   Color(0xffD6F599),
                   Colors.white,
-                  Color(0xffD6F599),
+                  Color(0xffd6f599),
                 ],
                 stops: [v, v + 0.1, v + 0.2],
                 begin: Alignment.bottomLeft,

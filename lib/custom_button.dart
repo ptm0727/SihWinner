@@ -184,11 +184,10 @@ class Button extends StatelessWidget {
           data: ThemeData(dividerColor: Colors.transparent),
           child: ExpansionTile(
             initiallyExpanded: true,
-            collapsedBackgroundColor:
-                !darkData.dark ? Colors.white : Colors.black,
-            backgroundColor: !darkData.dark ? Colors.white : Colors.black,
-            textColor: darkData.dark ? Colors.white : Colors.black,
-            collapsedTextColor: darkData.dark ? Colors.white : Colors.black,
+            collapsedBackgroundColor: Colors.white,
+            backgroundColor: Colors.white,
+            textColor: Colors.black,
+            collapsedTextColor: Colors.black,
             title: Column(
               children: [
                 ClipRRect(
@@ -201,7 +200,7 @@ class Button extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 5,
                 ),
                 Center(
                   child: Text(
@@ -227,20 +226,20 @@ class Button extends StatelessWidget {
                     ),
                   ),
                 ),
-                trailing: MaterialButton(
-                  elevation: 0,
-                  color: darkData.dark ? Colors.deepPurple : Colors.green,
+                trailing: OutlinedButton(
+                  style: OutlinedButton.styleFrom(
+                    side: BorderSide(color: Color(0xff6053BC), width: 2.3),
+                    shape: StadiumBorder(),
+                  ),
                   onPressed: () {
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => destination));
                   },
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  child: Text(
+                  child: const Text(
                     "Play",
                     style: TextStyle(
                       fontSize: 18,
-                      color: darkData.dark ? Colors.white : Colors.black,
+                      color: Color(0xff6053BC),
                     ),
                   ),
                 ),
@@ -250,74 +249,6 @@ class Button extends StatelessWidget {
         ),
       ),
     );
-    //   Padding(
-    //   padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-    //   child: Neumorphic(
-    //     style: darkData.dark
-    //         ? NeumorphicStyle(
-    //             intensity: 0.8,
-    //             depth: 4,
-    //             shadowLightColor: Colors.blueGrey.shade700,
-    //             shadowDarkColor: Color(0xff0B0E12),
-    //             color: Color(0xff333E52),
-    //             boxShape:
-    //                 NeumorphicBoxShape.roundRect(BorderRadius.circular(17)))
-    //         : NeumorphicStyle(
-    //             intensity: 0.7,
-    //             depth: 4,
-    //             shadowLightColor: Colors.white,
-    //             shadowDarkColor: Colors.grey.shade800,
-    //             color: Colors.white70,
-    //             boxShape:
-    //                 NeumorphicBoxShape.roundRect(BorderRadius.circular(17))),
-    //     child: Theme(
-    //       data:
-    //           ThemeData(dividerColor: Colors.transparent, fontFamily: "Nunito"),
-    //       child: ExpansionTile(
-    //           textColor: darkData.dark ? Colors.white : Colors.black,
-    //           title: Padding(
-    //             padding: const EdgeInsets.only(left: 50),
-    //             child: Text(
-    //               title,
-    //               style: TextStyle(
-    //                 fontSize: 26,
-    //                 fontWeight: FontWeight.w500,
-    //                 color: darkData.dark ? Colors.white : Colors.black,
-    //               ),
-    //             ),
-    //           ),
-    //           children: [
-    //             ListTile(
-    //               title: Text(
-    //                 subtitle ?? "",
-    //                 style: TextStyle(
-    //                   fontSize: 17,
-    //                   fontWeight: FontWeight.w500,
-    //                   color: darkData.dark ? Colors.white : Colors.black,
-    //                 ),
-    //               ),
-    //               trailing: MaterialButton(
-    //                 elevation: 0,
-    //                 color: darkData.dark ? Colors.deepPurple : Colors.green,
-    //                 onPressed: () {
-    //                   Navigator.push(context,
-    //                       MaterialPageRoute(builder: (context) => destination));
-    //                 },
-    //                 shape: RoundedRectangleBorder(
-    //                     borderRadius: BorderRadius.circular(30)),
-    //                 child: Text(
-    //                   "Play",
-    //                   style: TextStyle(
-    //                     fontSize: 18,
-    //                     color: darkData.dark ? Colors.white : Colors.black,
-    //                   ),
-    //                 ),
-    //               ),
-    //             )
-    //           ]),
-    //     ),
-    //   ),
-    // );
   }
 }
 
@@ -330,19 +261,7 @@ class GradientContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     darkData = Provider.of<DarkMode>(context);
     return Container(
-      //padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.12),
-      // decoration: BoxDecoration(
-      //     gradient: LinearGradient(
-      //         begin: Alignment.topLeft,
-      //         end: Alignment.bottomCenter,
-      //         colors: Provider.of<DarkMode>(context).dark
-      //             ? [
-      //                 Color(0xFF283240),
-      //                 Color(0xFF283240),
-      //                 Colors.blueGrey.shade800
-      //               ]
-      //             : [Colors.lightBlueAccent, Colors.white])
-      // ),
+      padding: EdgeInsets.zero,
       color: darkData.dark ? Colors.black54 : Colors.white,
       child: child,
     );
@@ -366,17 +285,17 @@ class RegularButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 60),
       child: ListTile(
-          tileColor: Colors.white,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: Center(
-            child: Text(
-              title,
-              style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
-            ),
+        tileColor: Colors.white,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: Center(
+          child: Text(
+            title,
+            style: const TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
           ),
-          onTap: onPressed,
-      trailing: trailing,),
+        ),
+        onTap: onPressed,
+        trailing: trailing,
+      ),
     );
   }
 }
