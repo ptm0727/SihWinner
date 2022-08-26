@@ -16,6 +16,20 @@ class _LoginState extends State<Login> {
   final AuthService _auth = AuthService();
   final key = GlobalKey<FormState>();
 
+  Future openDialog() => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("UserName Exist"),
+        actions: [
+          RaisedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: Text("Ok"),
+          ),
+        ],
+      ));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +75,23 @@ class _LoginState extends State<Login> {
                           const SizedBox(height: 20),
                           TextFormField(
                             validator: (val) =>
+                            val == null ? "Cannot be empty" : null,
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: const Icon(Icons.email_outlined),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30)),
+                                labelText: "username",
+                                labelStyle: const TextStyle(
+                                    fontSize: 23,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w600)),
+                            controller: _nick,
+                          ),
+                          const SizedBox(height: 20),
+                          TextFormField(
+                            validator: (val) =>
                                 val == null ? "Cannot be empty" : null,
                             decoration: InputDecoration(
                                 filled: true,
@@ -101,10 +132,11 @@ class _LoginState extends State<Login> {
                   const SizedBox(height: 35),
                   RegularButton(
                       onPressed: () async {
+
                         if (key.currentState!.validate()) {
                           if (isSignUp) {
                             var user =
-                                await _auth.createAcc(_uid.text, _pwd.text);
+                                await _auth.createAcc(_nick.text,_uid.text, _pwd.text);
                           } else {
                             await _auth.login(_uid.text, _pwd.text);
                           }

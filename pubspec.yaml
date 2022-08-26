@@ -52,6 +52,7 @@ dependencies:
   favorite_button: ^0.0.4
   youtube_player_flutter: ^8.1.0
   lottie: ^1.4.2
+  image_picker: ^0.8.5+3
 
 dev_dependencies:
   flutter_test:
