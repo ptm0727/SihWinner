@@ -123,6 +123,7 @@ class _profile extends State<profile> {
       ChartData(5, 0.75),
       ChartData(6, 0.43),
     ];
+    bool yearChart = false;
     return SingleChildScrollView(
       physics: const BouncingScrollPhysics(),
       child: Padding(
@@ -214,6 +215,12 @@ class _profile extends State<profile> {
               const SizedBox(
                 height: 20,
               ),
+              Center(
+                child: Text(
+                  "Game data",
+                  style: const TextStyle(fontSize: 24, color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
               SfCartesianChart(
                   primaryXAxis: CategoryAxis(name: "abc",labelStyle: TextStyle(color: Colors.white)),
                   primaryYAxis: NumericAxis(name: "",labelStyle: TextStyle(color: Colors.white)),
@@ -230,6 +237,12 @@ class _profile extends State<profile> {
                       color: Colors.amber,
                     )
                   ]),
+              Center(
+                child: Text(
+                  "Monthly Score",
+                  style: const TextStyle(fontSize: 24,color: Colors.white, fontWeight: FontWeight.bold),
+                ),
+              ),
               SfCartesianChart(
                   primaryXAxis: CategoryAxis(
                       labelPosition: ChartDataLabelPosition.inside,

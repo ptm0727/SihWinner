@@ -56,12 +56,17 @@ class _NewsState extends State<News> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff6053BC),
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.black,
-        title: Text(
-          widget.headline,
-          style: TextStyle(fontSize: 30, color: Colors.white),
+        foregroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
+        title: Padding(
+          padding: EdgeInsets.only(left: 30),
+          child: Text(
+            widget.headline,
+            style: TextStyle(fontSize: 40, color: Colors.white,fontWeight: FontWeight.bold),
+          ),
         ),
       ),
       body: Container(
@@ -71,19 +76,29 @@ class _NewsState extends State<News> {
 
         ),
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.all(5),
-                child: Text(widget.article,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500
-                ),),
+          physics: BouncingScrollPhysics(),
+          child: Padding(
+            padding: EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 10),
+
+            child: Card(shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+              color: Colors.white,
+
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: EdgeInsets.all(20),
+                    child: Text(widget.article,
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500
+                    ),),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),

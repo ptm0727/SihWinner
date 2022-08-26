@@ -37,14 +37,16 @@ class _NewsSectionState extends State<NewsSection> {
         elevation: 0,
         backgroundColor: Colors.transparent,
         foregroundColor: darkData.dark ? Colors.white : Colors.black,
-        title: Center(
+        title: const Center(
           child: Text(
             "BLOG",
             style: TextStyle(fontSize: 40),
           ),
         ),
       ),
-      body: GradientContainer(
+      body: Padding(
+        padding: EdgeInsets.only(left: 30, right: 30, bottom: 20, top: 10),
+
         child: PageView(
           controller: _cont,
           children: [
@@ -82,55 +84,58 @@ class _NewsSectionState extends State<NewsSection> {
                           }
                           final data = snapshot.requireData;
                           var name = auth.currentUser?.uid;
-                          return ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: data.size * 2 + 2,
-                              itemBuilder: (context, index) {
-                                if (index <= data.size) {
-                                  if (index == 0) {
-                                    return const Center(
-                                      child: Text(
-                                        "My Stories",
-                                        style: TextStyle(
-                                            fontSize: 35,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    );
-                                  }
-                                  if (name == data.docs[index - 1]['uid']) {
-                                    return commentdelete(
-                                      data.docs[index - 1]['title'],
-                                      data.docs[index - 1]['content'],
-                                      data.docs[index - 1]['uid'],
-                                      data.docs[index - 1]['id'],
-                                    );
-                                  }
-                                  return SizedBox.shrink();
-                                } else {
-                                  if (index == (data.size + 1))
-                                    return const Center(
-                                      child: Text(
-                                        "Others Stories",
-                                        style: TextStyle(
-                                            fontSize: 35,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white),
-                                      ),
-                                    );
-                                  if (name ==
-                                      data.docs[index - data.size - 2]['uid']) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: data.size * 2 + 2,
+                                itemBuilder: (context, index) {
+                                  if (index <= data.size) {
+                                    if (index == 0) {
+                                      return const Center(
+                                        child: Text(
+                                          "My Stories",
+                                          style: TextStyle(
+                                              fontSize: 35,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      );
+                                    }
+                                    if (name == data.docs[index - 1]['uid']) {
+                                      return commentdelete(
+                                        data.docs[index - 1]['title'],
+                                        data.docs[index - 1]['content'],
+                                        data.docs[index - 1]['uid'],
+                                        data.docs[index - 1]['id'],
+                                      );
+                                    }
                                     return SizedBox.shrink();
-                                  } else
-                                    return comments(
-                                        data.docs[index - data.size - 2]
-                                            ['title'],
-                                        data.docs[index - data.size - 2]
-                                            ['content'],
-                                        data.docs[index - data.size - 2]['uid'],
-                                        data.docs[index - data.size - 2]['id']);
-                                }
-                              });
+                                  } else {
+                                    if (index == (data.size + 1))
+                                      return const Center(
+                                        child: Text(
+                                          "Others Stories",
+                                          style: TextStyle(
+                                              fontSize: 35,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
+                                        ),
+                                      );
+                                    if (name ==
+                                        data.docs[index - data.size - 2]['uid']) {
+                                      return SizedBox.shrink();
+                                    } else
+                                      return comments(
+                                          data.docs[index - data.size - 2]
+                                              ['title'],
+                                          data.docs[index - data.size - 2]
+                                              ['content'],
+                                          data.docs[index - data.size - 2]['uid'],
+                                          data.docs[index - data.size - 2]['id']);
+                                  }
+                                }),
+                          );
                         },
                       ),
                       SizedBox(
