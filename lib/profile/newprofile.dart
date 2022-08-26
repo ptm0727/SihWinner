@@ -15,7 +15,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
   int i = 0;
   Color my = Colors.brown, CheckMyColor = Colors.white;
   final FirebaseAuth auth = FirebaseAuth.instance;
-  Future<void> updatescore(var p1) {
+  Future<void> updatescore(var p1,var u) {
     return FirebaseFirestore.instance
         .collection('points')
         .where('uid', isEqualTo: auth.currentUser?.uid)
@@ -30,7 +30,8 @@ class _LeaderBoardState extends State<LeaderBoard> {
               'id': auth.currentUser?.uid,
               'game': p1,
               'uid': auth.currentUser?.uid,
-              'date': DateTime.now().toString()
+              'date': DateTime.now().toString(),
+              'username': u
             })
             .then((value) => print("User Added"))
             .catchError((error) => print("Failed to add user: $error"));
@@ -51,7 +52,8 @@ class _LeaderBoardState extends State<LeaderBoard> {
     pointsmodel p = box.get('points');
     denominatormodel d = box1.get('d');
     points_firebase x = points_firebase();
-
+    usernamemodel u = box2.get('u');
+// box2.put('u', usernamemodel(username: "username"));
     var r = TextStyle(color: Colors.purpleAccent, fontSize: 34);
     return Scaffold(
         backgroundColor: Color(0xff6053BC),
@@ -112,7 +114,7 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                   p.p4 / d.d4 +
                                   p.p5 / d.d5 +
                                   p.p6 / d.d6) /
-                              6);
+                              6,u.username);
                           if (snapshot.hasData) {
                             i = 0;
                             var data = snapshot.requireData;
@@ -135,12 +137,8 @@ class _LeaderBoardState extends State<LeaderBoard> {
                                       }
                                     }
 
-                                    var name = data.docs[index]['uid'];
-                                    if (data.docs[index].id ==
-                                        auth.currentUser?.uid)
-                                      name = "me";
-                                    else if (data.docs[index].id == name)
-                                      name = "anonymous";
+                                    var name = data.docs[index]['username'];
+
 
                                     return Padding(
                                       padding: const EdgeInsets.symmetric(

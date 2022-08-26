@@ -17,13 +17,13 @@ class points_firebase {
         .join();
   }
 
-  Future<void> addPoints(p1) {
+  Future<void> addPoints(p1,u) {
     var res = generateRandomString(30);
     var name = auth.currentUser?.uid;
     return FirebaseFirestore.instance
         .collection('points')
         .doc(res)
-        .set({'game': p1,'uid': auth.currentUser?.uid,'id':res,'date': DateTime.now().toString()})
+        .set({'game': p1,'uid': auth.currentUser?.uid,'id':res,'date': DateTime.now().toString(),'username': u})
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
   }

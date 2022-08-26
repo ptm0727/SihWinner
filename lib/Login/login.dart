@@ -66,7 +66,7 @@ class _LoginState extends State<Login> {
                         color: Colors.white),
                   )),
                   const SizedBox(height: 40),
-                  Container(
+                  isSignUp ? Container(
                     padding: EdgeInsets.symmetric(horizontal: 30),
                     child: Form(
                       key: key,
@@ -92,7 +92,70 @@ class _LoginState extends State<Login> {
                           const SizedBox(height: 20),
                           TextFormField(
                             validator: (val) =>
-                                val == null ? "Cannot be empty" : null,
+                            val == null ? "Cannot be empty" : null,
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: const Icon(Icons.email_outlined),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30)),
+                                labelText: "Email ID",
+                                labelStyle: const TextStyle(
+                                    fontSize: 23,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w600)),
+                            controller: _uid,
+                          ),
+                          const SizedBox(height: 20),
+                          TextFormField(
+                            validator: (val) => val == null || val.length < 6
+                                ? "Enter atleast 6 characters"
+                                : null,
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: const Icon(Icons.password_outlined),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30)),
+                                labelText: "Password",
+                                labelStyle: const TextStyle(
+                                    fontSize: 23,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w600)),
+                            controller: _pwd,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ) : Container(
+                    padding: EdgeInsets.symmetric(horizontal: 30),
+                    child: Form(
+                      key: key,
+                      child: Column(
+                        children: [
+                          const SizedBox(height: 20),
+                          isSignUp ? TextFormField(
+                            validator: (val) =>
+                            val == null ? "Cannot be empty" : null,
+                            decoration: InputDecoration(errorText: "Cannot be empty",
+                                filled: true,
+                                fillColor: Colors.white,
+                                prefixIcon: const Icon(Icons.email_outlined),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30)),
+                                labelText: "username",
+                                labelStyle: const TextStyle(
+                                    fontSize: 23,
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.w600)),
+                            controller: _nick,
+                          ) : SizedBox.shrink(),
+
+                          const SizedBox(height: 20),
+                          TextFormField(
+                            validator: (val) =>
+                            val == null ? "Cannot be empty" : null,
                             decoration: InputDecoration(
                                 filled: true,
                                 fillColor: Colors.white,
@@ -129,6 +192,7 @@ class _LoginState extends State<Login> {
                       ),
                     ),
                   ),
+
                   const SizedBox(height: 35),
                   RegularButton(
                       onPressed: () async {
