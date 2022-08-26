@@ -35,3 +35,9 @@ class denominatormodel extends HiveObject{
    double d6=0.1;
 
 }
+@HiveType(typeId: 2)
+class usernamemodel extends HiveObject{
+  usernamemodel({required this.username});
+  @HiveField(0)
+  late String  username;
+}

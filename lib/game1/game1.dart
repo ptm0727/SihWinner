@@ -1,3 +1,4 @@
+import 'package:lottie/lottie.dart';
 import 'package:sih_brain_games/pointsmodel.dart';
 import 'package:sih_brain_games/game1/TileModel.dart';
 import 'package:flutter/material.dart';
@@ -65,145 +66,149 @@ class _HomeState extends State<game1> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.grey,
-        elevation: 0,
-        title: const Text(
-          "Test your memory",
-          style: TextStyle(color: Colors.black, fontSize: 25),
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Rules(game: "am")));
-              },
-              icon: Icon(
-                Icons.question_mark,
-                color: Colors.black,
-              ))
-        ],
-      ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 10,
-              ),
-              points != 100 && moves > 0
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          "$points/100",
-                          style: TextStyle(
-                              fontSize: 30, fontWeight: FontWeight.w500),
-                        ),
-                        Text(
-                          "Points",
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w300),
-                        ),
-                      ],
-                    )
-                  : Container(),
-              SizedBox(
-                height: 30,
-              ),
-              points != 100 && moves > 0
-                  ? GridView(
-                      shrinkWrap: true,
-                      //physics: ClampingScrollPhysics(),
-                      scrollDirection: Axis.vertical,
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                          mainAxisSpacing: 0.0, maxCrossAxisExtent: 100.0),
-                      children: List.generate(gridViewTiles.length, (index) {
-                        return Tile(
-                          imagePathUrl:
-                              gridViewTiles[index].getImageAssetPath(),
-                          tileIndex: index,
-                          parent: this,
-                        );
-                      }),
-                    )
-                  : Container(
-                      child: Column(
-                      children: <Widget>[
-                        GestureDetector(
-                          onTap: () {
-                            changepoints();
-                            setState(() {
-                              points = 0;
-                              moves = 30;
-                              reStart();
-                            });
-                          },
-                          child: Container(
-                            height: 50,
-                            width: 200,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            child: Text(
-                              "Replay",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            changepoints();
-                            Navigator.pop(context);
-                          },
-                          child: Container(
-                            height: 50,
-                            width: 200,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.blue, width: 2),
-                              borderRadius: BorderRadius.circular(24),
-                            ),
-                            child: Text(
-                              "Back To Home",
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                        ),
-                      ],
-                    )),
-              SizedBox(
-                height: 20,
-              ),
-              moves > 0
-                  ? Text(
-                      " MOVES LEFT $moves",
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500),
-                    )
-                  : Container()
+    return Stack(
+      children: [
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            foregroundColor: Colors.grey,
+            elevation: 0,
+            title: const Text(
+              "Test your memory",
+              style: TextStyle(color: Colors.black, fontSize: 25),
+            ),
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Rules(game: "am")));
+                  },
+                  icon: Icon(
+                    Icons.question_mark,
+                    color: Colors.black,
+                  ))
             ],
           ),
+          body: SingleChildScrollView(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+              child: Column(
+                children: <Widget>[
+                  SizedBox(
+                    height: 10,
+                  ),
+                  points != 100 && moves > 0
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "$points/100",
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.w500),
+                            ),
+                            Text(
+                              "Points",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w300),
+                            ),
+                          ],
+                        )
+                      : Container(),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  points != 100 && moves > 0
+                      ? GridView(
+                          shrinkWrap: true,
+                          //physics: ClampingScrollPhysics(),
+                          scrollDirection: Axis.vertical,
+                          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                              mainAxisSpacing: 0.0, maxCrossAxisExtent: 100.0),
+                          children: List.generate(gridViewTiles.length, (index) {
+                            return Tile(
+                              imagePathUrl:
+                                  gridViewTiles[index].getImageAssetPath(),
+                              tileIndex: index,
+                              parent: this,
+                            );
+                          }),
+                        )
+                      : Container(
+                          child: Column(
+                          children: <Widget>[
+                            GestureDetector(
+                              onTap: () {
+                                changepoints();
+                                setState(() {
+                                  points = 0;
+                                  moves = 30;
+                                  reStart();
+                                });
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 200,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                                child: Text(
+                                  "Replay",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                changepoints();
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                height: 50,
+                                width: 200,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.blue, width: 2),
+                                  borderRadius: BorderRadius.circular(24),
+                                ),
+                                child: Text(
+                                  "Back To Home",
+                                  style: TextStyle(
+                                      color: Colors.blue,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  moves > 0
+                      ? Text(
+                          " MOVES LEFT $moves",
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w500),
+                        )
+                      : Container()
+                ],
+              ),
+            ),
+          ),
         ),
-      ),
+      ],
     );
   }
 }
