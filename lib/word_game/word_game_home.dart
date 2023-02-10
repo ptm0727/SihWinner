@@ -37,7 +37,7 @@ class _Word_gameState extends State<Word_game> {
       builder: (context) => AlertDialog(
         title: Text("Well Done"),
         actions: [
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
               Navigator.pop(context);
@@ -116,25 +116,25 @@ class _Word_gameState extends State<Word_game> {
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                                             children: [
-                                              FlatButton(onPressed: (){
+                                              TextButton(onPressed: (){
                                                 if(animals[count][count] == map[count][0][0].toString())
                                                   changingState();
 
                                               }, child: Text(map[count][0][0].toString().toUpperCase() , style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Color(0xff6053BC)),),
-                                                shape: RoundedRectangleBorder(
+                                                /*shape: RoundedRectangleBorder(
                                                 borderRadius: BorderRadius.circular(30.0),
                                                 side: BorderSide(color: Color(0xff6053BC))
-                                                ),
+                                                ),*/
                                               ),
-                                              FlatButton(onPressed: (){
+                                              TextButton(onPressed: (){
                                                 if(animals[count][count] == map[count][1][0].toString())
                                                   changingState();
                                               },
                                               child: Text(map[count][1][0].toString().toUpperCase() , style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25 , color: Color(0xff6053BC)),),
-                                              shape: RoundedRectangleBorder(
+                                              /*shape: RoundedRectangleBorder(
                                               borderRadius: BorderRadius.circular(30.0),
                                               side: BorderSide(color: Color(0xff6053BC))
-                              ),
+                              ),*/
     ),
 
                                             ],
@@ -144,23 +144,21 @@ class _Word_gameState extends State<Word_game> {
                                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
 
                                             children: [
-                                              FlatButton(onPressed: () {
+                                              TextButton(onPressed: () {
                                                 if (animals[count][count] ==
                                                     map[count][2][0].toString())
                                                   changingState();
                                               }, child: Text(map[count][2][0].toString().toUpperCase() , style: TextStyle(fontSize: 25, color: Color(0xff6053BC) , fontWeight: FontWeight.bold)),
-    shape: RoundedRectangleBorder(
+    /*shape: RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(60.0),
     side: BorderSide(color: Color(0xff6053BC))
-    ),),
-                                              FlatButton(onPressed: (){
+    ),*/),
+                                              TextButton(onPressed: (){
                                                 if(animals[count][count] == map[count][3][0].toString())
                                                   changingState();
                                               }, child: Text(map[count][3][0].toString().toUpperCase() , style: TextStyle(fontWeight:  FontWeight.bold , fontSize: 25, color: Color(0xff6053BC))),
-    shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(60.0),
-    side: BorderSide(color: Color(0xff6053BC),
-    ),),),
+
+                                              ),
                                             ],
                                           ),
                                         ],

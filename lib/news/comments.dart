@@ -202,13 +202,13 @@ class _commentdeleteState extends State<commentdelete> {
         title: Text("Comment"),
         content: Text("Do You Want to Delete"),
         actions: [
-          RaisedButton(onPressed: (){
+          ElevatedButton(onPressed: (){
             deletecomment(id);
             Navigator.pop(context);
           },
           child: Text("Yes"),
           ),
-          RaisedButton(onPressed: (){
+          ElevatedButton(onPressed: (){
             Navigator.pop(context);
           },
             child: Text("No"),

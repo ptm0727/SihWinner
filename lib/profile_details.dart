@@ -37,8 +37,8 @@ class _Profile_DetailsState extends State<Profile_Details> {
                     ),
                   ),
                 ),
-                SizedBox(height: 5,),
-                RaisedButton(onPressed: (){
+                const SizedBox(height: 5,),
+                ElevatedButton(onPressed: (){
 
                 },
                 child: Text(

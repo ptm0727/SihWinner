@@ -53,14 +53,14 @@ class _Add_BlogState extends State<Add_Blog> {
         title: Text("Publilsh"),
 
         actions: [
-          RaisedButton(onPressed: (){
+          ElevatedButton(onPressed: (){
             publishcontent();
             Navigator.pop(context);
             Navigator.pop(context);
           },
             child: Text("Yes"),
           ),
-          RaisedButton(onPressed: (){
+          ElevatedButton(onPressed: (){
             Navigator.pop(context);
           },
             child: Text("No"),
@@ -213,13 +213,13 @@ class _commentdeleteState extends State<commentdelete> {
         title: Text("Comment"),
         content: Text("Do You Want to Delete"),
         actions: [
-          RaisedButton(onPressed: (){
+          ElevatedButton(onPressed: (){
             deletecomment(id);
             Navigator.pop(context);
           },
             child: Text("Yes"),
           ),
-          RaisedButton(onPressed: (){
+          ElevatedButton(onPressed: (){
             Navigator.pop(context);
           },
             child: Text("No"),

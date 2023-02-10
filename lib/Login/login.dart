@@ -21,7 +21,7 @@ class _LoginState extends State<Login> {
       builder: (context) => AlertDialog(
         title: Text("UserName Exist"),
         actions: [
-          RaisedButton(
+          ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
             },

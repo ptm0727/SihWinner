@@ -237,14 +237,14 @@ class _commentdeleteState extends State<commentdelete> {
       builder: (context) => AlertDialog(
             title: Text("Delete  Story"),
             actions: [
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   deletecomment(id);
                   Navigator.pop(context);
                 },
                 child: Text("Yes"),
               ),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
